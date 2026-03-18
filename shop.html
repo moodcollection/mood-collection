@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | MØØD COLLECTION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --neutral-light: #ffffff; --neutral-dark: #000000; --header-bg: #000000; --text-on-black: #ffffff; }
+        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--neutral-light); color: var(--neutral-dark); -webkit-font-smoothing: antialiased; }
+        
+        /* SEARCH BAR */
+        #searchBar { position: fixed; top: -120px; left: 0; width: 100%; height: 100px; background: white; z-index: 3000; transition: 0.4s ease-in-out; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #000; }
+        #searchBar.active { top: 0; }
+        #searchBar input { width: 50%; border: none; border-bottom: 1px solid #000; font-size: 20px; outline: none; text-align: center; font-family: 'Cormorant Garamond', serif; }
+
+        /* NAVIGATION - MATCHING INDEX */
+        nav { position: fixed; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
+        .header-logo img { height: 80px; position: relative; top: -5px; }
+        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        nav a, .nav-icon { text-decoration: none; color: var(--text-on-black); text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; cursor: pointer; border: none; background: none; }
+
+        /* SHOP HEADER */
+        .shop-header { text-align: center; padding: 140px 0 40px; }
+        .shop-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 300; }
+        
+        /* PRODUCT GRID */
+        .product-grid { padding: 0 5% 100px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .product-card { text-align: center; color: inherit; text-decoration: none; }
+        .image-placeholder { width: 100%; aspect-ratio: 4/5; background-color: #f2f2f2; margin-bottom: 20px; transition: opacity 0.3s; cursor: pointer; }
+        .image-placeholder:hover { opacity: 0.8; }
+        .buy-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background: black; color: white; text-decoration: none; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* FOOTER */
+        footer { border-top: 1px solid #eee; padding: 80px 5% 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-top: 50px; background: #fff; }
+        .footer-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-col a { display: block; text-decoration: none; color: #666; font-size: 12px; margin-bottom: 12px; }
+
+        @media (max-width: 768px) { .nav-links { display: none; } .product-grid { grid-template-columns: 1fr; } footer { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="searchBar"><input type="text" placeholder="SEARCH MØØD..."><span style="position:absolute; right:50px; cursor:pointer;" onclick="toggleSearch()">✕</span></div>
+    <nav>
+        <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Hoodies</a>
+            <a href="shop.html">Crewnecks</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <span class="nav-icon" onclick="toggleSearch()">Search</span>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-icon" style="margin-right: 15px;">ACCOUNT</a>
+            <a href="#" class="nav-icon">CART (0)</a>
+        </div>
+    </nav>
+
+    <header class="shop-header"><h1 class="shop-title">The Collection</h1></header>
+
+    <section class="product-grid">
+        <!-- PRODUCT 1 -->
+        <div class="product-card">
+            <a href="product-detail.html"><div class="image-placeholder"></div></a>
+            <strong>Heavyweight Hoodie</strong>
+            <div style="font-size:12px; opacity:0.6; margin-top:5px;">£39.99</div>
+            <!-- When ready, replace '#' with your Stripe Payment Link -->
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <!-- PRODUCT 2 -->
+        <div class="product-card">
+            <div class="image-placeholder"></div>
+            <strong>Classic Crewneck</strong>
+            <div style="font-size:12px; opacity:0.6; margin-top:5px;">£34.99</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+
+        <!-- PRODUCT 3 -->
+        <div class="product-card">
+            <div class="image-placeholder"></div>
+            <strong>Studio Jumper</strong>
+            <div style="font-size:12px; opacity:0.6; margin-top:5px;">£45.00</div>
+            <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-col"><h4>Join the MØØD</h4><p style="font-size:12px; color:#666;">Early access to drops.</p><div class="newsletter-box"><input type="email" placeholder="EMAIL ADDRESS" style="border:none; border-bottom:1px solid #000; width:80%; outline:none; padding:10px 0;"></div></div>
+        <div class="footer-col"><h4>Support</h4><a href="policy.html">Shipping</a><a href="policy.html">Returns</a><a href="contact.html">Contact Us</a></div>
+        <div class="footer-col"><h4>Connect</h4><a href="https://www.instagram.com/moodcollectionofficial" target="_blank">Instagram</a><a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a></div>
+    </footer>
+
+    <script>
+        function toggleSearch() { document.getElementById('searchBar').classList.toggle('active'); }
+    </script>
+</body>
+</html>
