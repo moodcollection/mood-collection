@@ -59,7 +59,6 @@
 
     <header class="shop-header"><h1 class="shop-title">The Collection</h1></header>
 
-    <!-- This is the container where your real hoodies will load -->
     <section class="product-grid" id="shop-container">
         <p>Loading collection...</p>
     </section>
@@ -73,40 +72,59 @@
     <script>
         function toggleSearch() { document.getElementById('searchBar').classList.toggle('active'); }
 
-        // THE SMART SCRIPT
         async function loadProducts() {
             const container = document.getElementById('shop-container');
             try {
-                // Change 'YOUR_GITHUB_USERNAME' and 'YOUR_REPO_NAME' below!
+                // Connecting to moodcollection/mood-collection
                 const response = await fetch('https://api.github.com/repos/moodcollection/mood-collection/contents/products');
-                const files = await response.json();
                 
-                container.innerHTML = ''; // Clear the "Loading" text
+                if (!response.ok) {
+                    console.error("Fetch failed with status:", response.status);
+                    container.innerHTML = '<p>Check back soon for our latest drop.</p>';
+                    return;
+                }
+                
+                const files = await response.json();
+                container.innerHTML = ''; 
+
+                let productsFound = 0;
 
                 for (const file of files) {
                     if (file.name.endsWith('.md')) {
                         const contentResponse = await fetch(file.download_url);
                         const text = await contentResponse.text();
                         
-                        // Extracting data from your Admin files
-                        const title = text.match(/title: "(.*)"/)[1];
-                        const price = text.match(/price: "(.*)"/)[1];
-                        const image = text.match(/image: "(.*)"/)[1];
-                        const slug = file.name.replace('.md', '');
+                        // Smarter detection for titles and prices with or without quotes
+                        const titleMatch = text.match(/title:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+                        const priceMatch = text.match(/price:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+                        const imageMatch = text.match(/image:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
 
-                        const card = `
-                            <div class="product-card">
-                                <a href="product-detail.html?id=${slug}">
-                                    <img src="${image}" alt="${title}">
-                                </a>
-                                <strong>${title.toUpperCase()}</strong>
-                                <div style="font-size:12px; opacity:0.6; margin-top:5px;">£${price}</div>
-                                <a href="product-detail.html?id=${slug}" class="buy-btn">View Details</a>
-                            </div>
-                        `;
-                        container.innerHTML += card;
+                        if (titleMatch && priceMatch && imageMatch) {
+                            const title = titleMatch[1];
+                            const price = priceMatch[1];
+                            const image = imageMatch[1];
+                            const slug = file.name.replace('.md', '');
+
+                            const card = `
+                                <div class="product-card">
+                                    <a href="product-detail.html?id=${slug}">
+                                        <img src="${image}" alt="${title}">
+                                    </a>
+                                    <strong>${title.toUpperCase()}</strong>
+                                    <div style="font-size:12px; opacity:0.6; margin-top:5px;">£${price}</div>
+                                    <a href="product-detail.html?id=${slug}" class="buy-btn">View Details</a>
+                                </div>
+                            `;
+                            container.innerHTML += card;
+                            productsFound++;
+                        }
                     }
                 }
+                
+                if (productsFound === 0) {
+                    container.innerHTML = '<p>Check back soon for our latest drop.</p>';
+                }
+
             } catch (error) {
                 console.error("Error loading products:", error);
                 container.innerHTML = '<p>Check back soon for our latest drop.</p>';
