@@ -3,8 +3,97 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details | MØØD COLLECTION</title>
-    <!-- MARKDOWN TRANSLATOR (Turns stars into Bold) -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --neutral-light: #ffffff; --neutral-dark: #000000; --header-bg: #000000; --text-on-black:
+        :root { --neutral-light: #ffffff; --neutral-dark: #000000; --header-bg: #000000; --text-on-black: #ffffff; }
+        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--neutral-light); color: var(--neutral-dark); -webkit-font-smoothing: antialiased; }
+        
+        /* FULL NAVIGATION (Matching Shop.html) */
+        nav { position: fixed; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
+        .header-logo img { height: 80px; position: relative; top: -5px; }
+        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        nav a, .nav-icon { text-decoration: none; color: var(--text-on-black); text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; cursor: pointer; border: none; background: none; }
+
+        /* PRODUCT LAYOUT */
+        .container { max-width: 1100px; margin: 120px auto 80px; padding: 0 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .product-image img { width: 100%; background: #f2f2f2; aspect-ratio: 4/5; object-fit: cover; object-position: top; }
+        
+        .product-info h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 3px; margin: 0 0 10px; font-weight: 300; }
+        .price { font-size: 1.2rem; color: #666; margin-bottom: 30px; }
+        .description { line-height: 1.8; color: #333; font-size: 14px; margin-bottom: 40px; }
+        .description p { margin-bottom: 15px; }
+        .description strong { color: #000; font-weight: 600; }
+
+        .buy-btn { display: block; width: 100%; padding: 18px; background: black; color: white; text-align: center; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; transition: 0.3s; }
+
+        @media (max-width: 768px) { .nav-links { display: none; } .container { grid-template-columns: 1fr; margin-top: 100px; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Hoodies</a>
+            <a href="shop.html">Crewnecks</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <span class="nav-icon">Search</span>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-icon" style="margin-right: 15px;">ACCOUNT</a>
+            <a href="#" class="nav-icon">CART (0)</a>
+        </div>
+    </nav>
+
+    <div class="container" id="product-content">
+        <p>Loading product details...</p>
+    </div>
+
+    <script>
+        async function loadProductDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+            const container = document.getElementById('product-content');
+
+            if (!productId) {
+                container.innerHTML = "<h1>Product not found</h1>";
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/moodcollection/mood-collection/contents/products/${productId}.md`);
+                const data = await response.json();
+                const text = decodeURIComponent(escape(atob(data.content)));
+
+                const titleMatch = text.match(/title:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+                const priceMatch = text.match(/price:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+                const imageMatch = text.match(/image:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+
+                const title = titleMatch ? titleMatch[1] : "Product";
+                const price = priceMatch ? priceMatch[1] : "0.00";
+                const image = imageMatch ? imageMatch[1] : "";
+                
+                const rawDescription = text.split('---').pop().trim();
+                const cleanDescription = marked.parse(rawDescription);
+
+                container.innerHTML = `
+                    <div class="product-image"><img src="${image}" alt="${title}"></div>
+                    <div class="product-info">
+                        <h1>${title}</h1>
+                        <div class="price">£${price}</div>
+                        <div class="description">${cleanDescription}</div>
+                        <a href="#" class="buy-btn">Add to Bag</a>
+                        <p style="font-size: 10px; color: #999; margin-top: 20px;">FREE SHIPPING ON ALL UK ORDERS</p>
+                    </div>
+                `;
+            } catch (error) {
+                container.innerHTML = "<h1>Product not found</h1>";
+            }
+        }
+        loadProductDetails();
+    </script>
+</body>
+</html>
