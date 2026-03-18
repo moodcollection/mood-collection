@@ -11,7 +11,7 @@
         /* SEARCH BAR */
         #searchBar { position: fixed; top: -120px; left: 0; width: 100%; height: 100px; background: white; z-index: 3000; transition: 0.4s ease-in-out; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #000; }
         #searchBar.active { top: 0; }
-        #searchBar input { width: 50%; border: none; border-bottom: 1px solid #000; font-size: 20px; outline: none; text-align: center; font-family: 'Cormorant Garamond', serif; }
+        #searchBar input { width: 50%; border: none; border-bottom: 1px solid #000; font-size: 20px; outline: none; text-align: center; font-family: 'Cormorant Gramond', serif; }
 
         /* NAVIGATION */
         nav { position: fixed; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
@@ -26,7 +26,19 @@
         /* SMART PRODUCT GRID */
         .product-grid { padding: 0 5% 100px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
         .product-card { text-align: center; color: inherit; text-decoration: none; display: flex; flex-direction: column; align-items: center; }
-        .product-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; background-color: #f2f2f2; margin-bottom: 20px; transition: opacity 0.3s; cursor: pointer; }
+        
+        /* FIX FOR HEAD BEING CUT OFF */
+        .product-card img { 
+            width: 100%; 
+            aspect-ratio: 4/5; 
+            object-fit: cover; 
+            object-position: top; /* This keeps the model's head in the frame */
+            background-color: #f2f2f2; 
+            margin-bottom: 20px; 
+            transition: opacity 0.3s; 
+            cursor: pointer; 
+        }
+        
         .product-card:hover img { opacity: 0.8; }
         .product-card strong { text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
         .buy-btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background: black; color: white; text-decoration: none; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
@@ -75,18 +87,13 @@
         async function loadProducts() {
             const container = document.getElementById('shop-container');
             try {
-                // Connecting to moodcollection/mood-collection
                 const response = await fetch('https://api.github.com/repos/moodcollection/mood-collection/contents/products');
-                
                 if (!response.ok) {
-                    console.error("Fetch failed with status:", response.status);
                     container.innerHTML = '<p>Check back soon for our latest drop.</p>';
                     return;
                 }
-                
                 const files = await response.json();
                 container.innerHTML = ''; 
-
                 let productsFound = 0;
 
                 for (const file of files) {
@@ -94,7 +101,6 @@
                         const contentResponse = await fetch(file.download_url);
                         const text = await contentResponse.text();
                         
-                        // Smarter detection for titles and prices with or without quotes
                         const titleMatch = text.match(/title:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
                         const priceMatch = text.match(/price:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
                         const imageMatch = text.match(/image:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
@@ -120,13 +126,10 @@
                         }
                     }
                 }
-                
                 if (productsFound === 0) {
                     container.innerHTML = '<p>Check back soon for our latest drop.</p>';
                 }
-
             } catch (error) {
-                console.error("Error loading products:", error);
                 container.innerHTML = '<p>Check back soon for our latest drop.</p>';
             }
         }
