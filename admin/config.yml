@@ -13,6 +13,14 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Product Name", name: "title", widget: "string"}
-      - {label: "Price", name: "price", widget: "string"}
-      - {label: "Product Image", name: "image", widget: "image"}
+      - {label: "Base Price", name: "price", widget: "string"}
+      - {label: "Main Image (Model)", name: "image", widget: "image", hint: "The real person photo"}
       - {label: "Stripe Link", name: "stripe_link", widget: "string"}
+      - {label: "Order Priority", name: "order", widget: "number", default: 1, hint: "1 is first, 2 is second, etc."}
+      - label: "Color Variants"
+        name: "variants"
+        widget: "list"
+        fields:
+          - {label: "Color Name", name: "color_name", widget: "string", hint: "e.g. Midnight Black"}
+          - {label: "Color Hex Code", name: "color_code", widget: "string", hint: "e.g. #000000"}
+          - {label: "Mockup Image", name: "variant_image", widget: "image", hint: "The virtual mockup for this color"}
