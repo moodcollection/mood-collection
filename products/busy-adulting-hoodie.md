@@ -23,10 +23,8 @@ Ready to match your MØØD.
 
 440 GSM heavyweight fabric.
 
-
 **Colours available:** 
 
 Vanilla, Beige, Espresso, Charcoal, Black.
-
 
 **Note:** These hoodies have a clean structured fit. If you prefer a more oversized, relaxed look, please select the next size up.
