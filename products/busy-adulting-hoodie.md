@@ -11,12 +11,9 @@ variants:
   - color_name: Grounded Crewneck
     color_code: "#cbbd9a"
     variant_image: /images/ba-b.png
-  - color_name: Midnight Hoodie
-    color_code: "#000000"
-    variant_image: /images/ba-bl.png
-  - color_name: Midnight Crewneck
-    color_code: "#000000"
-    variant_image: /images/ba-bl-crewneck.png
+  - color_name: Cloud 9 Hoodie
+    color_code: "#e4dad2"
+    variant_image: /images/ba-v.png
   - color_name: After Hours Hoodie
     color_code: "#48342e"
     variant_image: /images/ba-e.png
@@ -29,9 +26,12 @@ variants:
   - color_name: DND Crewneck
     color_code: "#3f3c3f"
     variant_image: /images/ba-c-crewneck.png
-  - color_name: Cloud 9 Hoodie
-    color_code: "#e4dad2"
-    variant_image: /images/ba-v.png
+  - color_name: Midnight Crewneck
+    color_code: "#000000"
+    variant_image: /images/ba-bl-crewneck.png
+  - color_name: Midnight Hoodie
+    color_code: "#000000"
+    variant_image: /images/ba-bl.png
 ---
 **Busy Adulting**
 
