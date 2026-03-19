@@ -3,7 +3,7 @@ title: FACE YOUR FRONT HOODIE
 price: £39.99
 image: /images/hi0a5391.jpg
 stripe_link: TBV
-order: 6
+order: 2
 ---
 A reminder to focus on your own lane, your own pace, your own path.
 
