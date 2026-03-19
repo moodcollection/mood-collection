@@ -1,6 +1,6 @@
 ---
 title: FACE YOUR FRONT HOODIE
-price: "39.99"
+price: £39.99
 image: /images/hi0a5391.jpg
 stripe_link: TBV
 order: 6
