@@ -1,5 +1,5 @@
 ---
-title: PRESENT ENOUGH HOODIE
+title: PRESENT ENOUGH
 price: £39.99
 image: /images/hi0a5378.jpg
 stripe_link: tbc
