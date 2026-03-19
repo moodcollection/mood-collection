@@ -4,6 +4,31 @@ price: £39.99
 image: /images/hi0a5405.jpg
 stripe_link: WWW.TBC.COM
 order: 1
+variants:
+  - color_name: Grounded Hoodie
+    color_code: "#cbbd9a"
+    variant_image: /images/ba-b.png
+  - color_name: Grounded Crewneck
+    color_code: "#cbbd9a"
+    variant_image: /images/ba-b.png
+  - color_name: Midnight Hoodie
+    color_code: "#000000"
+    variant_image: /images/ba-bl.png
+  - color_name: Midnight Crewneck
+    color_code: "#000000"
+    variant_image: /images/ba-bl-crewneck.png
+  - color_name: After Hours Hoodie
+    color_code: "#48342e"
+    variant_image: /images/ba-e.png
+  - color_name: After Hours Crewneck
+    color_code: "#48342e"
+    variant_image: /images/ba-e-crewneck.png
+  - color_name: DND Hoodie
+    color_code: "#3f3c3f"
+    variant_image: /images/ba-c.png
+  - color_name: DND Crewneck
+    color_code: "#3f3c3f"
+    variant_image: /images/ba-c-crewneck.png
 ---
 **Busy Adulting**
 
