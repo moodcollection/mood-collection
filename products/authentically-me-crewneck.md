@@ -3,7 +3,7 @@ title: AUTHENTICALLY ME CREWNECK
 price: £34.99
 image: /images/hi0a5853.jpg
 stripe_link: tbc
-order: 5
+order: 4
 ---
 Soft confidence. No explaining. No shrinking. Just showing up as you are.
 
