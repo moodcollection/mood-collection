@@ -1,5 +1,5 @@
 ---
-title: FACE YOUR FRONT CREWNECK
+title: FACE YOUR FRONT C
 price: £34.99
 image: /images/hi0a5488.jpg
 stripe_link: TBC
