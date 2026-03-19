@@ -29,6 +29,9 @@ variants:
   - color_name: DND Crewneck
     color_code: "#3f3c3f"
     variant_image: /images/ba-c-crewneck.png
+  - color_name: Cloud 9 Hoodie
+    color_code: "#e4dad2"
+    variant_image: /images/ba-v.png
 ---
 **Busy Adulting**
 
