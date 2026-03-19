@@ -1,5 +1,5 @@
 ---
-title: MENTALLY OFFLINE HOODIE
+title: "MENTALLY OFFLINE "
 price: £39.99
 image: /images/hi0a5556.jpg
 stripe_link: TBC
