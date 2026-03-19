@@ -3,7 +3,7 @@ title: PRESENT ENOUGH HOODIE
 price: £39.99
 image: /images/hi0a5378.jpg
 stripe_link: tbc
-order: 2
+order: 3
 variants: []
 ---
 For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.
