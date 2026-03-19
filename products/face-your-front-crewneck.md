@@ -3,7 +3,7 @@ title: FACE YOUR FRONT CREWNECK
 price: £34.99
 image: /images/hi0a5488.jpg
 stripe_link: TBC
-order: 8
+order: 6
 ---
 A reminder to focus on your own lane, your own pace, your own path.
 
