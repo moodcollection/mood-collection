@@ -1,5 +1,5 @@
 ---
-title: MENTALLY OFFLINE CREWNECK
+title: MENTALLY OFFLINE C
 price: £34.99
 image: /images/hi0a5372.jpg
 stripe_link: tbc
