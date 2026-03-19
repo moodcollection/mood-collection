@@ -3,7 +3,7 @@ title: MENTALLY OFFLINE CREWNECK
 price: £34.99
 image: /images/hi0a5372.jpg
 stripe_link: tbc
-order: 9
+order: 7
 ---
 For the days you're not available to the world. No notifications, no small talk, just peace and quiet in hoodie form.
 
