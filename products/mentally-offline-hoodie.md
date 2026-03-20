@@ -4,6 +4,34 @@ price: £39.99
 image: /images/hi0a5556.jpg
 stripe_link: TBC
 order: 5
+variants:
+  - color_name: Grounded Hoodie
+    color_code: "#cbbd9a"
+    variant_image: /images/mo-b.png
+  - color_name: Grounded Crewneck
+    color_code: "#cbbd9a"
+    variant_image: /images/mo-b-.png
+  - color_name: Cloud 9 Hoodie
+    color_code: "#e4dad2"
+    variant_image: /images/mo-v.png
+  - color_name: After Hours Hoodie
+    color_code: "#48342e"
+    variant_image: /images/mo-e.png
+  - color_name: After Hours Crewneck
+    color_code: "#48342e"
+    variant_image: /images/mo-e-crewneck.png
+  - color_name: DND Hoodie
+    color_code: "#3f3c3f"
+    variant_image: /images/mo-c.png
+  - color_name: DND Crewneck
+    color_code: "#3f3c3f"
+    variant_image: /images/mo-c-crewneck.png
+  - color_name: Midnight Hoodie
+    color_code: "#000000 "
+    variant_image: /images/me-bl.png
+  - color_name: Midnight Crewneck
+    color_code: "#000000"
+    variant_image: /images/mo-bl-crewneck.png
 ---
 Soft confidence. No explaining. No shrinking. Just showing up as you are.
 
