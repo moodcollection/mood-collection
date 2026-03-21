@@ -1,6 +1,6 @@
 ---
 title: BUSY ADULTING
-price: £39.99
+price: "39.99"
 image: /images/hi0a5405.jpg
 stripe_link: WWW.TBC.COM
 order: 1
