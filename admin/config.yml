@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
   branch: main
+
 publish_mode: simple
 media_folder: "images"
 public_folder: "/images"
@@ -12,18 +13,44 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Product Type", name: "type", widget: "select", options: ["Hoodie", "Crewneck"]}
-      - {label: "Price", name: "price", widget: "string", default: "34.99"}
-      - {label: "Main Image", name: "image", widget: "image"}
-      - {label: "Description", name: "body", widget: "markdown"}
-      - label: "Sizes"
+      - {label: "Product Title", name: "title", widget: "string"}
+      - {label: "Default Display Price", name: "price", widget: "string", default: "34.99"}
+      - {label: "Main Showcase Image", name: "image", widget: "image"}
+      - {label: "Product Description", name: "body", widget: "markdown"}
+      
+      - label: "Sizes Available"
         name: "sizes"
         widget: "list"
+        summary: '{{fields.size}}'
         fields:
-          - {label: "Size (S, M, L, XL)", name: "size", widget: "string"}
-      - label: "Colors"
-        name: "colors"
+          - label: "Size"
+            name: "size"
+            widget: "select"
+            options: ["XS", "S", "M", "L", "XL", "XXL"]
+
+      - label: "Color/Type Variants"
+        name: "variants"
         widget: "list"
+        summary: '{{fields.color_name}} - £{{fields.price}}'
         fields:
-          - {label: "Color Name", name: "color", widget: "string"}
+          - {label: "Color/Style Name (e.g. Grounded Hoodie)", name: "color_name", widget: "string"}
+          - {label: "Hex Code (e.g. #4B3621)", name: "hex", widget: "string"}
+          - {label: "Specific Image for this Color", name: "variant_image", widget: "image"}
+          - {label: "Price for this specific item", name: "price", widget: "string", default: "39.99"}
+
+      - label: "Category"
+        name: "type"
+        widget: "select"
+        options: ["Hoodie", "Crewneck"]
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Page Image", name: "page_image", widget: "image"}
+          - {label: "Story Title", name: "story_title", widget: "string"}
+          - {label: "The Resilience Story Content", name: "body", widget: "markdown"}
