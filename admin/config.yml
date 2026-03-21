@@ -1,14 +1,14 @@
 backend:
   name: git-gateway
-  branch: main # Change this to your branch name if you are still working on a branch!
+  branch: main # This matches your current branch
 
-media_folder: "images"
+media_folder: "images" # Where your photos are stored
 public_folder: "/images"
 
 collections:
   - name: "products"
     label: "Products"
-    folder: "products"
+    folder: "products" # If your folder on GitHub is actually named _products, change this to "_products"
     create: true
     slug: "{{slug}}"
     fields:
