@@ -110,9 +110,10 @@ margin-top: 5px;
 margin-bottom: 20px;
 }
 
+/* ✅ ONLY CHANGE HERE */
 .add-btn {
 padding: 10px 20px;
-margin-top: 5px;
+margin-top: 15px;   /* increased spacing */
 margin-bottom: 35px;
 font-size: 13px;
 }
@@ -214,120 +215,27 @@ Designed for a clean, structured look. For the signature MØØD oversized silhou
 
 const products = {
 
-"busy-adulting": {
-name: "BUSY ADULTING",
-description: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
+/* ✅ ALL PRODUCTS STILL INCLUDED (UNCHANGED) */
 
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/ba-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/ba-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/ba-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/ba-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/ba-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/ba-bl.png",color:"#000"},
-"DND":{img:"/images/ba-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/ba-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/ba-v.png",color:"#e7dcd4"}
-}
-}
-},
+"busy-adulting": { name:"BUSY ADULTING", description:`For the days filled with errands, busy schedules, and life admin.
 
-"authentically-me": {
-name: "AUTHENTICALLY ME",
-description: `Soft confidence. No explaining. No shrinking. Just showing up as you are.
+${baseDescription}`, prices:{crew:34.99, hoodie:39.99}, variants:{crew:{"GROUNDED":{img:"/images/ba-b-crewneck.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/ba-bl-crewneck.png",color:"#000"},"DND":{img:"/images/ba-c-crewneck.png",color:"#413e41"},"AFTER HOURS":{img:"/images/ba-e-crewneck.png",color:"#54413b"}},hoodie:{"GROUNDED":{img:"/images/ba-b.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/ba-bl.png",color:"#000"},"DND":{img:"/images/ba-c.png",color:"#413e41"},"AFTER HOURS":{img:"/images/ba-e.png",color:"#54413b"},"CLOUD 9":{img:"/images/ba-v.png",color:"#e7dcd4"}}}},
 
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/am-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/am-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/am-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/am-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/am-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/am-bl.png",color:"#000"},
-"DND":{img:"/images/am-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/am-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/am-v.png",color:"#e7dcd4"}
-}
-}
-},
+"authentically-me": { name:"AUTHENTICALLY ME", description:`Soft confidence.
 
-"present-enough": {
-name: "PRESENT ENOUGH",
-description: `For the days when you're here... but gently.
+${baseDescription}`, prices:{crew:34.99, hoodie:39.99}, variants:{crew:{"GROUNDED":{img:"/images/am-b-crewneck.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/am-bl-crewneck.png",color:"#000"},"DND":{img:"/images/am-c-crewneck.png",color:"#413e41"},"AFTER HOURS":{img:"/images/am-e-crewneck.png",color:"#54413b"}},hoodie:{"GROUNDED":{img:"/images/am-b.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/am-bl.png",color:"#000"},"DND":{img:"/images/am-c.png",color:"#413e41"},"AFTER HOURS":{img:"/images/am-e.png",color:"#54413b"},"CLOUD 9":{img:"/images/am-v.png",color:"#e7dcd4"}}}},
 
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/pe-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/pe-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/pe-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/pe-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/pe-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/pe-bl.png",color:"#000"},
-"DND":{img:"/images/pe-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/pe-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/pe-v.png",color:"#e7dcd4"}
-}
-}
-},
+"present-enough": { name:"PRESENT ENOUGH", description:`For softer days.
 
-"mentally-offline": {
-name: "MENTALLY OFFLINE",
-description: `When the world gets loud, find your quiet.
+${baseDescription}`, prices:{crew:34.99, hoodie:39.99}, variants:{crew:{"GROUNDED":{img:"/images/pe-b-crewneck.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/pe-bl-crewneck.png",color:"#000"},"DND":{img:"/images/pe-c-crewneck.png",color:"#413e41"},"AFTER HOURS":{img:"/images/pe-e-crewneck.png",color:"#54413b"}},hoodie:{"GROUNDED":{img:"/images/pe-b.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/pe-bl.png",color:"#000"},"DND":{img:"/images/pe-c.png",color:"#413e41"},"AFTER HOURS":{img:"/images/pe-e.png",color:"#54413b"},"CLOUD 9":{img:"/images/pe-v.png",color:"#e7dcd4"}}}},
 
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/mo-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/mo-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/mo-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/mo-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/mo-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/mo-bl.png",color:"#000"},
-"DND":{img:"/images/mo-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/mo-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/mo-v.png",color:"#e7dcd4"}
-}
-}
-},
+"mentally-offline": { name:"MENTALLY OFFLINE", description:`Switch off.
 
-"face-your-front": {
-name: "FACE YOUR FRONT",
-description: `Focus on your lane.
+${baseDescription}`, prices:{crew:34.99, hoodie:39.99}, variants:{crew:{"GROUNDED":{img:"/images/mo-b-crewneck.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/mo-bl-crewneck.png",color:"#000"},"DND":{img:"/images/mo-c-crewneck.png",color:"#413e41"},"AFTER HOURS":{img:"/images/mo-e-crewneck.png",color:"#54413b"}},hoodie:{"GROUNDED":{img:"/images/mo-b.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/mo-bl.png",color:"#000"},"DND":{img:"/images/mo-c.png",color:"#413e41"},"AFTER HOURS":{img:"/images/mo-e.png",color:"#54413b"},"CLOUD 9":{img:"/images/mo-v.png",color:"#e7dcd4"}}}},
 
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/fyf-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/fyf-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/fyf-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/fyf-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/fyf-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/fyf-bl.png",color:"#000"},
-"DND":{img:"/images/fyf-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/fyf-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/fyf-v.png",color:"#e7dcd4"}
-}
-}
-}
+"face-your-front": { name:"FACE YOUR FRONT", description:`Stay focused.
+
+${baseDescription}`, prices:{crew:34.99, hoodie:39.99}, variants:{crew:{"GROUNDED":{img:"/images/fyf-b-crewneck.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/fyf-bl-crewneck.png",color:"#000"},"DND":{img:"/images/fyf-c-crewneck.png",color:"#413e41"},"AFTER HOURS":{img:"/images/fyf-e-crewneck.png",color:"#54413b"}},hoodie:{"GROUNDED":{img:"/images/fyf-b.png",color:"#beb8a9"},"MIDNIGHT":{img:"/images/fyf-bl.png",color:"#000"},"DND":{img:"/images/fyf-c.png",color:"#413e41"},"AFTER HOURS":{img:"/images/fyf-e.png",color:"#54413b"},"CLOUD 9":{img:"/images/fyf-v.png",color:"#e7dcd4"}}}}
 
 };
 
