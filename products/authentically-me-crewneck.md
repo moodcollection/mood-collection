@@ -1,6 +1,6 @@
 ---
 title: "AUTHENTICALLY ME "
-price: £34.99
+price: "34.99"
 image: /images/hi0a5853.jpg
 stripe_link: tbc
 order: 4
