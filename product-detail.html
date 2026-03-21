@@ -1,20 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details | MØØD COLLECTION</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- MARKED.JS TRANSLATOR (Removes the stars/asterisks) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        :root { --neutral-light: #ffffff; --neutral-dark: #000000; --header-bg: #000000; --text-on-black: #ffffff; }
-        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--neutral-light); color: var(--neutral-dark); -webkit-font-smoothing: antialiased; }
+        :root { --bg: #ffffff; --text: #000000; --accent: #707070; }
+        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
         
-        /* FULL NAVIGATION (Matching Shop.html) */
-        nav { position: sticky; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
-        .header-logo img { height: 80px; position: relative; top: -5px; }
-        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
-        nav a, .nav-icon { text-decoration: none; color: var(--text-on-black); text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; cursor: pointer; border: none; background: none; }
-        .nav-right { display: flex; align-items: center; gap: 15px; }
+        /* CONSISTENT HEADER */
+        nav { position: sticky; top: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 50px; box-sizing: border-box; }
+        .header-logo img { height: 70px; width: auto; display: block; }
+        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 25px; align-items: center; }
+        nav a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
+        .nav-right { display: flex; gap: 20px; color: #fff; font-size: 11px; }
 
-        /* PRODUCT LAYOUT */
-        .container { max-width: 1100px; margin: 120px auto 80px; padding: 0 5
+        .product-container { max-width: 1200px; margin: 0 auto; padding: 80px 5%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; }
+        
+        .product-image img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: #f9f9f9; }
+        
+        .product-info h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; margin: 0 0 10px; text-transform: uppercase; letter-spacing: 5px; }
+        .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; color: var(--accent); margin-bottom: 40px; display: block; }
+        
+        /* CLEAN DESCRIPTION (NO STARS) */
+        .product-description { line-height: 1.8; font-size: 15px; color: #444; margin-bottom: 40px; }
+        .product-description p { margin-bottom: 20px; }
+        .product-description strong { color: #000; font-weight: 600; }
+
+        .selector-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; font-weight: 600; }
+        .variant-grid { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .swatch { width: 35px; height: 35px; border-radius: 50%; border: 1px solid #ddd; cursor: pointer; transition: transform 0.2s; position: relative; }
+        .swatch:hover { transform: scale(1.1); }
+        .swatch.active { border: 2px solid #000; }
+
+        .size-dropdown { width: 100%; padding: 15px; border: 1px solid #000; background: #fff; font-family: inherit; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 40px; outline: none; cursor: pointer; }
+
+        .buy-btn { width: 100%; padding: 20px; background: #000; color: #fff; border: none; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; cursor: pointer; transition: opacity 0.3s; }
+        .buy-btn:hover { opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            .product-container { grid-template-columns: 1fr; padding: 40px 5%; }
+            .product-info h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="#">Search</a>
+        </div>
+        <div class="nav-right"><a>ACCOUNT</a><a>BAG (0)</a></div>
+    </nav>
+
+    <div class="product-container" id="product-detail">
+        <!-- Content will be injected by script below -->
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        async function loadProduct() {
+            const container = document.getElementById('product-detail');
+            try {
+                // Fetch the specific product markdown file
+                const response = await fetch(`https://api.github.com/repos/moodcollection/mood-collection/contents/products/${productId}.md`);
+                const data = await response.json();
+                const contentRaw = decodeURIComponent(escape(atob(data.content))); // Safely decode content
+
+                // Split header (frontmatter) from body (description)
+                const parts = contentRaw.split('---');
+                const header = parts[1];
+                const body = parts.slice(2).join('---').trim();
+
+                // Extract product details from header
+                const title = header.match(/title:\s*"(.*?)"/)?.[1] || "MØØD Item";
+                const basePrice = header.match(/price:\s*"(.*?)"/)?.[1] || "34.99";
+                let mainImg = header.match(/image:\s*"(.*?)"/)?.[1] || "";
+                if (mainImg.startsWith('/')) mainImg = '.' + mainImg; // Correct path for local images
+
+                // Use Marked.js to convert Markdown body to HTML, cleaning up symbols
+                const cleanBodyHtml = marked.parse(body);
+
+                // Extract and render color variants
+                const variants = [];
+                const variantMatches = body.matchAll(/variants:\s*([\s\S]*?)(?:\n\s*- |$)/g);
+                for (const match of variantMatches) {
+                    const variantBlock = match[1];
+                    const variantLines = variantBlock.split('\n').filter(line => line.trim() !== '');
+                    let currentVariant = {};
+                    variantLines.forEach(line => {
+                        const [key, value] = line.split(':').map(s => s.trim());
+                        if (key === 'color_name') currentVariant.color_name = value.replace(/"/g, '');
+                        if (key === 'hex') currentVariant.hex = value.replace(/"/g, '');
+                        if (key === 'variant_image') {
+                            let vImg = value.replace(/"/g, '');
+                            if (vImg.startsWith('/')) vImg = '.' + vImg;
+                            currentVariant.variant_image = vImg;
+                        }
+                        if (key === 'price') currentVariant.price = value.replace(/"/g, '');
+                    });
+                    if (Object.keys(currentVariant).length > 0) variants.push(currentVariant);
+                }
+
+                // Render variant swatches
+                let variantSwatchesHtml = '';
+                variants.forEach((v, index) => {
+                    variantSwatchesHtml += `
+                        <div class="swatch" 
+                             style="background-color: ${v.hex};" 
+                             data-color="${v.color_name}" 
+                             data-price="${v.price}" 
+                             data-image="${v.variant_image}"
+                             data-index="${index}">
+                        </div>`;
+                });
+
+                // Extract and render size dropdown
+                const sizes = [];
+                const sizeMatches = body.matchAll(/sizes:\s*([\s\S]*?)(?:\n\s*- |$)/g);
+                for (const match of sizeMatches) {
+                    const sizeBlock = match[1];
+                    const sizeLines = sizeBlock.split('\n').filter(line => line.trim() !== '');
+                    sizeLines.forEach(line => {
+                        const value = line.split(':').map(s => s.trim())[1];
+                        if (value) sizes.push(value.replace(/"/g, ''));
+                    });
+                }
+                let sizeOptionsHtml = sizes.map(size => `<option value="${size}">${size}</option>`).join('');
+
+                container.innerHTML = `
+                    <div class="product-image">
+                        <img src="${mainImg}" id="main-display-image" alt="${title}">
+                    </div>
+                    <div class="product-info">
+                        <h1>${title}</h1>
+                        <span class="product-price" id="display-price">£${basePrice}</span>
+                        
+                        <div class="product-description">${cleanBodyHtml}</div>
+
+                        <span class="selector-label">Select Color</span>
+                        <div class="variant-grid" id="variant-container">${variantSwatchesHtml}</div>
+
+                        <span class="selector-label">Select Size</span>
+                        <select class="size-dropdown" id="size-container">
+                             <option value="">Select Size</option>
+                             ${sizeOptionsHtml}
+                        </select>
+
+                        <button class="buy-btn">Add to Bag</button>
+                    </div>
+                `;
+
+                // --- Interactivity ---
+                const variantContainer = document.getElementById('variant-container');
+                const sizeContainer = document.getElementById('size-container');
+                const mainDisplayImage = document.getElementById('main-display-image');
+                const displayPrice = document.getElementById('display-price');
+                const buyBtn = document.querySelector('.buy-btn');
+
+                let selectedVariantIndex = -1; // Track the currently selected variant
+
+                // Variant swatch click handler
+                variantContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('swatch')) {
+                        const swatch = e.target;
+                        const index = parseInt(swatch.dataset.index);
+                        
+                        // Update active swatch
+                        document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+                        swatch.classList.add('active');
+
+                        // Update main image, price, and selected variant index
+                        mainDisplayImage.src = swatch.dataset.image;
+                        displayPrice.textContent = `£${swatch.dataset.price}`;
+                        selectedVariantIndex = index;
+                    }
+                });
+
+                // Add to Bag button logic (basic example)
+                buyBtn.addEventListener('click', () => {
+                    const selectedSize = sizeContainer.value;
+                    if (!selectedSize) {
+                        alert('Please select a size.');
+                        return;
+                    }
+                    let variantInfo = 'Base Product';
+                    if (selectedVariantIndex !== -1 && variants[selectedVariantIndex]) {
+                        variantInfo = `${variants[selectedVariantIndex].color_name} - £${variants[selectedVariantIndex].price}`;
+                    }
+                    alert(`Added: ${title} (${variantInfo}), Size: ${selectedSize} to bag!`);
+                    // In a real app, this would add to a cart system.
+                });
+
+            } catch (error) {
+                console.error("Error loading product:", error);
+                container.innerHTML = '<p style="text-align:center; grid-column: span 2;">Product not found or could not be loaded.</p>';
+            }
+        }
+        loadProduct();
+    </script>
+</body>
+</html>
