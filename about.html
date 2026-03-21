@@ -40,9 +40,16 @@
     <nav>
         <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
         <div class="nav-links">
-            <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="#">Search</a>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="#">Search</a>
         </div>
-        <div class="nav-right"><a>ACCOUNT</a><a>BAG (0)</a></div>
+        <div class="nav-right">
+            <a>ACCOUNT</a>
+            <a>BAG (0)</a>
+        </div>
     </nav>
 
     <div class="about-container" id="about-display">
@@ -62,6 +69,10 @@
                 const body = parts.slice(2).join('---').trim();
 
                 let mainImg = header.match(/page_image:\s*"(.*?)"/)?.[1] || "";
+
+                if (mainImg && !mainImg.startsWith('http')) {
+                    mainImg = window.location.origin + mainImg;
+                }
 
                 const storyTitle = header.match(/story_title:\s*"(.*?)"/)?.[1] || "";
 
