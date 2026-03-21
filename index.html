@@ -3,90 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MØØD COLLECTION | Home</title>
+    <title>MØØD COLLECTION | Official Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --neutral-light: #ffffff; --neutral-dark: #000000; --header-bg: #000000; --text-on-black: #ffffff; }
-        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--neutral-light); color: var(--neutral-dark); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        :root { --bg: #ffffff; --text: #000000; --accent: #707070; }
+        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
         
-        /* STICKY NAVIGATION */
-        nav { position: sticky; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
-        .header-logo img { height: 80px; position: relative; top: -5px; }
-        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
-        nav a, .nav-icon { text-decoration: none; color: var(--text-on-black); text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; cursor: pointer; }
+        /* NAVIGATION */
+        nav { position: sticky; top: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 50px; box-sizing: border-box; }
+        .header-logo img { height: 70px; }
+        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 30px; }
+        nav a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2.5px; font-weight: 400; }
 
         /* HERO SECTION */
-        .hero { height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 5.5rem; font-weight: 300; margin: 0; letter-spacing: 4px; text-transform: uppercase; }
-        .tagline { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; letter-spacing: 6px; text-transform: uppercase; margin: 10px 0 30px; opacity: 0.8; }
+        .hero { height: 25vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; margin: 0; letter-spacing: 10px; text-transform: uppercase; }
+        .tagline { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; color: var(--accent); }
 
-        /* THE 1-2-3-1 STAGGERED GRID */
-        .section-title { text-align: center; text-transform: uppercase; font-size: 18px; letter-spacing: 5px; margin: 80px 0 40px; font-family: 'Cormorant Garamond', serif; }
-        .collection-grid { padding: 0 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(6, 1fr); gap: 30px; }
+        /* UNIFORM GRID (3 Columns) */
+        .collection-grid { padding: 40px 5% 100px; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 30px; }
         
-        .product-card { text-align: center; text-decoration: none; color: inherit; display: block; margin-bottom: 60px; transition: opacity 0.3s ease; }
-        .product-card:hover { opacity: 0.8; }
-        
-        .image-box { width: 100%; background: #f9f9f9; aspect-ratio: 4/5; overflow: hidden; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
-        .image-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .product-card { text-align: center; text-decoration: none; color: inherit; display: block; }
+        .image-box { width: 100%; aspect-ratio: 3 / 4; background: #f7f7f7; overflow: hidden; margin-bottom: 20px; }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease; }
+        .product-card:hover img { opacity: 0.85; }
 
-        /* GRID SIZES (1-2-3-1 Logic) */
-        .large { grid-column: span 6; aspect-ratio: 21/9; } 
-        .medium { grid-column: span 3; } 
-        .small { grid-column: span 2; }  
+        .product-info { margin-top: 15px; }
+        .product-title { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-weight: 600; display: block; margin-bottom: 8px; }
+        .product-price { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; color: var(--accent); }
 
         /* FOOTER */
-        footer { border-top: 1px solid #eee; padding: 100px 5% 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; background: #fff; margin-top: 100px; }
-        .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
-        .footer-col a { display: block; text-decoration: none; color: #666; font-size: 12px; margin-bottom: 15px; }
-        .footer-bottom { grid-column: 1 / -1; text-align: center; font-size: 10px; letter-spacing: 1.5px; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #f9f9f9; text-transform: uppercase; }
+        footer { padding: 80px 5% 50px; border-top: 1px solid #f0f0f0; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        footer h4 { margin-bottom: 25px; font-weight: 600; color: #000; }
+        footer a { display: block; text-decoration: none; color: var(--accent); margin-bottom: 15px; }
+        .footer-bottom { grid-column: 1 / -1; text-align: center; margin-top: 80px; color: #ccc; border-top: 1px solid #f9f9f9; padding-top: 30px; font-size: 9px; }
 
+        /* MOBILE FIXES */
+        @media (max-width: 1024px) { .collection-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { 
-            .nav-links { display: none; } 
-            .brand-name { font-size: 3rem; } 
-            .collection-grid { grid-template-columns: 1fr; } 
-            .large, .medium, .small { grid-column: span 1; aspect-ratio: 4/5; } 
-            footer { grid-template-columns: 1fr; gap: 40px; } 
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .brand-name { font-size: 2.2rem; letter-spacing: 6px; }
+            .collection-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; text-align: center; }
         }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
         <div class="nav-links">
             <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a>
         </div>
-        <div class="nav-right">
-            <a href="#" class="nav-icon">CART (0)</a>
-        </div>
+        <div class="nav-right"><a href="#" class="nav-icon" style="color:#fff; font-size:10px;">BAG (0)</a></div>
     </nav>
 
     <section class="hero">
         <h1 class="brand-name">MØØD COLLECTION</h1>
-        <p class="tagline">YOUR MØØD, YOUR STYLE</p>
+        <p class="tagline">Essence of Resilience</p>
     </section>
 
-    <div class="section-title">The Collection</div>
-    <section class="collection-grid" id="main-product-grid">
-        <!-- Products will load here automatically via the script below -->
-    </section>
+    <section class="collection-grid" id="main-product-grid"></section>
 
     <footer>
         <div class="footer-col">
-            <h4>Join the MØØD</h4>
-            <p style="font-size:12px; color:#999; margin-bottom:20px;">Sign up for early access to drops.</p>
-            <input type="email" placeholder="EMAIL ADDRESS" style="border:none; border-bottom:1px solid #000; width:100%; padding:10px 0; outline:none; font-size:13px; font-family: 'Cormorant Garamond', serif;">
+            <h4>Mailing List</h4>
+            <input type="email" placeholder="ENTER YOUR EMAIL" style="border:none; border-bottom:1px solid #000; width:80%; padding:10px 0; outline:none; font-family: inherit; font-size: 10px; background: transparent;">
         </div>
         <div class="footer-col">
-            <h4>Support</h4>
-            <a href="shipping.html">Shipping</a>
-            <a href="returns.html">Returns</a>
-            <a href="contact.html">Contact</a>
+            <h4>Information</h4>
+            <a href="shipping.html">Shipping & Delivery</a><a href="returns.html">Returns & Exchanges</a><a href="contact.html">Contact Us</a>
         </div>
         <div class="footer-col">
-            <h4>Connect</h4>
-            <a href="https://www.instagram.com/moodcollectionofficial" target="_blank">Instagram</a>
-            <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+            <h4>Social</h4>
+            <a href="https://www.instagram.com/moodcollectionofficial">Instagram</a><a href="https://www.tiktok.com/@moodcollectionofficial">TikTok</a>
         </div>
         <div class="footer-bottom">© 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</div>
     </footer>
@@ -99,52 +90,40 @@
                 let files = await response.json();
                 grid.innerHTML = ''; 
 
-                // 1. Filter out non-product files
-                files = files.filter(f => f.name.endsWith('.md'));
+                // Filter: Only allow real product .md files. Ignore anything else.
+                files = files.filter(f => f.name.endsWith('.md') && f.size > 10);
 
-                // 2. Sort so "Busy Adulting" is always the first (Large) item
+                // Manual Ordering
+                const order = ['busy-adulting', 'mentally-offline', 'face-your-front', 'authentically-me'];
                 files.sort((a, b) => {
-                    if (a.name.toLowerCase().includes('busy-adulting')) return -1;
-                    if (b.name.toLowerCase().includes('busy-adulting')) return 1;
-                    return 0;
+                    let idxA = order.findIndex(o => a.name.includes(o));
+                    let idxB = order.findIndex(o => b.name.includes(o));
+                    return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
                 });
 
-                // 3. Loop and build the items
                 for (let i = 0; i < files.length; i++) {
                     const res = await fetch(files[i].download_url);
                     const text = await res.text();
+                    
+                    const title = text.match(/title:\s*"(.*?)"/)?.[1];
+                    // Skip any file that doesn't have a title (ghost products)
+                    if (!title) continue;
 
-                    // Extract Data
-                    const title = text.match(/title:\s*"(.*?)"/)?.[1] || "MØØD Item";
                     const price = text.match(/price:\s*"(.*?)"/)?.[1] || "34.99";
                     let img = text.match(/image:\s*"(.*?)"/)?.[1] || "";
-                    
-                    // FIX: Ensure the image path works for GitHub Pages
-                    if (img.startsWith('/')) { img = '.' + img; }
-
+                    if (img.startsWith('/')) img = '.' + img;
                     const slug = files[i].name.replace('.md', '');
 
-                    // 4. APPLY 1-2-3-1 PATTERN
-                    let sizeClass = 'small';
-                    if (i === 0) sizeClass = 'large';
-                    else if (i === 1 || i === 2) sizeClass = 'medium';
-
                     grid.innerHTML += `
-                        <a href="product-detail.html?id=${slug}" class="product-card ${sizeClass}">
-                            <div class="image-box">
-                                <img src="${img}" alt="${title}" onerror="this.src='https://via.placeholder.com/800x1000?text=MØØD+Image'">
+                        <a href="product-detail.html?id=${slug}" class="product-card">
+                            <div class="image-box"><img src="${img}" alt="${title}"></div>
+                            <div class="product-info">
+                                <span class="product-title">${title}</span>
+                                <span class="product-price">£${price}</span>
                             </div>
-                            <div style="margin-top:20px;">
-                                <strong style="text-transform:uppercase; letter-spacing:2px; font-size:13px; display:block; margin-bottom:8px;">${title}</strong>
-                                <span style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:20px; color:#555;">£${price}</span>
-                            </div>
-                        </a>
-                    `;
+                        </a>`;
                 }
-            } catch (err) { 
-                console.error("Fetch error:", err);
-                grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>Collection loading...</p>";
-            }
+            } catch (err) { console.error(err); }
         }
         fetchCollection();
     </script>
