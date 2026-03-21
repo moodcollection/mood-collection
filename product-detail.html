@@ -3,133 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Product Details | MØØD COLLECTION</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
-margin:0;
-font-family:'Inter', sans-serif;
-background:#fff;
-color:#000;
-}
-
-h1 {
-font-family:'Cormorant Garamond', serif;
+margin: 0;
+font-family: 'Poppins', Arial, sans-serif;
+background: #fff;
+color: #000;
 }
 
 nav {
-position:sticky;
-top:0;
-height:60px;
-background:#000;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0 30px;
+position: sticky;
+top: 0;
+height: 60px;
+background: black;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 30px;
 }
 
 .nav-links {
-position:absolute;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:20px;
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 20px;
 }
 
 nav a {
-color:#fff;
-text-decoration:none;
-font-size:10px;
-letter-spacing:2px;
-text-transform:uppercase;
+color: white;
+text-decoration: none;
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
 }
 
 .container {
-max-width:1100px;
-margin:100px auto;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-padding:0 20px;
+max-width: 1100px;
+margin: 100px auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+padding: 0 20px;
 }
 
 .product-image img {
-width:100%;
+width: 100%;
 }
 
 .product-info h1 {
-font-size:32px;
-letter-spacing:2px;
+font-size: 32px;
+letter-spacing: 2px;
+margin-bottom: 10px;
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .price {
-font-size:18px;
-font-weight:500;
-margin:20px 0;
+font-size: 20px;
+margin-bottom: 20px;
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .buttons button {
-background:#000;
-color:#fff;
-border:none;
-padding:12px 20px;
-cursor:pointer;
-margin-right:10px;
-letter-spacing:1px;
+background: black;
+color: white;
+border: none;
+padding: 12px 20px;
+cursor: pointer;
+margin-right: 10px;
+font-family: "Palatino Linotype", serif;
+letter-spacing: 1px;
+}
+
+.colors {
+margin: 20px 0;
 }
 
 .color-wrapper {
-display:inline-block;
-text-align:center;
-margin-right:15px;
+display: inline-block;
+text-align: center;
+margin-right: 15px;
 }
 
 .color-circle {
-width:30px;
-height:30px;
-border-radius:50%;
-cursor:pointer;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+margin: 0 auto;
+cursor: pointer;
 }
 
 .color-label {
-font-size:11px;
-margin-top:5px;
+font-size: 10px;
+margin-top: 5px;
 }
 
 .description {
-line-height:1.7;
-font-size:14px;
-color:#333;
+line-height: 1.7;
+font-size: 14px;
+color: #333;
+white-space: pre-line;
 }
 
 .description strong {
-display:block;
-margin-top:15px;
-margin-bottom:5px;
-font-weight:600;
+font-weight: 600;
 }
 
-.description em {
-display:block;
-margin:10px 0;
-font-style:italic;
-}
-
-.description ul {
-margin:5px 0 15px;
-padding-left:18px;
-}
-
-.description li {
-margin-bottom:5px;
+/* REMOVE GAP AFTER "STYLE & COLOR OPTIONS" */
+.description strong + br {
+display: none;
 }
 
 @media(max-width:768px){
 .container {
-grid-template-columns:1fr;
+grid-template-columns: 1fr;
 }
 }
 </style>
@@ -161,12 +152,12 @@ grid-template-columns:1fr;
 <h1 id="product-title"></h1>
 <div class="price" id="product-price">From £34.99</div>
 
-<div class="buttons">
+<div>
 <button id="crew-btn">Crewneck</button>
 <button id="hoodie-btn">Hoodie</button>
 </div>
 
-<div id="color-options"></div>
+<div class="colors" id="color-options"></div>
 
 <div class="description" id="product-description"></div>
 
@@ -182,12 +173,8 @@ let html = text;
 // bold
 html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-// italic
-html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-
-// bullet points
-html = html.replace(/(?:\r?\n)- (.*)/g, '<li>$1</li>');
-html = html.replace(/(<li>.*<\/li>)/g, '<ul>$1</ul>');
+// remove extra line after Style & Color Options
+html = html.replace(/Style & Color Options:\n\n/g, '<strong>Style & Color Options:</strong>\n');
 
 // line breaks
 html = html.replace(/\n/g, '<br>');
@@ -196,9 +183,10 @@ return html;
 }
 
 const products = {
-"busy-adulting":{
-name:"BUSY ADULTING",
-description:`**For the days filled with errands, busy schedules, and life admin.**
+
+"busy-adulting": {
+name: "BUSY ADULTING",
+description: `**For the days filled with errands, busy schedules, and life admin.** Comfort that keeps up while you get things done.
 
 Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 Ready to match your MØØD.
@@ -206,16 +194,16 @@ Ready to match your MØØD.
 **Style & Color Options:**
 Hoodie: Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
 Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
-*(Cloud 9 is exclusive to the Hoodie only.)*
+(Cloud 9 is exclusive to the Hoodie only.)
 
-**Fabric Composition:**
-- 70% Ring-spun Cotton
-- 30% Recycled Polyester
-- 440 GSM heavyweight fabric
+Fabric Composition:
+70% Ring-spun Cotton
+30% Recycled Polyester
+440 GSM heavyweight fabric
 
-**Fit & Styling:**
-Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`,
-prices:{crew:34.99,hoodie:39.99},
+Fit & Styling:
+Designed for a clean, structured look. Size up for an oversized fit.`,
+prices:{crew:34.99, hoodie:39.99},
 variants:{
 crew:{
 "GROUNDED":{img:"/images/ba-b-crewneck.png",color:"#beb8a9"},
@@ -232,6 +220,7 @@ hoodie:{
 }
 }
 }
+
 };
 
 function loadProduct(){
@@ -270,7 +259,10 @@ const label=document.createElement("div");
 label.className="color-label";
 label.textContent=c;
 
-el.onclick=()=>{color=c;update();};
+el.onclick=()=>{
+color=c;
+update();
+};
 
 wrapper.appendChild(el);
 wrapper.appendChild(label);
