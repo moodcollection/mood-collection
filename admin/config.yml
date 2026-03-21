@@ -14,14 +14,14 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Product Title", name: "title", widget: "string"}
-      - {label: "Default Display Price", name: "price", widget: "string", default: "34.99"}
-      - {label: "Main Showcase Image", name: "image", widget: "image"}
-      - {label: "Product Description", name: "body", widget: "markdown"}
+      - {label: "Priority (1 = First)", name: "priority", widget: "number", default: 10}
+      - {label: "Default Price", name: "price", widget: "string", default: "34.99"}
+      - {label: "Main Image", name: "image", widget: "image"}
+      - {label: "Description", name: "body", widget: "markdown"}
       
-      - label: "Sizes Available"
+      - label: "Sizes"
         name: "sizes"
         widget: "list"
-        summary: '{{fields.size}}'
         fields:
           - label: "Size"
             name: "size"
@@ -31,26 +31,20 @@ collections:
       - label: "Color/Type Variants"
         name: "variants"
         widget: "list"
-        summary: '{{fields.color_name}} - £{{fields.price}}'
         fields:
-          - {label: "Color/Style Name (e.g. Grounded Hoodie)", name: "color_name", widget: "string"}
-          - {label: "Hex Code (e.g. #4B3621)", name: "hex", widget: "string"}
-          - {label: "Specific Image for this Color", name: "variant_image", widget: "image"}
-          - {label: "Price for this specific item", name: "price", widget: "string", default: "39.99"}
-
-      - label: "Category"
-        name: "type"
-        widget: "select"
-        options: ["Hoodie", "Crewneck"]
+          - {label: "Color/Style Name", name: "color_name", widget: "string"}
+          - {label: "Hex Code", name: "hex", widget: "string"}
+          - {label: "Variant Image", name: "variant_image", widget: "image"}
+          - {label: "Price", name: "price", widget: "string", default: "39.99"}
 
   - name: "pages"
     label: "Pages"
     files:
       - label: "About Page"
         name: "about"
-        file: "content/about.md"
+        file: "products/about_page.md"
         fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Page Image", name: "page_image", widget: "image"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Main Image", name: "page_image", widget: "image"}
           - {label: "Story Title", name: "story_title", widget: "string"}
-          - {label: "The Resilience Story Content", name: "body", widget: "markdown"}
+          - {label: "The Story", name: "body", widget: "markdown"}
