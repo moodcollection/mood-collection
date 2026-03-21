@@ -1,11 +1,11 @@
 ---
-title: TEST
+title: MØØD COLLECTION
 page_image: /images/hi0a5818.jpg
-story_title: TEST
+story_title: WHERE IT ALL BEGAN
 ---
 **THE STORY BEHIND THE MØØD**
 
-MØØD COLLECTION wasn’t born in a boardroom. It was born in the midst of uncertainty, frustration, and the desire for change.
+**MØØD COLLECTION** wasn’t born in a boardroom. It was born in the midst of uncertainty, frustration, and the desire for change.
 
 
 Last year, after being made redundant from a corporate career that often felt like it was blocking my creative light, I found myself in a space I didn’t recognize. Six months of unemployment followed—a season that felt heavy, frustrating, and at times, discouraging. I realised then how easy it is to let a job title define your worth, and how quickly you can feel “lost” when that title is taken away.
@@ -46,54 +46,7 @@ I also couldn’t have done any of this without the support of my husband, who h
 
 
 
-
 Coming from a corporate background, I know what it’s like to have your creativity blocked. This brand is my way of unblocking mine—and helping you express yours without saying a word.
 
 
 This is the season I’m in. **What’s your MØØD?**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-![](/images/hi0a5907.jpg)
