@@ -59,7 +59,6 @@ width: 100%;
 font-size: 32px;
 letter-spacing: 2px;
 margin-bottom: 10px;
-font-family: 'Cormorant Garamond', serif;
 }
 
 .price {
@@ -109,6 +108,19 @@ color: #333;
 white-space: pre-line;
 }
 
+select {
+width: 200px;
+padding: 10px;
+font-family: 'Cormorant Garamond', serif;
+border: 1px solid #000;
+margin-top: 10px;
+}
+
+.add-btn {
+margin-top: 20px;
+padding: 14px 30px;
+}
+
 @media(max-width:768px){
 .container {
 grid-template-columns: 1fr;
@@ -150,6 +162,20 @@ grid-template-columns: 1fr;
 
 <div class="colors" id="color-options"></div>
 
+<!-- SIZE DROPDOWN -->
+<select id="size-select">
+<option value="">Select Size</option>
+<option>XS</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+<option>XXL</option>
+</select>
+
+<!-- ADD TO BAG -->
+<button class="add-btn" id="add-to-cart">ADD TO BAG</button>
+
 <div class="description" id="product-description"></div>
 
 </div>
@@ -160,14 +186,9 @@ grid-template-columns: 1fr;
 
 function formatDescription(text){
 let html = text;
-
-// Only bold MØØD instances
 html = html.replace(/MØØD\./g, '<strong>MØØD.</strong>');
 html = html.replace(/signature MØØD/g, 'signature <strong>MØØD</strong>');
-
-// line breaks
 html = html.replace(/\n/g, '<br>');
-
 return html;
 }
 
@@ -367,6 +388,15 @@ type="hoodie";
 color=Object.keys(product.variants.hoodie)[0];
 renderColors();
 update();
+};
+
+document.getElementById("add-to-cart").onclick=()=>{
+const size=document.getElementById("size-select").value;
+if(!size){
+alert("Please select a size");
+return;
+}
+alert("Added to bag");
 };
 
 renderColors();
