@@ -1,3 +1,10 @@
+backend:
+  name: git-gateway
+  branch: main # Change this to your branch name if you are still working on a branch!
+
+media_folder: "images"
+public_folder: "/images"
+
 collections:
   - name: "products"
     label: "Products"
@@ -5,60 +12,33 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Product Name", name: "title", widget: "string"}
-      - {label: "Base Price", name: "price", widget: "string"}
-      - {label: "Main Image (Model)", name: "image", widget: "image", hint: "The main photo people see first"}
-      
-      - label: "Extra Gallery Images"
-        name: "gallery"
-        widget: "list"
-        field: {label: "Image", name: "gallery_image", widget: "image"}
-        hint: "Add photos of the back, details, or other angles"
-
-      - {label: "Product Description", name: "body", widget: "markdown", hint: "Tell the story of the product here"}
-      
-      - {label: "Stripe Link", name: "stripe_link", widget: "string"}
-      - {label: "Order Priority", name: "order", widget: "number", default: 1, hint: "1 appears first on the shop page"}
-
-      - label: "Color Variants"
-        name: "variants"
-        widget: "list"
-        fields:
-          - {label: "Color Name", name: "color_name", widget: "string"}
-          - {label: "Color Hex Code", name: "color_code", widget: "string", hint: "e.g. #000000 for black"}
-          - {label: "Mockup Image", name: "variant_image", widget: "image"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Price", name: "price", widget: "string"}
+      - {label: "Main Image", name: "image", widget: "image"}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "pages"
     label: "Pages"
     files:
-      - file: "content/about.md" # Make sure this path matches your file structure
-        label: "About Page"
+      - label: "About Page"
         name: "about"
+        file: "content/about.md"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Page Title", name: "title", widget: "string"}
           - {label: "Page Image", name: "page_image", widget: "image"}
-          - {label: "Body", name: "body", widget: "markdown"}
-      - file: "content/shipping.md" # Assuming you will create these files
-        label: "Shipping Policy"
+          - {label: "Story Title", name: "story_title", widget: "string"}
+          - {label: "Resilience Story", name: "body", widget: "markdown"}
+      
+      - label: "Shipping Policy"
         name: "shipping"
+        file: "content/shipping.md"
         fields:
           - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
-      - file: "content/returns.md"
-        label: "Returns Policy"
+          - {label: "Policy Content", name: "body", widget: "markdown"}
+
+      - label: "Returns Policy"
         name: "returns"
+        file: "content/returns.md"
         fields:
           - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
-      - file: "content/privacy.md"
-        label: "Privacy Policy"
-        name: "privacy"
-        fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
-      - file: "content/terms.md"
-        label: "Terms & Conditions"
-        name: "terms"
-        fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Policy Content", name: "body", widget: "markdown"}
