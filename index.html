@@ -13,11 +13,12 @@
         #searchBar.active { top: 0; }
         #searchBar input { width: 50%; border: none; border-bottom: 1px solid #000; font-size: 20px; outline: none; text-align: center; font-family: 'Cormorant Garamond', serif; }
 
-        /* NAVIGATION - UPDATED */
-        nav { position: fixed; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
+        /* NAVIGATION - UPDATED AND STICKY */
+        nav { position: sticky; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
         .header-logo img { height: 80px; position: relative; top: -5px; }
         .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
         nav a, .nav-icon { text-decoration: none; color: var(--text-on-black); text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; cursor: pointer; border: none; background: none; }
+        .nav-right { display: flex; align-items: center; gap: 15px; } /* Adjusted for consistent alignment */
 
         /* HERO SECTION */
         .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
@@ -26,12 +27,15 @@
         .shop-now-btn { padding: 12px 35px; border: 1px solid black; background: transparent; color: black; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; text-decoration: none; transition: 0.3s; }
         .shop-now-btn:hover { background: black; color: white; }
 
-        /* PRODUCT GRID */
+        /* PRODUCT GRID - 1-2-3-1 LAYOUT */
         .section-title { text-align: center; text-transform: uppercase; font-size: 12px; letter-spacing: 3px; margin: 80px 0 40px; }
-        .collection { padding: 0 5%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .product-card { text-align: center; transition: opacity 0.3s; text-decoration: none; color: inherit; display: block; }
-        .product-card:hover { opacity: 0.7; }
-        .image-placeholder { width: 100%; aspect-ratio: 4/5; background-color: #f2f2f2; margin-bottom: 20px; }
+        .collection-grid { padding: 0 5%; max-width: 1200px; margin: 0 auto; display: grid; gap: 30px; }
+        .grid-item-1 { grid-column: 1 / -1; /* Span full width */ }
+        .grid-item-2 { grid-column: span 1; }
+        .grid-item-3 { grid-column: span 1; }
+        .collection-grid .product-card { text-align: center; transition: opacity 0.3s; text-decoration: none; color: inherit; display: block; }
+        .collection-grid .product-card:hover { opacity: 0.7; }
+        .image-placeholder { width: 100%; aspect-ratio: 4/5; background-color: #f2f2f2; margin-bottom: 20px; background-size: cover; background-position: center; }
 
         /* FOOTER */
         footer { border-top: 1px solid #eee; padding: 80px 5% 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-top: 100px; background: #fff; }
@@ -42,7 +46,13 @@
         /* EMAIL POPUP */
         #email-modal { position: fixed; bottom: 30px; right: 30px; width: 300px; background: white; border: 1px solid black; padding: 25px; z-index: 2000; display: none; }
 
-        @media (max-width: 768px) { .nav-links { display: none; } .brand-name { font-size: 3rem; } .collection { grid-template-columns: 1fr; } footer { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .brand-name { font-size: 3rem; } 
+            footer { grid-template-columns: 1fr; } 
+            .collection-grid { grid-template-columns: 1fr; } /* Stack items on mobile */
+            .grid-item-2, .grid-item-3 { grid-column: span 1; } /* Ensure items stack */
+        }
     </style>
 </head>
 <body>
@@ -51,15 +61,14 @@
         <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="shop.html">Hoodies</a>
-            <a href="shop.html">Crewnecks</a>
+            <a href="shop.html">Shop</a> <!-- Changed from Hoodies/Crewnecks -->
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
             <span class="nav-icon" onclick="toggleSearch()">Search</span>
         </div>
         <div class="nav-right">
-            <a href="#" class="nav-icon" style="margin-right: 15px;">ACCOUNT</a>
-            <a href="#" class="nav-icon">CART (0)</a>
+            <a href="/account" class="nav-icon" style="margin-right: 15px;">ACCOUNT</a>
+            <a href="/cart" class="nav-icon">CART (0)</a>
         </div>
     </nav>
 
@@ -69,19 +78,56 @@
         <a href="shop.html" class="shop-now-btn">Shop Now</a>
     </section>
 
-    <div class="section-title">Best Sellers</div>
-    <section class="collection">
-        <div class="product-card"><div class="image-placeholder"></div><strong>Heavyweight Hoodie</strong><div style="font-size:12px; opacity:0.6">£39.99</div></div>
-        <div class="product-card"><div class="image-placeholder"></div><strong>Classic Crewneck</strong><div style="font-size:12px; opacity:0.6">£39.99</div></div>
-        <div class="product-card"><div class="image-placeholder"></div><strong>Studio Jumper</strong><div style="font-size:12px; opacity:0.6">£39.99</div></div>
+    <div class="section-title">Featured</div>
+    <section class="collection-grid">
+        <!-- Grid Item 1: Large Image -->
+        <div class="grid-item-1 product-card">
+            <div class="image-placeholder" style="aspect-ratio: 16/9; background-image: url('./YOUR_HERO_IMAGE_FILENAME.jpg');"></div>
+            <!-- Replace YOUR_HERO_IMAGE_FILENAME.jpg with the actual filename -->
+            <strong>Busy Adulting</strong>
+            <div style="font-size:12px; opacity:0.6;">£39.99</div>
+        </div>
+
+        <!-- Grid Item 2 & 3: Medium Images -->
+        <div class="grid-item-2 product-card">
+            <div class="image-placeholder" style="background-image: url('./YOUR_MEDIUM_IMAGE_1_FILENAME.jpg');"></div>
+            <!-- Replace YOUR_MEDIUM_IMAGE_1_FILENAME.jpg -->
+            <strong>Face Your Front</strong>
+            <div style="font-size:12px; opacity:0.6;">£34.99</div>
+        </div>
+        <div class="grid-item-3 product-card">
+            <div class="image-placeholder" style="background-image: url('./YOUR_MEDIUM_IMAGE_2_FILENAME.jpg');"></div>
+            <!-- Replace YOUR_MEDIUM_IMAGE_2_FILENAME.jpg -->
+            <strong>Present Enough</strong>
+            <div style="font-size:12px; opacity:0.6;">£34.99</div>
+        </div>
+
+        <!-- Grid Item 4, 5, 6: Smaller Images -->
+        <div class="product-card">
+            <div class="image-placeholder" style="background-image: url('./YOUR_SMALL_IMAGE_1_FILENAME.jpg');"></div>
+            <!-- Replace YOUR_SMALL_IMAGE_1_FILENAME.jpg -->
+            <strong>Authentically Me</strong>
+            <div style="font-size:12px; opacity:0.6;">£34.99</div>
+        </div>
+        <div class="product-card">
+            <div class="image-placeholder" style="background-image: url('./YOUR_SMALL_IMAGE_2_FILENAME.jpg');"></div>
+            <!-- Replace YOUR_SMALL_IMAGE_2_FILENAME.jpg -->
+            <strong>Mentally Offline</strong>
+            <div style="font-size:12px; opacity:0.6;">£34.99</div>
+        </div>
+        <div class="product-card">
+            <div class="image-placeholder" style="background-image: url('./YOUR_SMALL_IMAGE_3_FILENAME.jpg');"></div>
+            <!-- Replace YOUR_SMALL_IMAGE_3_FILENAME.jpg -->
+            <strong>Another Product</strong>
+            <div style="font-size:12px; opacity:0.6;">£34.99</div>
+        </div>
     </section>
 
     <footer>
         <div class="footer-col"><h4>Join the MØØD</h4><p style="font-size:12px; color:#666;">Early access to drops.</p><div class="newsletter-box"><input type="email" placeholder="EMAIL ADDRESS"></div></div>
-        <div class="footer-col"><h4>Support</h4><a href="policy.html">Shipping</a><a href="policy.html">Returns</a><a href="contact.html">Contact Us</a></div>
+        <div class="footer-col"><h4>Support</h4><a href="/shipping">Shipping</a><a href="/returns">Returns</a><a href="/contact">Contact Us</a></div>
         <div class="footer-col"><h4>Connect</h4><a href="https://www.instagram.com/moodcollectionofficial" target="_blank">Instagram</a><a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a></div>
     </footer>
-
     <div id="email-modal"><span style="float:right; cursor:pointer;" onclick="this.parentElement.style.display='none'">✕</span><h3 style="font-family:'Cormorant Garamond',serif;">Newsletter</h3><p style="font-size:11px;">Join for collection updates.</p><input type="email" placeholder="EMAIL ADDRESS" style="width:100%; border:none; border-bottom:1px solid #000; padding:10px 0;"><button style="width:100%; background:black; color:white; border:none; padding:12px; margin-top:15px; font-size:10px; letter-spacing:2px;">JOIN</button></div>
 
     <script>
