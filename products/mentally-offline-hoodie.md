@@ -1,6 +1,6 @@
 ---
 title: "MENTALLY OFFLINE "
-price: £34.99
+price: "34.99"
 image: /images/hi0a5556.jpg
 stripe_link: TBC
 order: 5
