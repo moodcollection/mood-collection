@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Details | MØØD COLLECTION</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
 margin: 0;
-font-family: 'Poppins', Arial, sans-serif;
+font-family: Georgia, serif;
 background: #fff;
 color: #000;
 }
@@ -59,13 +59,13 @@ width: 100%;
 font-size: 32px;
 letter-spacing: 2px;
 margin-bottom: 10px;
-font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-family: 'Cormorant Garamond', serif;
 }
 
 .price {
 font-size: 20px;
 margin-bottom: 20px;
-font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-family: "Palatino Linotype", Palatino, serif;
 }
 
 .buttons button {
@@ -75,7 +75,7 @@ border: none;
 padding: 12px 20px;
 cursor: pointer;
 margin-right: 10px;
-font-family: "Palatino Linotype", serif;
+font-family: 'Cormorant Garamond', serif;
 letter-spacing: 1px;
 }
 
@@ -106,16 +106,19 @@ margin-top: 5px;
 line-height: 1.7;
 font-size: 14px;
 color: #333;
-white-space: pre-line;
 }
 
 .description strong {
-font-weight: 600;
+font-weight: 700;
 }
 
-/* REMOVE GAP AFTER "STYLE & COLOR OPTIONS" */
-.description strong + br {
-display: none;
+.description em {
+font-style: italic;
+}
+
+.description ul {
+margin: 5px 0 15px;
+padding-left: 18px;
 }
 
 @media(max-width:768px){
@@ -152,7 +155,7 @@ grid-template-columns: 1fr;
 <h1 id="product-title"></h1>
 <div class="price" id="product-price">From £34.99</div>
 
-<div>
+<div class="buttons">
 <button id="crew-btn">Crewneck</button>
 <button id="hoodie-btn">Hoodie</button>
 </div>
@@ -173,36 +176,49 @@ let html = text;
 // bold
 html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-// remove extra line after Style & Color Options
-html = html.replace(/Style & Color Options:\n\n/g, '<strong>Style & Color Options:</strong>\n');
+// bold + italic
+html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+
+// bullets (ONLY fabric section)
+html = html.replace(
+/Fabric Composition:\n(.*?)\n\n/s,
+(match, group) => {
+let items = group.split('\n').map(i => `<li>${i}</li>`).join('');
+return `<strong>Fabric Composition:</strong><ul>${items}</ul>`;
+}
+);
 
 // line breaks
 html = html.replace(/\n/g, '<br>');
+
+// remove gap after Style & Color Options
+html = html.replace(/Style & Color Options:<br><br>/g, '<strong>Style & Color Options:</strong><br>');
 
 return html;
 }
 
 const products = {
-
 "busy-adulting": {
 name: "BUSY ADULTING",
-description: `**For the days filled with errands, busy schedules, and life admin.** Comfort that keeps up while you get things done.
+description: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
 
 Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
-Ready to match your MØØD.
+
+Ready to match your **MØØD.**
 
 **Style & Color Options:**
-Hoodie: Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
-Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
-(Cloud 9 is exclusive to the Hoodie only.)
+**Hoodie:** Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
+**Crewneck:** Available in Midnight, After Hours, DnD, and Grounded.
 
-Fabric Composition:
+***(Please note: Cloud 9 is exclusive to the Hoodie only.)***
+
+**Fabric Composition:**
 70% Ring-spun Cotton
 30% Recycled Polyester
-440 GSM heavyweight fabric
+440 GSM heavyweight fabric for superior quality.
 
-Fit & Styling:
-Designed for a clean, structured look. Size up for an oversized fit.`,
+**Fit & Styling:**
+Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`,
 prices:{crew:34.99, hoodie:39.99},
 variants:{
 crew:{
@@ -220,7 +236,6 @@ hoodie:{
 }
 }
 }
-
 };
 
 function loadProduct(){
