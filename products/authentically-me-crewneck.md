@@ -33,21 +33,30 @@ variants:
     color_code: "#000000"
     variant_image: /images/am-bl-crewneck.png
 ---
+**AUTHENTICALLY ME**
+
 Soft confidence. No explaining. No shrinking. Just showing up as you are.
 
-A heavyweight crewneck that's soft and properly made. The kind of quality you feel as soon as you put it on. Warm without being bulky, structured without feeling stiff, and comfortable enough to become your everyday go-to.
-
-The clean design makes it easy to wear, easy to style, and easy to reach for on repeat. It looks good, feels better, and keeps its quality over time.
+Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
 Ready to match your **MØØD.**
 
+**Style & Color Options:**
 
-**Fabric Composition**
+Choose your perfect fit:
 
-* 70% Ring-spun Cotton 
+**Hoodie:** Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
+
+**Crewneck:** Available in Midnight, After Hours, DnD, and Grounded.
+
+***(Please note: Cloud 9 is exclusive to the Hoodie only.)***
+
+**Fabric Composition:**
+
+* 70% Ring-spun Cotton
 * 30% Recycled Polyester
-* 440 GSM heavyweight fabric
+* 440 GSM heavyweight fabric for superior quality.
 
-Colours available: Beige, Espresso, Charcoal, Black.
+**Fit & Styling:**
 
-Note: These crewnecks have a clean structured fit. If you prefer a more oversized, relaxed look, we recommend sizing up.
+Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.
