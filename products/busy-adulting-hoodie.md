@@ -33,14 +33,13 @@ variants:
     color_code: "#000000"
     variant_image: /images/ba-bl.png
 ---
-**Busy Adulting**
+**BUSY ADULTING**
 
 For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
 
 Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
 Ready to match your **MØØD.**
-
 
 **Style & Color Options:**
 \
@@ -51,7 +50,6 @@ Choose your perfect fit:
 **Crewneck:** Available in Midnight, After Hours, DnD, and Grounded.
 
 ***(Please note: Cloud 9 is exclusive to the Hoodie only.)***
-
 
 **Fabric Composition:**
 
