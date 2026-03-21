@@ -35,7 +35,7 @@ variants:
 ---
 **MENTALLY OFFLINE**
 
-Soft confidence. No explaining. No shrinking. Just showing up as you are.
+When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.
 
 Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
