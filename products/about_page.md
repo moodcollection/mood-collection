@@ -3,8 +3,6 @@ title: MØØD COLLECTION
 page_image: /images/hi0a5818.jpg
 story_title: WHERE IT ALL BEGAN
 ---
-![](/images/hi0a5818.jpg)
-
 **MØØD COLLECTION** wasn’t born in a boardroom. It was born in the midst of uncertainty, frustration, and the desire for change.
 
 Last year, after being made redundant from a corporate career that often felt like it was blocking my creative light, I found myself in a space I didn’t recognize. Six months of unemployment followed—a season that felt heavy, frustrating, and at times, discouraging. I realised then how easy it is to let a job title define your worth, and how quickly you can feel “lost” when that title is taken away.
