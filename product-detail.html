@@ -10,7 +10,7 @@
 <style>
 body {
 margin: 0;
-font-family: Georgia, serif;
+font-family: 'Cormorant Garamond', serif;
 background: #fff;
 color: #000;
 }
@@ -106,19 +106,8 @@ margin-top: 5px;
 line-height: 1.7;
 font-size: 14px;
 color: #333;
-}
-
-.description strong {
-font-weight: 700;
-}
-
-.description em {
-font-style: italic;
-}
-
-.description ul {
-margin: 5px 0 15px;
-padding-left: 18px;
+font-family: 'Cormorant Garamond', serif;
+white-space: pre-line;
 }
 
 @media(max-width:768px){
@@ -155,7 +144,7 @@ grid-template-columns: 1fr;
 <h1 id="product-title"></h1>
 <div class="price" id="product-price">From £34.99</div>
 
-<div class="buttons">
+<div>
 <button id="crew-btn">Crewneck</button>
 <button id="hoodie-btn">Hoodie</button>
 </div>
@@ -173,51 +162,38 @@ grid-template-columns: 1fr;
 function formatDescription(text){
 let html = text;
 
-// bold
-html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-// bold + italic
-html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
-
-// bullets (ONLY fabric section)
-html = html.replace(
-/Fabric Composition:\n(.*?)\n\n/s,
-(match, group) => {
-let items = group.split('\n').map(i => `<li>${i}</li>`).join('');
-return `<strong>Fabric Composition:</strong><ul>${items}</ul>`;
-}
-);
+// Only bold specific MØØD words
+html = html.replace(/MØØD\./g, '<strong>MØØD.</strong>');
+html = html.replace(/signature MØØD/g, 'signature <strong>MØØD</strong>');
 
 // line breaks
 html = html.replace(/\n/g, '<br>');
-
-// remove gap after Style & Color Options
-html = html.replace(/Style & Color Options:<br><br>/g, '<strong>Style & Color Options:</strong><br>');
 
 return html;
 }
 
 const products = {
+
 "busy-adulting": {
 name: "BUSY ADULTING",
 description: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
 
 Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
-Ready to match your **MØØD.**
+Ready to match your MØØD.
 
-**Style & Color Options:**
-**Hoodie:** Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
-**Crewneck:** Available in Midnight, After Hours, DnD, and Grounded.
+Style & Color Options:
+Hoodie: Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
+Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
 
-***(Please note: Cloud 9 is exclusive to the Hoodie only.)***
+(Please note: Cloud 9 is exclusive to the Hoodie only.)
 
-**Fabric Composition:**
+Fabric Composition:
 70% Ring-spun Cotton
 30% Recycled Polyester
 440 GSM heavyweight fabric for superior quality.
 
-**Fit & Styling:**
+Fit & Styling:
 Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`,
 prices:{crew:34.99, hoodie:39.99},
 variants:{
@@ -236,6 +212,7 @@ hoodie:{
 }
 }
 }
+
 };
 
 function loadProduct(){
