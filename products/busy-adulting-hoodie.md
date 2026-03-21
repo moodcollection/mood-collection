@@ -35,24 +35,30 @@ variants:
 ---
 **Busy Adulting**
 
-For the days filled with errands, busy schedules and life admin. Comfort that keeps up while you get things done
+For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
+
+Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
+
+Ready to match your **MØØD.**
+
+
+**Style & Color Options:**
 \
-A heavyweight hoodie that's soft and properly made. The kind of quality you feel as soon as you put it on. Warm without being bulky, structured without feeling stiff, and comfortable enough to become your everyday go-to.
+Choose your perfect fit:
 
-The clean design makes it easy to wear, easy to style, and easy to reach for on repeat. It looks good, feels better, and keeps its quality over time.
-\
-Ready to match your MØØD.
+**Hoodie:** Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
 
-**Fabric Composition** 
+**Crewneck:** Available in Midnight, After Hours, DnD, and Grounded.
 
-70% Ring-spun Cotton 
+***(Please note: Cloud 9 is exclusive to the Hoodie only.)***
 
-30% Recycled Polyester
 
-440 GSM heavyweight fabric.
+**Fabric Composition:**
 
-**Colours available:** 
+* 70% Ring-spun Cotton
+* 30% Recycled Polyester
+* 440 GSM heavyweight fabric for superior quality.
 
-Vanilla, Beige, Espresso, Charcoal, Black.
+**Fit & Styling:**
 
-**Note:** These hoodies have a clean structured fit. If you prefer a more oversized, relaxed look, please select the next size up.
+Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.
