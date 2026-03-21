@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Details | MØØD COLLECTION</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
 body {
 margin: 0;
@@ -63,7 +54,7 @@ margin-bottom: 10px;
 
 .price {
 font-size: 20px;
-margin-bottom: 20px;
+margin-bottom: 25px; /* increased slightly */
 font-family: "Palatino Linotype", Palatino, serif;
 }
 
@@ -79,13 +70,13 @@ letter-spacing: 1px;
 }
 
 .colors {
-margin: 20px 0;
+margin: 25px 0 30px 0; /* better spacing below colours */
 }
 
 .color-wrapper {
 display: inline-block;
 text-align: center;
-margin-right: 15px;
+margin-right: 18px; /* slightly more space between colours */
 }
 
 .color-circle {
@@ -98,14 +89,7 @@ cursor: pointer;
 
 .color-label {
 font-size: 10px;
-margin-top: 5px;
-}
-
-.description {
-line-height: 1.7;
-font-size: 14px;
-color: #333;
-white-space: pre-line;
+margin-top: 8px; /* cleaner spacing under circle */
 }
 
 select {
@@ -113,12 +97,22 @@ width: 200px;
 padding: 10px;
 font-family: 'Cormorant Garamond', serif;
 border: 1px solid #000;
-margin-top: 10px;
+margin-top: 5px;
+margin-bottom: 15px; /* spacing before button */
 }
 
 .add-btn {
-margin-top: 20px;
+margin-top: 5px;
+margin-bottom: 30px; /* space before description */
 padding: 14px 30px;
+}
+
+.description {
+line-height: 1.7;
+font-size: 14px;
+color: #333;
+white-space: pre-line;
+margin-top: 10px; /* gentle separation */
 }
 
 @media(max-width:768px){
@@ -127,284 +121,3 @@ grid-template-columns: 1fr;
 }
 }
 </style>
-</head>
-
-<body>
-
-<nav>
-<div><img src="./MOOD-LOGO-WHITE.png" style="height:60px;"></div>
-
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</div>
-
-<div>BAG (0)</div>
-</nav>
-
-<div class="container">
-
-<div class="product-image">
-<img id="product-image">
-</div>
-
-<div class="product-info">
-
-<h1 id="product-title"></h1>
-<div class="price" id="product-price">From £34.99</div>
-
-<div>
-<button id="crew-btn">Crewneck</button>
-<button id="hoodie-btn">Hoodie</button>
-</div>
-
-<div class="colors" id="color-options"></div>
-
-<!-- SIZE DROPDOWN -->
-<select id="size-select">
-<option value="">Select Size</option>
-<option>XS</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-<option>XXL</option>
-</select>
-
-<!-- ADD TO BAG -->
-<button class="add-btn" id="add-to-cart">ADD TO BAG</button>
-
-<div class="description" id="product-description"></div>
-
-</div>
-
-</div>
-
-<script>
-
-function formatDescription(text){
-let html = text;
-html = html.replace(/MØØD\./g, '<strong>MØØD.</strong>');
-html = html.replace(/signature MØØD/g, 'signature <strong>MØØD</strong>');
-html = html.replace(/\n/g, '<br>');
-return html;
-}
-
-const baseDescription = `Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
-
-Ready to match your MØØD.
-
-Style & Color Options:
-Hoodie: Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
-Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
-
-Cloud 9 is exclusive to the Hoodie.
-
-Fabric Composition:
-70% Ring-spun Cotton
-30% Recycled Polyester
-440 GSM heavyweight fabric for superior quality.
-
-Fit & Styling:
-Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`;
-
-const products = {
-
-"busy-adulting": {
-name: "BUSY ADULTING",
-description: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
-
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/ba-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/ba-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/ba-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/ba-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/ba-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/ba-bl.png",color:"#000"},
-"DND":{img:"/images/ba-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/ba-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/ba-v.png",color:"#e7dcd4"}
-}
-}
-},
-
-"authentically-me": {
-name: "AUTHENTICALLY ME",
-description: `Soft confidence. No explaining. No shrinking. Just showing up as you are.
-
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/am-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/am-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/am-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/am-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/am-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/am-bl.png",color:"#000"},
-"DND":{img:"/images/am-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/am-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/am-v.png",color:"#e7dcd4"}
-}
-}
-},
-
-"present-enough": {
-name: "PRESENT ENOUGH",
-description: `For the days when you're here... but gently. Showing up without pressure and letting that be enough.
-
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/pe-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/pe-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/pe-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/pe-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/pe-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/pe-bl.png",color:"#000"},
-"DND":{img:"/images/pe-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/pe-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/pe-v.png",color:"#e7dcd4"}
-}
-}
-},
-
-"mentally-offline": {
-name: "MENTALLY OFFLINE",
-description: `When the world gets loud, find your quiet. This is your permission to switch off and just be.
-
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/mo-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/mo-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/mo-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/mo-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/mo-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/mo-bl.png",color:"#000"},
-"DND":{img:"/images/mo-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/mo-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/mo-v.png",color:"#e7dcd4"}
-}
-}
-},
-
-"face-your-front": {
-name: "FACE YOUR FRONT",
-description: `A reminder to stay in your lane, trust your pace, and focus on your path.
-
-${baseDescription}`,
-prices:{crew:34.99, hoodie:39.99},
-variants:{
-crew:{
-"GROUNDED":{img:"/images/fyf-b-crewneck.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/fyf-bl-crewneck.png",color:"#000"},
-"DND":{img:"/images/fyf-c-crewneck.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/fyf-e-crewneck.png",color:"#54413b"}
-},
-hoodie:{
-"GROUNDED":{img:"/images/fyf-b.png",color:"#beb8a9"},
-"MIDNIGHT":{img:"/images/fyf-bl.png",color:"#000"},
-"DND":{img:"/images/fyf-c.png",color:"#413e41"},
-"AFTER HOURS":{img:"/images/fyf-e.png",color:"#54413b"},
-"CLOUD 9":{img:"/images/fyf-v.png",color:"#e7dcd4"}
-}
-}
-}
-
-};
-
-function loadProduct(){
-const params=new URLSearchParams(window.location.search);
-const key=params.get("name")||"busy-adulting";
-
-const product=products[key];
-let type="crew";
-let color=Object.keys(product.variants[type])[0];
-
-const img=document.getElementById("product-image");
-const price=document.getElementById("product-price");
-const title=document.getElementById("product-title");
-const colors=document.getElementById("color-options");
-const desc=document.getElementById("product-description");
-
-title.textContent=product.name;
-desc.innerHTML=formatDescription(product.description);
-
-function update(){
-img.src=product.variants[type][color].img;
-price.textContent="£"+product.prices[type];
-}
-
-function renderColors(){
-colors.innerHTML="";
-Object.keys(product.variants[type]).forEach(c=>{
-const wrapper=document.createElement("div");
-wrapper.className="color-wrapper";
-
-const el=document.createElement("div");
-el.className="color-circle";
-el.style.background=product.variants[type][c].color;
-
-const label=document.createElement("div");
-label.className="color-label";
-label.textContent=c;
-
-el.onclick=()=>{
-color=c;
-update();
-};
-
-wrapper.appendChild(el);
-wrapper.appendChild(label);
-colors.appendChild(wrapper);
-});
-}
-
-document.getElementById("crew-btn").onclick=()=>{
-type="crew";
-color=Object.keys(product.variants.crew)[0];
-renderColors();
-update();
-};
-
-document.getElementById("hoodie-btn").onclick=()=>{
-type="hoodie";
-color=Object.keys(product.variants.hoodie)[0];
-renderColors();
-update();
-};
-
-document.getElementById("add-to-cart").onclick=()=>{
-const size=document.getElementById("size-select").value;
-if(!size){
-alert("Please select a size");
-return;
-}
-alert("Added to bag");
-};
-
-renderColors();
-update();
-}
-
-loadProduct();
-</script>
-
-</body>
-</html>
