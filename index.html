@@ -1,72 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MØØD COLLECTION | Official Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #ffffff; --text: #000000; --accent: #707070; }
-        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-        
-        nav { position: sticky; top: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
-        .header-logo img { height: 70px; width: auto; display: block; }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        nav a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
-        
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 4px; padding: 10px; }
-        .hamburger span { width: 20px; height: 1px; background: #fff; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MØØD COLLECTION | Official Store</title>
 
-        .hero { height: 25vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin-top: 20px; }
-        .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; margin: 0; letter-spacing: 10px; text-transform: uppercase; }
-        .tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; letter-spacing: 5px; text-transform: uppercase; color: var(--accent); }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
 
-        .collection-grid { padding: 40px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .product-card { text-align: center; text-decoration: none; color: inherit; }
-        .image-box { width: 100%; aspect-ratio: 3/4; background: #f7f7f7; overflow: hidden; margin-bottom: 15px; }
-        .image-box img { width: 100%; height: 100%; object-fit: cover; }
-        
-        @media (max-width: 768px) {
-            nav { padding: 0 15px; }
-            .header-logo img { height: 55px; }
-            .nav-links a:nth-child(n+4) { display: none; } /* Hide extra links on mobile */
-            .hamburger { display: flex; }
-            .brand-name { font-size: 2.2rem; }
-            .collection-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<style>
+:root { --bg: #ffffff; --text: #000000; --accent: #707070; }
+
+body, html {
+margin: 0;
+padding: 0;
+font-family: 'Helvetica Neue', Arial, sans-serif;
+background-color: var(--bg);
+color: var(--text);
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+position: sticky;
+top: 0;
+width: 100%;
+height: 80px;
+background: #000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+padding: 0 30px;
+box-sizing: border-box;
+}
+
+.header-logo img {
+height: 70px;
+}
+
+.nav-links {
+display: flex;
+gap: 20px;
+align-items: center;
+}
+
+nav a {
+text-decoration: none;
+color: #fff;
+text-transform: uppercase;
+font-size: 11px;
+letter-spacing: 2px;
+}
+
+/* 🔥 HERO IMAGE */
+.hero {
+position: relative;
+height: 90vh;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+
+.hero img {
+position: absolute;
+width: 100%;
+height: 100%;
+object-fit: cover;
+top: 0;
+left: 0;
+z-index: 1;
+}
+
+/* overlay */
+.hero-overlay {
+position: relative;
+z-index: 2;
+text-align: center;
+color: white;
+padding: 0 20px;
+}
+
+.brand-name {
+font-family: 'Cormorant Garamond', serif;
+font-size: 3.5rem;
+font-weight: 300;
+letter-spacing: 10px;
+text-transform: uppercase;
+margin: 0;
+text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.tagline {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1rem;
+font-style: italic;
+letter-spacing: 5px;
+text-transform: uppercase;
+margin-top: 15px;
+text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+/* 🔥 BUTTON */
+.hero-btn {
+margin-top: 30px;
+padding: 12px 28px;
+background: #e7dcd4;
+color: #54413b;
+border: none;
+font-size: 12px;
+letter-spacing: 2px;
+text-transform: uppercase;
+cursor: pointer;
+font-family: 'Cormorant Garamond', serif;
+}
+
+/* GRID */
+.collection-grid {
+padding: 40px 5%;
+max-width: 1400px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 30px;
+}
+
+.product-card {
+text-align: center;
+text-decoration: none;
+color: inherit;
+}
+
+.image-box {
+width: 100%;
+aspect-ratio: 3/4;
+background: #f7f7f7;
+overflow: hidden;
+margin-bottom: 15px;
+}
+
+.image-box img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+.header-logo img {
+height: 55px;
+}
+
+.nav-links a:nth-child(n+4) {
+display: none;
+}
+
+.brand-name {
+font-size: 2.2rem;
+letter-spacing: 6px;
+}
+
+.collection-grid {
+grid-template-columns: 1fr;
+}
+}
+</style>
 </head>
+
 <body>
-    <nav>
-        <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
-        <div class="nav-links">
-            <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="#">Search</a>
-        </div>
-        <div class="nav-right" style="display:flex; gap:15px;">
-            <a href="#" style="color:#fff; text-decoration:none; font-size:10px;">BAG (0)</a>
-            <div class="hamburger"><span></span><span></span><span></span></div>
-        </div>
-    </nav>
-    <section class="hero"><h1 class="brand-name">MØØD COLLECTION</h1><p class="tagline">YOUR MØØD, YOUR STYLE</p></section>
-    <div class="collection-grid" id="main-grid"></div>
-    <script>
-        async function fetchProducts() {
-            const grid = document.getElementById('main-grid');
-            try {
-                const response = await fetch('https://api.github.com/repos/moodcollection/mood-collection/contents/products');
-                let files = await response.json();
-                files = files.filter(f => f.name.endsWith('.md') && !f.name.includes('about'));
-                for (let file of files) {
-                    const res = await fetch(file.download_url);
-                    const text = await res.text();
-                    const title = text.match(/title:\s*"(.*?)"/)?.[1];
-                    let img = text.match(/image:\s*"(.*?)"/)?.[1] || "";
-                    if (img.startsWith('/')) img = '.' + img;
-                    if (title) grid.innerHTML += `<a href="product-detail.html?id=${file.name.replace('.md','')}" class="product-card"><div class="image-box"><img src="${img}"></div><div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:2px;">${title}</div></a>`;
-                }
-            } catch (err) { console.error(err); }
-        }
-        fetchProducts();
-    </script>
+
+<nav>
+<div class="header-logo">
+<a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a>
+</div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="#">Search</a>
+</div>
+
+<div style="display:flex; gap:15px;">
+<a style="color:#fff; font-size:10px;">BAG (0)</a>
+</div>
+</nav>
+
+<!-- 🔥 HERO -->
+<section class="hero">
+
+<img src="./images/HI0A5464.jpg">
+
+<div class="hero-overlay">
+<h1 class="brand-name">MØØD COLLECTION</h1>
+<p class="tagline">YOUR MØØD, YOUR STYLE</p>
+<button class="hero-btn" onclick="window.location.href='shop.html'">
+SHOP THE MØØD
+</button>
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+<div class="collection-grid" id="main-grid"></div>
+
+<script>
+async function fetchProducts() {
+const grid = document.getElementById('main-grid');
+try {
+const response = await fetch('https://api.github.com/repos/moodcollection/mood-collection/contents/products');
+let files = await response.json();
+files = files.filter(f => f.name.endsWith('.md') && !f.name.includes('about'));
+
+for (let file of files) {
+const res = await fetch(file.download_url);
+const text = await res.text();
+
+const title = text.match(/title:\s*"(.*?)"/)?.[1];
+let img = text.match(/image:\s*"(.*?)"/)?.[1] || "";
+
+if (img.startsWith('/')) img = '.' + img;
+
+if (title) {
+grid.innerHTML += `
+<a href="product-detail.html?id=${file.name.replace('.md','')}" class="product-card">
+<div class="image-box"><img src="${img}"></div>
+<div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:2px;">${title}</div>
+</a>`;
+}
+}
+} catch (err) {
+console.error(err);
+}
+}
+fetchProducts();
+</script>
+
 </body>
 </html>
