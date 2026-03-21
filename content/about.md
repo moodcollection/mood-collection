@@ -1,17 +1,17 @@
 ---
 title: THE STORY BEHIND THE MØØD
 page_image: /images/hi0a5818.jpg
-story_title: .
+story_title: WHERE IT ALL BEGAN
 ---
-
-
-**MØØD COLLECTION** wasn’t born in a boardroom. It was born in the midst of uncertainty, frustration, and the desire for change.
+MØØD COLLECTION wasn’t born in a boardroom. It was born in the midst of uncertainty, frustration, and the desire for change.
 
 Last year, after being made redundant from a corporate career that often felt like it was blocking my creative light, I found myself in a space I didn’t recognize. Six months of unemployment followed—a season that felt heavy, frustrating, and at times, discouraging. I realised then how easy it is to let a job title define your worth, and how quickly you can feel “lost” when that title is taken away.
 
 During that time, I was building this idea while relying on benefits, trying to make something out of nothing. It wasn’t glamorous. It was uncomfortable, uncertain, and at times, humbling—but it was real.
 
 I’ve always had an entrepreneurial spirit—that fire to build something of my own has always been there—but in the middle of that dark season, the “creative juices” felt frozen. I knew I didn’t want to go back to the corporate cycle where someone else held the keys to my identity. I knew I needed to build my own lane.
+
+
 
 **THE MOMENT IT CLICKED**
 
