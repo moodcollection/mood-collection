@@ -1,44 +1,29 @@
 backend:
   name: git-gateway
-  branch: main # This matches your current branch
-
-media_folder: "images" # Where your photos are stored
+  branch: main
+publish_mode: simple
+media_folder: "images"
 public_folder: "/images"
 
 collections:
   - name: "products"
     label: "Products"
-    folder: "products" # If your folder on GitHub is actually named _products, change this to "_products"
+    folder: "products"
     create: true
     slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Price", name: "price", widget: "string"}
+      - {label: "Product Type", name: "type", widget: "select", options: ["Hoodie", "Crewneck"]}
+      - {label: "Price", name: "price", widget: "string", default: "34.99"}
       - {label: "Main Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
-
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "About Page"
-        name: "about"
-        file: "content/about.md"
+      - {label: "Description", name: "body", widget: "markdown"}
+      - label: "Sizes"
+        name: "sizes"
+        widget: "list"
         fields:
-          - {label: "Page Title", name: "title", widget: "string"}
-          - {label: "Page Image", name: "page_image", widget: "image"}
-          - {label: "Story Title", name: "story_title", widget: "string"}
-          - {label: "Resilience Story", name: "body", widget: "markdown"}
-      
-      - label: "Shipping Policy"
-        name: "shipping"
-        file: "content/shipping.md"
+          - {label: "Size (S, M, L, XL)", name: "size", widget: "string"}
+      - label: "Colors"
+        name: "colors"
+        widget: "list"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Policy Content", name: "body", widget: "markdown"}
-
-      - label: "Returns Policy"
-        name: "returns"
-        file: "content/returns.md"
-        fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Policy Content", name: "body", widget: "markdown"}
+          - {label: "Color Name", name: "color", widget: "string"}
