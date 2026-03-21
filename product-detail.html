@@ -63,7 +63,7 @@ margin-bottom: 10px;
 
 .price {
 font-size: 20px;
-margin-bottom: 25px;
+margin-bottom: 20px;
 font-family: "Palatino Linotype", Palatino, serif;
 }
 
@@ -79,13 +79,13 @@ letter-spacing: 1px;
 }
 
 .colors {
-margin: 25px 0 30px 0;
+margin: 20px 0;
 }
 
 .color-wrapper {
 display: inline-block;
 text-align: center;
-margin-right: 18px;
+margin-right: 15px;
 }
 
 .color-circle {
@@ -98,22 +98,7 @@ cursor: pointer;
 
 .color-label {
 font-size: 10px;
-margin-top: 8px;
-}
-
-select {
-width: 200px;
-padding: 10px;
-font-family: 'Cormorant Garamond', serif;
-border: 1px solid #000;
 margin-top: 5px;
-margin-bottom: 15px;
-}
-
-.add-btn {
-margin-top: 5px;
-margin-bottom: 30px;
-padding: 14px 30px;
 }
 
 .description {
@@ -121,7 +106,19 @@ line-height: 1.7;
 font-size: 14px;
 color: #333;
 white-space: pre-line;
+}
+
+select {
+width: 200px;
+padding: 10px;
+font-family: 'Cormorant Garamond', serif;
+border: 1px solid #000;
 margin-top: 10px;
+}
+
+.add-btn {
+margin-top: 20px;
+padding: 14px 30px;
 }
 
 @media(max-width:768px){
@@ -165,6 +162,7 @@ grid-template-columns: 1fr;
 
 <div class="colors" id="color-options"></div>
 
+<!-- SIZE DROPDOWN -->
 <select id="size-select">
 <option value="">Select Size</option>
 <option>XS</option>
@@ -175,6 +173,7 @@ grid-template-columns: 1fr;
 <option>XXL</option>
 </select>
 
+<!-- ADD TO BAG -->
 <button class="add-btn" id="add-to-cart">ADD TO BAG</button>
 
 <div class="description" id="product-description"></div>
@@ -213,8 +212,6 @@ Designed for a clean, structured look. For the signature MØØD oversized silhou
 
 const products = {
 
-// (UNCHANGED PRODUCTS — exactly same as before)
-
 "busy-adulting": {
 name: "BUSY ADULTING",
 description: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
@@ -234,6 +231,98 @@ hoodie:{
 "DND":{img:"/images/ba-c.png",color:"#413e41"},
 "AFTER HOURS":{img:"/images/ba-e.png",color:"#54413b"},
 "CLOUD 9":{img:"/images/ba-v.png",color:"#e7dcd4"}
+}
+}
+},
+
+"authentically-me": {
+name: "AUTHENTICALLY ME",
+description: `Soft confidence. No explaining. No shrinking. Just showing up as you are.
+
+${baseDescription}`,
+prices:{crew:34.99, hoodie:39.99},
+variants:{
+crew:{
+"GROUNDED":{img:"/images/am-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/am-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/am-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/am-e-crewneck.png",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/am-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/am-bl.png",color:"#000"},
+"DND":{img:"/images/am-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/am-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/am-v.png",color:"#e7dcd4"}
+}
+}
+},
+
+"present-enough": {
+name: "PRESENT ENOUGH",
+description: `For the days when you're here... but gently. Showing up without pressure and letting that be enough.
+
+${baseDescription}`,
+prices:{crew:34.99, hoodie:39.99},
+variants:{
+crew:{
+"GROUNDED":{img:"/images/pe-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/pe-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/pe-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/pe-e-crewneck.png",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/pe-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/pe-bl.png",color:"#000"},
+"DND":{img:"/images/pe-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/pe-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/pe-v.png",color:"#e7dcd4"}
+}
+}
+},
+
+"mentally-offline": {
+name: "MENTALLY OFFLINE",
+description: `When the world gets loud, find your quiet. This is your permission to switch off and just be.
+
+${baseDescription}`,
+prices:{crew:34.99, hoodie:39.99},
+variants:{
+crew:{
+"GROUNDED":{img:"/images/mo-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/mo-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/mo-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/mo-e-crewneck.png",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/mo-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/mo-bl.png",color:"#000"},
+"DND":{img:"/images/mo-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/mo-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/mo-v.png",color:"#e7dcd4"}
+}
+}
+},
+
+"face-your-front": {
+name: "FACE YOUR FRONT",
+description: `A reminder to stay in your lane, trust your pace, and focus on your path.
+
+${baseDescription}`,
+prices:{crew:34.99, hoodie:39.99},
+variants:{
+crew:{
+"GROUNDED":{img:"/images/fyf-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/fyf-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/fyf-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/fyf-e-crewneck.png",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/fyf-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/fyf-bl.png",color:"#000"},
+"DND":{img:"/images/fyf-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/fyf-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/fyf-v.png",color:"#e7dcd4"}
 }
 }
 }
