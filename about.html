@@ -60,11 +60,10 @@
         async function loadAbout() {
             const display = document.getElementById('about-display');
             try {
-                const response = await fetch('https://api.github.com/repos/moodcollection/mood-collection/contents/products/about_page.md');
-                const data = await response.json();
-                const content = decodeURIComponent(escape(atob(data.content)));
+                const response = await fetch('/products/about_page.md');
+                const text = await response.text();
                 
-                const parts = content.split('---');
+                const parts = text.split('---');
                 const header = parts[1];
                 const body = parts.slice(2).join('---').trim();
 
@@ -87,7 +86,7 @@
                     </div>`;
             } catch (err) { 
                 console.error(err);
-                display.innerHTML = "<p>Please ensure content is published in Admin.</p>";
+                display.innerHTML = "<p>Error loading content.</p>";
             }
         }
         loadAbout();
