@@ -13,11 +13,12 @@
         #searchBar.active { top: 0; }
         #searchBar input { width: 50%; border: none; border-bottom: 1px solid #000; font-size: 20px; outline: none; text-align: center; font-family: 'Cormorant Garamond', serif; }
 
-        /* NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
+        /* NAVIGATION - STICKY */
+        nav { position: sticky; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
         .header-logo img { height: 80px; position: relative; top: -5px; }
         .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 25px; }
         nav a, .nav-icon { text-decoration: none; color: var(--text-on-black); text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; cursor: pointer; }
+        .nav-right { display: flex; align-items: center; gap: 15px; }
 
         /* ABOUT HERO SECTION */
         .about-hero { height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 60px; }
@@ -26,7 +27,7 @@
 
         /* STORY SPLIT SECTION */
         .story-section { display: flex; max-width: 1200px; margin: 0 auto 100px; padding: 0 5%; align-items: center; gap: 80px; }
-        .story-image { flex: 1; aspect-ratio: 4/5; background-color: #f2f2f2; display: flex; align-items: center; justify-content: center; color: #ccc; text-transform: uppercase; font-size: 10px; letter-spacing: 2px; }
+        .story-image { flex: 1; aspect-ratio: 4/5; background-color: #f2f2f2; display: flex; align-items: center; justify-content: center; color: #ccc; text-transform: uppercase; font-size: 10px; letter-spacing: 2px; background-size: cover; background-position: center; }
         .story-content { flex: 1; }
         .story-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; font-weight: 300; }
         .story-text { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; line-height: 1.8; color: #333; font-style: italic; }
@@ -44,7 +45,7 @@
     <nav>
         <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
         <div class="nav-links">
-            <a href="index.html">Home</a><a href="shop.html">Hoodies</a><a href="shop.html">Crewnecks</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+            <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a>
         </div>
         <div class="nav-right">
             <span class="nav-icon" onclick="toggleSearch()">SEARCH 🔍</span>
@@ -59,10 +60,10 @@
     </section>
 
     <section class="story-section">
-        <div class="story-image">
-            PHOTO: FOUNDER / STUDIO
+        <div class="story-image" id="about-image" style="background-image: url('./images/about-founder.jpg');">
+            <!-- The image will be loaded here dynamically -->
         </div>
-        <div class="story-content">
+        <div class="story-content" id="about-text">
             <h2 class="story-title">Our Genesis</h2>
             <p class="story-text">MØØD COLLECTION was established with a single vision: to create garments that resonate with the wearer's internal state. What started as a small project in a quiet studio has grown into a community of individuals who value minimalism, quality, and the power of a mood.</p>
             <p class="story-text">Every stitch and every fabric choice is made with intention, ensuring that when you wear MØØD, you aren't just wearing a brand—you're wearing a feeling.</p>
@@ -71,12 +72,63 @@
 
     <footer>
         <div class="footer-col"><h4>Join the MØØD</h4><p style="font-size:12px; color:#666;">Early access to drops.</p><div class="newsletter-box"><input type="email" placeholder="EMAIL ADDRESS"></div></div>
-        <div class="footer-col"><h4>Support</h4><a href="policy.html">Shipping</a><a href="policy.html">Returns</a><a href="contact.html">Contact Us</a></div>
+        <div class="footer-col"><h4>Support</h4><a href="/shipping">Shipping</a><a href="/returns">Returns</a><a href="/contact">Contact Us</a></div>
         <div class="footer-col"><h4>Connect</h4><a href="https://www.instagram.com/moodcollectionofficial" target="_blank">Instagram</a><a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a></div>
+        <div class="footer-bottom">© 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <script>
         function toggleSearch() { document.getElementById('searchBar').classList.toggle('active'); }
+
+        async function loadAboutPage() {
+            try {
+                // Fetch the content from the 'content/about.md' file in GitHub
+                const response = await fetch('https://api.github.com/repos/moodcollection/mood-collection/contents/content/about.md');
+                const data = await response.json();
+                const text = decodeURIComponent(escape(atob(data.content)));
+
+                // Extract title, image, and body from the Markdown frontmatter
+                const titleMatch = text.match(/title:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+                const imageMatch = text.match(/page_image:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+                const bodyMatch = text.split('---').pop().trim(); // Get content after frontmatter
+
+                const title = titleMatch ? titleMatch[1] : "About MØØD";
+                const imageUrl = imageMatch ? imageMatch[1] : ""; // Use the image URL from frontmatter
+
+                // Update the page title and hero tagline
+                document.title = `${title} | MØØD COLLECTION`;
+                document.querySelector('.about-hero .brand-name').textContent = title; // Update brand name if needed, or keep it
+                document.querySelector('.about-hero .tagline').textContent = "OUR STORY"; // Example tagline
+
+                // Update the story section
+                const storyImageDiv = document.getElementById('about-image');
+                if (storyImageDiv) {
+                    storyImageDiv.style.backgroundImage = `url(${imageUrl})`;
+                    storyImageDiv.textContent = ''; // Clear placeholder text
+                }
+
+                const storyContentDiv = document.getElementById('about-text');
+                if (storyContentDiv) {
+                    // Extract the title and body from the markdown content
+                    const storyTitleMatch = bodyMatch.match(/story_title:\s*["']?(.*?)["']?\s*(\r?\n|$)/);
+                    const storyBodyMatch = bodyMatch.split('story_title:').pop().trim(); // Get content after story_title
+
+                    const storyTitle = storyTitleMatch ? storyTitleMatch[1] : "Our Genesis";
+                    const storyText = storyBodyMatch; // The rest of the markdown is the story
+
+                    document.querySelector('.story-content .story-title').textContent = storyTitle;
+                    document.querySelector('.story-content .story-text').innerHTML = storyText; // Use innerHTML to render markdown if needed, or textContent for plain text
+                }
+
+            } catch (error) {
+                console.error("Error loading about page:", error);
+                // Optionally display an error message to the user
+                document.querySelector('.story-section').innerHTML = "<p>Could not load about page content.</p>";
+            }
+        }
+
+        // Load the about page content when the script runs
+        loadAboutPage();
     </script>
 </body>
 </html>
