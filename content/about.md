@@ -1,5 +1,5 @@
 ---
-title: THE STORY BEHIND THE MØØD
+title: "THE STORY BEHIND THE MØØD "
 page_image: /images/hi0a5818.jpg
 story_title: WHERE IT ALL BEGAN
 ---
