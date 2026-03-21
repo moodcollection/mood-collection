@@ -1,11 +1,3 @@
-publish_mode: editorial_workflow
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "images"
-public_folder: "/images"
-
 collections:
   - name: "products"
     label: "Products"
@@ -35,3 +27,38 @@ collections:
           - {label: "Color Name", name: "color_name", widget: "string"}
           - {label: "Color Hex Code", name: "color_code", widget: "string", hint: "e.g. #000000 for black"}
           - {label: "Mockup Image", name: "variant_image", widget: "image"}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/about.md" # Make sure this path matches your file structure
+        label: "About Page"
+        name: "about"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Page Image", name: "page_image", widget: "image"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "content/shipping.md" # Assuming you will create these files
+        label: "Shipping Policy"
+        name: "shipping"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "content/returns.md"
+        label: "Returns Policy"
+        name: "returns"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "content/privacy.md"
+        label: "Privacy Policy"
+        name: "privacy"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "content/terms.md"
+        label: "Terms & Conditions"
+        name: "terms"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
