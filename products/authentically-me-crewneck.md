@@ -1,7 +1,7 @@
 ---
 title: "AUTHENTICALLY ME "
 price: "34.99"
-image: /images/KEETS.jpg
+image: /images/KEETS.JPG
 stripe_link: tbc
 order: 4
 variants:
