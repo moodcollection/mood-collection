@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background: #fff; color: #000; }
+nav { position: sticky; top: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
+.header-logo img { height: 70px; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+nav a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
+.page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; }
+.content { max-width: 800px; margin: 0 auto; padding: 60px 5%; }
+.faq-item { border-bottom: 1px solid #e0e0e0; padding: 25px 0; cursor: pointer; }
+.faq-question { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
+.faq-answer { font-size: 14px; line-height: 1.9; color: #333; margin-top: 15px; display: none; }
+.faq-answer.open { display: block; }
+.faq-toggle { font-size: 20px; font-weight: 300; }
+footer { background: #000; color: #fff; padding: 40px 5%; text-align: center; }
+footer a { color: #aaa; text-decoration: none; font-size: 11px; letter-spacing: 1px; margin: 0 15px; }
+footer p { font-size: 11px; color: #555; letter-spacing: 1px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div style="display:flex; gap:15px;"><a style="color:#fff; font-size:10px;">BAG (0)</a></div>
+</nav>
+<div class="page-header"><h1>FAQ</h1></div>
+<div class="content">
+  <div class="faq-item">
+    <div class="faq-question">How long does delivery take? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">All orders are dispatched within 1-2 working days. Once dispatched, please allow 3-5 working days for delivery within the UK.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Can I return my order? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">Yes. We accept returns within 14 days of delivery. Items must be unworn, unclean, and free from any scent. Please contact us at info@mymoodcollection.co.uk to initiate a return and we will do our best to accommodate you.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">What sizes do you offer? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">We offer sizes XS through to XXL. For the signature MØØD oversized silhouette, we recommend sizing up.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">What is the fabric composition? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">All MØØD Collection pieces are made from 70% ring-spun cotton and 30% recycled polyester at 440 GSM for a premium heavyweight feel.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">How do I care for my MØØD piece? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">We recommend washing at 30 degrees on a gentle cycle, inside out, to preserve the colour and quality of your garment. Do not tumble dry.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Do you ship internationally? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">We currently ship within the UK. International shipping is coming soon. Sign up to our newsletter to be the first to know when we expand.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">I have a question not listed here. How do I get in touch? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">You can reach us at info@mymoodcollection.co.uk and we will get back to you as soon as possible.</div>
+  </div>
+</div>
+<footer>
+  <div>
+    <a href="shipping.html">Shipping</a>
+    <a href="returns.html">Returns</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+</footer>
+<script>
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const answer = item.querySelector('.faq-answer');
+    const toggle = item.querySelector('.faq-toggle');
+    answer.classList.toggle('open');
+    toggle.textContent = answer.classList.contains('open') ? '−' : '+';
+  });
+});
+</script>
+</body>
+</html>
