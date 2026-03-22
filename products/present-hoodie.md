@@ -1,7 +1,7 @@
 ---
 title: PRESENT ENOUGH
 price: "34.99"
-image: /images/hi0a5378.jpg
+image: /images/RIRI2.jpg
 stripe_link: tbc
 order: 3
 variants:
