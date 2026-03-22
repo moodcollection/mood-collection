@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background: #fff; color: #000; }
+nav { position: sticky; top: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
+.header-logo img { height: 70px; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+nav a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
+.page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; }
+.content { max-width: 800px; margin: 0 auto; padding: 60px 5%; }
+.content h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin: 40px 0 15px; }
+.content p { font-size: 14px; line-height: 1.9; color: #333; margin-bottom: 20px; }
+footer { background: #000; color: #fff; padding: 40px 5%; text-align: center; }
+footer a { color: #aaa; text-decoration: none; font-size: 11px; letter-spacing: 1px; margin: 0 15px; }
+footer p { font-size: 11px; color: #555; letter-spacing: 1px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div style="display:flex; gap:15px;"><a style="color:#fff; font-size:10px;">BAG (0)</a></div>
+</nav>
+<div class="page-header"><h1>TERMS &amp; CONDITIONS</h1></div>
+<div class="content">
+  <p>Last updated: March 2026</p>
+  <h2>1. Introduction</h2>
+  <p>Welcome to MØØD Collection. By accessing and using this website and placing orders with us, you agree to be bound by the following terms and conditions. Please read them carefully before using our site.</p>
+  <h2>2. Our Details</h2>
+  <p>MØØD Collection is an online retail brand operating at mymoodcollection.co.uk. For any queries, please contact us at info@mymoodcollection.co.uk.</p>
+  <h2>3. Products</h2>
+  <p>All products are subject to availability. We reserve the right to discontinue any product at any time. Colours may appear slightly different on screen due to monitor settings and photography lighting.</p>
+  <h2>4. Pricing</h2>
+  <p>All prices are displayed in GBP and are inclusive of VAT where applicable. We reserve the right to change prices at any time without notice. The price you pay is the price displayed at the time of your order.</p>
+  <h2>5. Orders</h2>
+  <p>By placing an order, you are making an offer to purchase. We reserve the right to refuse or cancel any order at our discretion. You will receive an order confirmation email once your order has been accepted.</p>
+  <h2>6. Shipping</h2>
+  <p>Please refer to our <a href="shipping.html">Shipping page</a> for full details on delivery times and costs.</p>
+  <h2>7. Returns and Refunds</h2>
+  <p>Please refer to our <a href="returns.html">Returns page</a> for full details on our returns and refunds policy.</p>
+  <h2>8. Intellectual Property</h2>
+  <p>All content on this website including images, text, logos, and designs are the property of MØØD Collection and may not be reproduced without prior written permission.</p>
+  <h2>9. Limitation of Liability</h2>
+  <p>MØØD Collection shall not be liable for any indirect or consequential loss arising from the use of this website or from the purchase of our products beyond the value of the original purchase.</p>
+  <h2>10. Changes to These Terms</h2>
+  <p>We reserve the right to update these terms and conditions at any time. Continued use of the website following any changes constitutes your acceptance of the new terms.</p>
+  <h2>11. Contact</h2>
+  <p>If you have any questions regarding these terms, please contact us at <a href="mailto:info@mymoodcollection.co.uk">info@mymoodcollection.co.uk</a>.</p>
+</div>
+<footer>
+  <div>
+    <a href="shipping.html">Shipping</a>
+    <a href="returns.html">Returns</a>
+    <a href="terms.html">Terms &amp; Conditions</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+</footer>
+</body>
+</html>
