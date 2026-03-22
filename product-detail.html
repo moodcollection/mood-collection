@@ -352,6 +352,9 @@ const params=new URLSearchParams(window.location.search);
 const key=params.get("name")||"busy-adulting";
 
 const product=products[key];
+if(!product){
+  console.log("Product not found:", key);
+}
 let type="crew";
 let color=null;
 
