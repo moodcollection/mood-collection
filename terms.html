@@ -4,25 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terms & Conditions | MØØD COLLECTION</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
-body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background: #fff; color: #000; }
-nav { position: sticky; top: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
-.header-logo img { height: 70px; }
-.nav-links { display: flex; gap: 20px; align-items: center; }
-nav a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
+.nav-logo img { height: 55px; display: block; }
+.nav-links { display: flex; gap: 25px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav-links a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-family: 'Cormorant Garamond', serif; white-space: nowrap; }
+.nav-links a:hover { opacity: 0.7; }
+.nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 120px; outline: none; }
+.nav-search input::placeholder { color: #777; text-transform: uppercase; }
+.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; }
 .page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
-.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
 .content { max-width: 800px; margin: 0 auto; padding: 60px 5%; }
-.content h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin: 40px 0 15px; }
-.content p { font-size: 14px; line-height: 1.9; color: #333; margin-bottom: 20px; }
-footer { background: #000; color: #fff; padding: 40px 5%; text-align: center; }
-footer a { color: #aaa; text-decoration: none; font-size: 11px; letter-spacing: 1px; margin: 0 15px; }
-footer p { font-size: 11px; color: #555; letter-spacing: 1px; margin-top: 20px; }
+.content .updated { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #999; letter-spacing: 1px; margin-bottom: 40px; }
+.content h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin: 40px 0 15px; }
+.content p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; line-height: 1.9; color: #333; margin-bottom: 20px; }
+.content p a { color: #000; }
+footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cormorant Garamond', serif; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
+.footer-col a { display: block; color: #aaa; text-decoration: none; font-size: 13px; letter-spacing: 1px; margin-bottom: 10px; }
+.footer-col a:hover { color: #fff; }
+.footer-social { display: flex; gap: 15px; margin-top: 10px; flex-direction: column; }
+.footer-bottom { border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 12px; color: #555; letter-spacing: 1px; margin: 0; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
 </style>
 </head>
 <body>
+
 <nav>
   <div class="nav-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
   <div class="nav-links">
@@ -34,41 +50,78 @@ footer p { font-size: 11px; color: #555; letter-spacing: 1px; margin-top: 20px; 
   </div>
   <div class="nav-right">My Cart (0)</div>
 </nav>
+
 <div class="page-header"><h1>TERMS &amp; CONDITIONS</h1></div>
+
 <div class="content">
-  <p>Last updated: March 2026</p>
-  <h2>1. Introduction</h2>
+  <p class="updated">Last updated: March 2026</p>
+
+  <h2>Introduction</h2>
   <p>Welcome to MØØD Collection. By accessing and using this website and placing orders with us, you agree to be bound by the following terms and conditions. Please read them carefully before using our site.</p>
-  <h2>2. Our Details</h2>
-  <p>MØØD Collection is an online retail brand operating at mymoodcollection.co.uk. For any queries, please contact us at info@mymoodcollection.co.uk.</p>
-  <h2>3. Products</h2>
+
+  <h2>Our Details</h2>
+  <p>MØØD Collection is an online retail brand operating at mymoodcollection.co.uk. For any queries, please contact us at <a href="mailto:info@mymoodcollection.co.uk">info@mymoodcollection.co.uk</a>.</p>
+
+  <h2>Products</h2>
   <p>All products are subject to availability. We reserve the right to discontinue any product at any time. Colours may appear slightly different on screen due to monitor settings and photography lighting.</p>
-  <h2>4. Pricing</h2>
+
+  <h2>Pricing</h2>
   <p>All prices are displayed in GBP and are inclusive of VAT where applicable. We reserve the right to change prices at any time without notice. The price you pay is the price displayed at the time of your order.</p>
-  <h2>5. Orders</h2>
+
+  <h2>Orders</h2>
   <p>By placing an order, you are making an offer to purchase. We reserve the right to refuse or cancel any order at our discretion. You will receive an order confirmation email once your order has been accepted.</p>
-  <h2>6. Shipping</h2>
+
+  <h2>Shipping</h2>
   <p>Please refer to our <a href="shipping.html">Shipping page</a> for full details on delivery times and costs.</p>
-  <h2>7. Returns and Refunds</h2>
+
+  <h2>Returns and Refunds</h2>
   <p>Please refer to our <a href="returns.html">Returns page</a> for full details on our returns and refunds policy.</p>
-  <h2>8. Intellectual Property</h2>
+
+  <h2>Intellectual Property</h2>
   <p>All content on this website including images, text, logos, and designs are the property of MØØD Collection and may not be reproduced without prior written permission.</p>
-  <h2>9. Limitation of Liability</h2>
+
+  <h2>Limitation of Liability</h2>
   <p>MØØD Collection shall not be liable for any indirect or consequential loss arising from the use of this website or from the purchase of our products beyond the value of the original purchase.</p>
-  <h2>10. Changes to These Terms</h2>
+
+  <h2>Changes to These Terms</h2>
   <p>We reserve the right to update these terms and conditions at any time. Continued use of the website following any changes constitutes your acceptance of the new terms.</p>
-  <h2>11. Contact</h2>
+
+  <h2>Contact</h2>
   <p>If you have any questions regarding these terms, please contact us at <a href="mailto:info@mymoodcollection.co.uk">info@mymoodcollection.co.uk</a>.</p>
 </div>
+
 <footer>
-  <div>
-    <a href="shipping.html">Shipping</a>
-    <a href="returns.html">Returns</a>
-    <a href="terms.html">Terms &amp; Conditions</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="contact.html">Contact</a>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
   </div>
-  <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
 </footer>
+
 </body>
 </html>
