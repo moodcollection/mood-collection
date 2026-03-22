@@ -3,194 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MØØD COLLECTION | Official Store</title>
+<title>Product Details | MØØD COLLECTION</title>
+  
+  <style>
+.add-btn {
+margin-left: 15px;
+}
+</style>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root { --bg: #ffffff; --text: #000000; --accent: #707070; }
-
-body, html {
+body {
 margin: 0;
-padding: 0;
-font-family: 'Helvetica Neue', Arial, sans-serif;
-background-color: var(--bg);
-color: var(--text);
--webkit-font-smoothing: antialiased;
-overflow-x: hidden;
+font-family: 'Cormorant Garamond', serif;
+background: #fff;
+color: #000;
 }
 
-/* NAV */
 nav {
 position: sticky;
 top: 0;
-width: 100%;
-height: 80px;
-background: #000;
+height: 60px;
+background: black;
 display: flex;
 justify-content: space-between;
 align-items: center;
-z-index: 1000;
 padding: 0 30px;
-box-sizing: border-box;
-}
-
-.header-logo img {
-height: 70px;
 }
 
 .nav-links {
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
 display: flex;
 gap: 20px;
-align-items: center;
 }
 
 nav a {
-text-decoration: none;
-color: #fff;
-text-transform: uppercase;
-font-size: 11px;
-letter-spacing: 2px;
-}
-
-/* 🔥 HERO IMAGE */
-.hero {
-position: relative;
-height: 105vh;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-overflow: hidden;
-}
-
-.hero img {
-position: absolute;
-width: 100%;
-height: 100%;
-object-fit: cover;
-object-position: center 10% !important;
-top: 0;
-left: 0;
-z-index: 1;
-}
-
-/* overlay */
-.hero-overlay {
-position: relative;
-z-index: 2;
-text-align: center;
 color: white;
-padding: 0 20px;
-margin-top: 100px;
-}
-
-.brand-name {
-font-family: 'Cormorant Garamond', serif;
-font-size: 3.5rem;
-font-weight: 100;
-letter-spacing: 10px;
-text-transform: uppercase;
-margin-top: 150px;
-text-shadow: 0px 1px 2px rgba(0,0,0,0.5),
-  0px 3px 6px rgba(0,0,0,0.35);
-}
-
-.tagline {
-font-family: 'Cormorant Garamond', serif;
-font-size: 1rem;
-font-style: italic;
-letter-spacing: 5px;
-text-transform: uppercase;
-margin-top: 10px;
-text-shadow: 0px 1px 2px rgba(0,0,0,0.45),
-  0px 2px 4px rgba(0,0,0,0.35);
-}
-
-/* 🔥 BUTTON */
-.hero-btn {
-margin-top: 20px;
-padding: 12px 28px;
-background: #e7dcd4;
-color: #54413b;
-border: none;
-font-size: 12px;
+text-decoration: none;
+font-size: 10px;
 letter-spacing: 2px;
 text-transform: uppercase;
-cursor: pointer;
-font-family: 'Cormorant Garamond', serif;
 }
 
-/* GRID */
-.collection-grid {
-padding: 40px 5%;
-max-width: 1400px;
-margin: 0 auto;
+.container {
+max-width: 1100px;
+margin: 100px auto;
 display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 30px;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+padding: 0 20px;
 }
 
-.product-card {
+.product-image img {
+width: 100%;
+}
+
+.product-info h1 {
+font-size: 32px;
+letter-spacing: 2px;
+margin-bottom: 10px;
+}
+
+.price {
+font-size: 20px;
+margin-bottom: 25px;
+font-family: "Palatino Linotype", Palatino, serif;
+}
+
+button {
+background: black;
+color: white;
+border: none;
+padding: 10px 18px;
+cursor: pointer;
+margin-right: 10px;
+font-family: 'Cormorant Garamond', serif;
+letter-spacing: 1px;
+}
+
+.colors {
+margin: 15px 0 15px 0;
+}
+
+.color-wrapper {
+display: inline-block;
 text-align: center;
-text-decoration: none;
-color: inherit;
+margin-right: 18px;
 }
 
-.image-box {
-width: 100%;
-aspect-ratio: 3/4;
-background: #f7f7f7;
-overflow: hidden;
-margin-bottom: 15px;
+.color-circle {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+margin: 0 auto;
+cursor: pointer;
 }
 
-.image-box img {
-width: 100%;
-height: 100%;
-object-fit: cover;
+.color-label {
+font-size: 10px;
+margin-top: 8px;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-
-  .header-logo img {
-    height: 55px;
-  }
-
-  .hero img {
-    height: 90vh;
-    object-position: 95% 10% !important;
-  }
-
-  .nav-links a:nth-child(n+4) {
-    display: none;
-  }
-
-  /* 🔘 BUTTON (UNCHANGED POSITION) */
-  .hero-btn {
-    margin-top: 25px;
-  }
-
-  /* 🔼 MOVE TEXT UP SLIGHTLY */
-  .hero-overlay {
-    top: 3% !important;
-  }
-
-  /* ✨ STRONGER SHADOW FOR LIGHT BACKGROUND */
-  .brand-name {
-    font-size: 2rem;
-    text-shadow: 0px 1px 2px rgba(0,0,0,0.35);
-  }
-
-  .tagline {
-    font-size: 0.9rem;
-    text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
-  }
-
+select {
+width: 200px;
+padding: 10px;
+font-family: 'Cormorant Garamond', serif;
+border: 1px solid #000;
+margin-top: 5px;
+margin-bottom: 20px;
 }
 
-.collection-grid {
+/* ✅ ONLY CHANGE HERE */
+.add-btn {
+padding: 10px 20px;
+margin-top: 15px;   /* increased spacing */
+margin-bottom: 20px;
+font-size: 13px;
+}
+
+.description {
+line-height: 1.7;
+font-size: 14px;
+color: #333;
+white-space: pre-line;
+margin-top: 10px;
+}
+
+@media(max-width:768px){
+.container {
 grid-template-columns: 1fr;
 }
 }
@@ -200,75 +143,291 @@ grid-template-columns: 1fr;
 <body>
 
 <nav>
-<div class="header-logo">
-<a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a>
-</div>
+<div><img src="./MOOD-LOGO-WHITE.png" style="height:60px;"></div>
 
 <div class="nav-links">
 <a href="index.html">Home</a>
 <a href="shop.html">Shop</a>
 <a href="about.html">About</a>
 <a href="contact.html">Contact</a>
-<a href="#">Search</a>
 </div>
 
-<div style="display:flex; gap:15px;">
-<a style="color:#fff; font-size:10px;">BAG (0)</a>
-</div>
+<div>BAG (0)</div>
 </nav>
 
-<!-- 🔥 HERO -->
-<section class="hero">
+<div class="container">
 
-<picture>
-  <source media="(max-width: 768px)" srcset="./images/THELMA.jpg">
-  <img src="./images/HI0A5464.jpg" alt="MØØD Collection">
-</picture>
-
-<div class="hero-overlay">
-<h1 class="brand-name">MØØD COLLECTION</h1>
-<p class="tagline">YOUR MØØD, YOUR STYLE</p>
-<button class="hero-btn" onclick="window.location.href='shop.html'">
-SHOP THE MØØD
-</button>
+<div class="product-image">
+<img id="product-image">
 </div>
 
-</section>
+<div class="product-info">
 
-<!-- PRODUCTS -->
-<div class="collection-grid" id="main-grid"></div>
+<h1 id="product-title"></h1>
+<div class="price" id="product-price">From £34.99</div>
+
+<div>
+<button id="crew-btn">Crewneck</button>
+<button id="hoodie-btn">Hoodie</button>
+</div>
+
+<div class="colors" id="color-options"></div>
+
+<select id="size-select">
+<option value="">Select Size</option>
+<option>XS</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+<option>XXL</option>
+</select>
+
+<button class="add-btn" id="add-to-cart">ADD TO BAG</button>
+
+<div class="description" id="product-description"></div>
+
+</div>
+
+</div>
 
 <script>
-async function fetchProducts() {
-const grid = document.getElementById('main-grid');
-try {
-const response = await fetch('https://api.github.com/repos/moodcollection/mood-collection/contents/products');
-let files = await response.json();
-files = files.filter(f => f.name.endsWith('.md') && !f.name.includes('about'));
 
-for (let file of files) {
-const res = await fetch(file.download_url);
-const text = await res.text();
+function formatDescription(text){
+let html = text;
+html = html.replace(/MØØD\./g, '<strong>MØØD.</strong>');
+html = html.replace(/signature MØØD/g, 'signature <strong>MØØD</strong>');
+html = html.replace(/\n/g, '<br>');
+return html;
+}
 
-const title = text.match(/title:\s*"(.*?)"/)?.[1];
-let img = text.match(/image:\s*"(.*?)"/)?.[1] || "";
+const baseDescription = `Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
-if (img.startsWith('/')) img = '.' + img;
+Ready to match your MØØD.
 
-if (title) {
-grid.innerHTML += `
-<a href="product-detail.html?id=${file.name.replace('.md','')}" class="product-card">
-<div class="image-box"><img src="${img}"></div>
-<div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:2px;">${title}</div>
-</a>`;
+Style & Color Options:
+Hoodie: Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
+Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
+
+Cloud 9 is exclusive to the Hoodie.
+
+Fabric Composition:
+70% Ring-spun Cotton
+30% Recycled Polyester
+440 GSM heavyweight fabric for superior quality.
+
+Fit & Styling:
+Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`;
+
+const products = {
+
+/* ✅ ALL PRODUCTS */
+
+"busy-adulting": { 
+name:"BUSY ADULTING", 
+hero: "/images/THELMABA.JPG",
+description:`For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.
+
+${baseDescription}`, 
+prices:{crew:34.99, hoodie:39.99}, 
+variants:{
+crew:{
+"GROUNDED":{img:"/images/ba-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/ba-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/ba-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/JOSHBROWN.jpg",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/ba-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/ba-bl.png",color:"#000"},
+"DND":{img:"/images/ba-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/ba-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/ba-v.png",color:"#e7dcd4"}
 }
 }
-} catch (err) {
-console.error(err);
+},
+
+"authentically-me": { 
+name:"AUTHENTICALLY ME", 
+hero: "/images/KEETS.JPG",
+description:`Soft confidence. No explaining. No shrinking. Just showing up as you are.
+
+${baseDescription}`, 
+prices:{crew:34.99, hoodie:39.99}, 
+variants:{
+crew:{
+"GROUNDED":{img:"/images/am-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/KEETS2.JPG",color:"#000"},
+"DND":{img:"/images/am-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/am-e-crewneck.png",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/KEETS.JPG",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/am-bl.png",color:"#000"},
+"DND":{img:"/images/am-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/am-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/am-v.png",color:"#e7dcd4"}
 }
 }
-fetchProducts();
+},
+
+"present-enough": { 
+name:"PRESENT ENOUGH", 
+hero: "/images/RIRI2.jpg",
+description:`For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.
+
+${baseDescription}`, 
+prices:{crew:34.99, hoodie:39.99}, 
+variants:{
+crew:{
+"GROUNDED":{img:"/images/pe-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/pe-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/pe-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/BERENICEPRESENT.jpg",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/pe-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/pe-bl.png",color:"#000"},
+"DND":{img:"/images/pe-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/pe-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/pe-v.png",color:"#e7dcd4"}
+}
+}
+},
+
+"mentally-offline": { 
+name:"MENTALLY OFFLINE", 
+hero: "/images/LEX.JPG",
+description:`When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.
+
+${baseDescription}`, 
+prices:{crew:34.99, hoodie:39.99}, 
+variants:{
+crew:{
+"GROUNDED":{img:"/images/mo-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/mo-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/mo-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/mo-e-crewneck.png",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/mo-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/mo-bl.png",color:"#000"},
+"DND":{img:"/images/mo-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/mo-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/mo-v.png",color:"#e7dcd4"}
+}
+}
+},
+
+"face-your-front": { 
+name:"FACE YOUR FRONT", 
+hero: "/images/JOSH2.JPG",
+description:`A reminder to focus on your own lane, your own pace, your own path.
+
+${baseDescription}`, 
+prices:{crew:34.99, hoodie:39.99}, 
+variants:{
+crew:{
+"GROUNDED":{img:"/images/fyf-b-crewneck.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/fyf-bl-crewneck.png",color:"#000"},
+"DND":{img:"/images/fyf-c-crewneck.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/SANA.JPG",color:"#54413b"}
+},
+hoodie:{
+"GROUNDED":{img:"/images/fyf-b.png",color:"#beb8a9"},
+"MIDNIGHT":{img:"/images/fyf-bl.png",color:"#000"},
+"DND":{img:"/images/fyf-c.png",color:"#413e41"},
+"AFTER HOURS":{img:"/images/fyf-e.png",color:"#54413b"},
+"CLOUD 9":{img:"/images/fyf-v.png",color:"#e7dcd4"}
+}
+}
+}
+
+};
+
+function loadProduct(){
+const params=new URLSearchParams(window.location.search);
+let key = params.get("name") || "busy-adulting";
+key = key.toLowerCase().replace(/\s+/g, "-");
+
+const product = products[key?.trim().toLowerCase()];
+if(!product){
+  console.log("Product not found:", key);
+}
+let type="crew";
+let color=null;
+
+const img=document.getElementById("product-image");
+const price=document.getElementById("product-price");
+const title=document.getElementById("product-title");
+const colors=document.getElementById("color-options");
+const desc=document.getElementById("product-description");
+
+title.textContent=product.name;
+desc.innerHTML=formatDescription(product.description);
+
+function update(){
+  if(color === null){
+    img.src = product.hero;
+  } else {
+    img.src = product.variants[type][color].img;
+  }
+  price.textContent="£"+product.prices[type];
+}
+
+function renderColors(){
+colors.innerHTML="";
+Object.keys(product.variants[type]).forEach(c=>{
+const wrapper=document.createElement("div");
+wrapper.className="color-wrapper";
+
+const el=document.createElement("div");
+el.className="color-circle";
+el.style.background=product.variants[type][c].color;
+
+const label=document.createElement("div");
+label.className="color-label";
+label.textContent=c;
+
+el.onclick=()=>{
+color=c;
+update();
+};
+
+wrapper.appendChild(el);
+wrapper.appendChild(label);
+colors.appendChild(wrapper);
+});
+}
+
+document.getElementById("crew-btn").onclick=()=>{
+type="crew";
+color=null;
+renderColors();
+update();
+};
+
+document.getElementById("hoodie-btn").onclick=()=>{
+type="hoodie";
+color=null;
+renderColors();
+update();
+};
+
+document.getElementById("add-to-cart").onclick=()=>{
+const size=document.getElementById("size-select").value;
+if(!size){
+alert("Please select a size");
+return;
+}
+alert("Added to bag");
+};
+
+color = null;
+renderColors();
+update();
+}
+
+loadProduct();
+
 </script>
-
-</body>
-</html>
