@@ -1,95 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | MØØD COLLECTION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <style>
-        :root { --bg: #ffffff; --text: #000000; --accent: #707070; }
-        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
-        
-        nav { position: sticky; top: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 50px; box-sizing: border-box; }
-        .header-logo img { height: 70px; width: auto; display: block; }
-        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 25px; align-items: center; }
-        nav a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
-        .nav-right { display: flex; gap: 20px; color: #fff; font-size: 11px; }
-
-        .about-container { max-width: 1200px; margin: 0 auto; padding: 80px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-        
-        .about-image img { width: 100%; height: auto; display: block; object-fit: cover; }
-        
-        .about-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; margin: 0 0 10px; }
-        .about-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--accent); margin-bottom: 30px; }
-        
-        .about-text { line-height: 1.8; font-size: 16px; color: #333; }
-        .about-text p { margin-bottom: 25px; }
-        
-        .about-text img { max-width: 100%; height: auto; display: block; margin: 30px 0; }
-
-        @media (max-width: 768px) {
-            .about-container { grid-template-columns: 1fr; padding: 40px 5%; }
-            .nav-links { display: none; }
-            .header-logo img { height: 55px; }
-            .about-image { order: -1; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
+.nav-logo img { height: 55px; display: block; }
+.nav-links { display: flex; gap: 25px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav-links a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-family: 'Helvetica Neue', Arial, sans-serif; white-space: nowrap; }
+.nav-links a:hover { opacity: 0.7; }
+.nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 120px; outline: none; }
+.nav-search input::placeholder { color: #777; text-transform: uppercase; }
+.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Helvetica Neue', Arial, sans-serif; white-space: nowrap; cursor: pointer; }
+.hero { position: relative; height: 70vh; width: 100%; overflow: hidden; }
+.hero img { width: 100%; height: 100%; object-fit: contain; object-position: center; background: #f5f5f5; display: block; }
+.hero-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 5%; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
+.hero-overlay h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; letter-spacing: 10px; text-transform: uppercase; color: #fff; margin: 0; }
+.story-section { max-width: 780px; margin: 0 auto; padding: 70px 5%; }
+.story-section p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 2; color: #222; margin-bottom: 30px; }
+.story-image { width: 100%; max-height: 600px; object-fit: contain; object-position: center; display: block; margin: 40px 0; background: #f5f5f5; }
+footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cormorant Garamond', serif; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; font-family: 'Helvetica Neue', Arial, sans-serif; }
+.footer-col a { display: block; color: #aaa; text-decoration: none; font-size: 13px; letter-spacing: 1px; margin-bottom: 10px; }
+.footer-col a:hover { color: #fff; }
+.footer-social { display: flex; gap: 15px; margin-top: 10px; flex-direction: column; }
+.footer-bottom { border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 11px; color: #555; letter-spacing: 1px; margin: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero { height: 50vh; }
+  .hero-overlay h1 { font-size: 2rem; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
 </head>
 <body>
-    <nav>
-        <div class="header-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD"></a></div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="#">Search</a>
-        </div>
-        <div class="nav-right">
-            <a>ACCOUNT</a>
-            <a>BAG (0)</a>
-        </div>
-    </nav>
 
-    <div class="about-container" id="about-display">
-        <p style="text-align:center; grid-column:1/-1;">Loading story...</p>
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="login.html">My Account</a>
+    <a href="about.html">Our Story</a>
+    <div class="nav-search"><input type="text" placeholder="Search"></div>
+  </div>
+  <div class="nav-right">My Cart (0)</div>
+</nav>
+
+<div class="hero">
+  <img src="./images/DEBSMOOD.JPG" alt="Our Story">
+  <div class="hero-overlay"><h1>OUR STORY</h1></div>
+</div>
+
+<div class="story-section">
+  <p>MØØD Collection was born from a deeply personal place. As someone who has always used clothing as a form of self-expression, I wanted to create something that went beyond aesthetics. Something that spoke to how we actually feel, not just how we want to look.</p>
+  <p>The idea came during one of life's quieter, more reflective moments. I found myself reaching for certain pieces on certain days, not because they were the most stylish, but because they matched my energy. My mood. And I realised that clothing has the power to hold space for all the versions of us, the motivated, the exhausted, the healing, the thriving.</p>
+  <p>Each piece in the MØØD Collection is named after a feeling, a state of being, a moment we all recognise. Whether you're Busy Adulting, Mentally Offline, or simply Present Enough, there is a MØØD for that.</p>
+  <p>Building this brand has been one of the most vulnerable and exciting things I have ever done, especially during the moments where things didn't seem to be going my way.</p>
+  <img src="./images/DEBSED.JPG" alt="Behind the brand" class="story-image">
+  <p>But those moments are exactly why MØØD exists. To remind you, and me, that every version of you is worth showing up for. The collection is crafted from premium 440 GSM heavyweight fabric, designed for comfort, quality, and longevity. Because you deserve pieces that are built to last, just like you.</p>
+  <p>Thank you for being here. Thank you for being part of the MØØD.</p>
+  <p style="font-style: italic; letter-spacing: 2px;">With love, Debs x</p>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
     </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
+</footer>
 
-    <script>
-        async function loadAbout() {
-            const display = document.getElementById('about-display');
-            try {
-                const response = await fetch('/products/about_page.md');
-                const text = await response.text();
-                
-                const parts = text.split('---');
-                const header = parts[1];
-                const body = parts.slice(2).join('---').trim();
-
-                let mainImg = header.match(/page_image:\s*"(.*?)"/)?.[1] || "";
-
-                if (mainImg && !mainImg.startsWith('http')) {
-                    mainImg = window.location.origin + mainImg;
-                }
-
-                const storyTitle = header.match(/story_title:\s*"(.*?)"/)?.[1] || "";
-
-                display.innerHTML = `
-                    <div class="about-image">
-                        <img src="${mainImg}" alt="About MØØD">
-                    </div>
-                    <div class="about-content">
-                        <h1>THE STORY BEHIND THE MØØD</h1>
-                        <h2>${storyTitle}</h2>
-                        <div class="about-text">${marked.parse(body)}</div>
-                    </div>`;
-            } catch (err) { 
-                console.error(err);
-                display.innerHTML = "<p>Error loading content.</p>";
-            }
-        }
-        loadAbout();
-    </script>
 </body>
 </html>
