@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | MØØD COLLECTION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root { --neutral-light: #ffffff; --neutral-dark: #000000; --header-bg: #000000; --text-on-black: #ffffff; }
-        body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--neutral-light); color: var(--neutral-dark); -webkit-font-smoothing: antialiased; }
-        
-        /* SEARCH BAR */
-        #searchBar { position: fixed; top: -120px; left: 0; width: 100%; height: 100px; background: white; z-index: 3000; transition: 0.4s ease-in-out; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #000; }
-        #searchBar.active { top: 0; }
-        #searchBar input { width: 50%; border: none; border-bottom: 1px solid #000; font-size: 20px; outline: none; text-align: center; font-family: 'Cormorant Garamond', serif; }
-
-        /* NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; height: 60px; background-color: var(--header-bg); display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; box-sizing: border-box; }
-        .header-logo img { height: 80px; position: relative; top: -5px; }
-        .nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 25px; }
-        nav a, .nav-icon { text-decoration: none; color: var(--text-on-black); text-transform: uppercase; font-size: 10px; letter-spacing: 1.5px; cursor: pointer; }
-
-        /* CONTACT FORM */
-        .contact-container { max-width: 600px; margin: 140px auto 100px; padding: 0 20px; text-align: center; }
-        .contact-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 40px; font-weight: 300; }
-        .form-group { margin-bottom: 35px; text-align: left; }
-        .form-group label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; opacity: 0.5; }
-        .form-group input, .form-group textarea { width: 100%; border: none; border-bottom: 1px solid #eee; padding: 12px 0; font-size: 14px; outline: none; background: transparent; }
-        .submit-btn { background: black; color: white; width: 100%; padding: 20px; border: none; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; cursor: pointer; }
-
-        /* FOOTER */
-        footer { border-top: 1px solid #eee; padding: 80px 5% 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-top: 50px; background: #fff; }
-        .footer-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
-        .footer-col a { display: block; text-decoration: none; color: #666; font-size: 12px; margin-bottom: 12px; }
-
-        @media (max-width: 768px) { .nav-links { display: none; } footer { grid-template-columns: 1fr; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
+.nav-logo img { height: 55px; display: block; }
+.nav-links { display: flex; gap: 25px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav-links a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-family: 'Cormorant Garamond', serif; white-space: nowrap; }
+.nav-links a:hover { opacity: 0.7; }
+.nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 120px; outline: none; }
+.nav-search input::placeholder { color: #777; text-transform: uppercase; }
+.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; }
+.page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
+.contact-container { max-width: 600px; margin: 70px auto 100px; padding: 0 30px; }
+.contact-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.9; color: #444; text-align: center; margin-bottom: 50px; }
+.contact-intro a { color: #000; }
+.form-group { margin-bottom: 35px; }
+.form-group label { display: block; font-family: 'Cormorant Garamond', serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; color: #000; }
+.form-group input, .form-group textarea { width: 100%; border: none; border-bottom: 1px solid #ccc; padding: 10px 0; font-size: 15px; font-family: 'Cormorant Garamond', serif; outline: none; background: transparent; color: #000; transition: border-color 0.3s; }
+.form-group input:focus, .form-group textarea:focus { border-bottom-color: #000; }
+.form-group textarea { resize: none; height: 100px; }
+.submit-btn { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-top: 10px; transition: opacity 0.3s; }
+.submit-btn:hover { opacity: 0.8; }
+footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cormorant Garamond', serif; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
+.footer-col a { display: block; color: #aaa; text-decoration: none; font-size: 13px; letter-spacing: 1px; margin-bottom: 10px; }
+.footer-col a:hover { color: #fff; }
+.footer-social { display: flex; gap: 15px; margin-top: 10px; flex-direction: column; }
+.footer-bottom { border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 12px; color: #555; letter-spacing: 1px; margin: 0; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-container { padding: 0 20px; }
+}
+</style>
 </head>
 <body>
-    <div id="searchBar"><input type="text" placeholder="SEARCH MØØD..."><span style="position:absolute; right:50px; cursor:pointer;" onclick="toggleSearch()">✕</span></div>
-    <nav>
+
+<nav>
   <div class="nav-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
   <div class="nav-links">
     <a href="index.html">Home</a>
@@ -49,36 +57,67 @@
   <div class="nav-right">My Cart (0)</div>
 </nav>
 
-    <div class="contact-container">
-        <h1 class="contact-title">Contact Us</h1>
-        
-        <!-- UPDATED FOR WEB3FORMS -->
-        <form action="https://api.web3forms.com/submit" method="POST">
-            <!-- Replace YOUR_ACCESS_KEY_HERE with your actual Web3Forms Access Key -->
-            <input type="hidden" name="access_key" value="4b58de4f-b639-4df5-97da-14e38032e640">
-            
-            <!-- Redirect to your custom thank-you page -->
-            <input type="hidden" name="redirect" value="https://mymoodcollection.co.uk/thank-you.html">
-            
-            <div class="form-group"><label>Name</label><input type="text" name="name" required></div>
-            <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
-            <div class="form-group"><label>Message</label><textarea name="message" rows="4" required></textarea></div>
-            
-            <!-- Honeypot Spam Protection (Hidden from users) -->
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+<div class="page-header">
+  <h1>CONTACT US</h1>
+</div>
 
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
+<div class="contact-container">
+  <p class="contact-intro">We would love to hear from you. Whether you have a question about your order, need help with sizing, or just want to say hello, get in touch and we will do our best to get back to you as soon as possible. You can also reach us directly at <a href="mailto:info@mymoodcollection.co.uk">info@mymoodcollection.co.uk</a>.</p>
+
+  <form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="4b58de4f-b639-4df5-97da-14e38032e640">
+    <input type="hidden" name="redirect" value="https://mymoodcollection.co.uk/thank-you.html">
+    <input type="checkbox" name="botcheck" style="display: none;">
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" name="name" required>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea name="message" required></textarea>
     </div>
 
-    <footer>
-        <div class="footer-col"><h4>Join the MØØD</h4><p style="font-size:12px; color:#666;">Early access to drops.</p><div class="newsletter-box"><input type="email" placeholder="EMAIL ADDRESS"></div></div>
-        <div class="footer-col"><h4>Support</h4><a href="policy.html">Shipping</a><a href="policy.html">Returns</a><a href="contact.html">Contact Us</a></div>
-        <div class="footer-col"><h4>Connect</h4><a href="https://www.instagram.com/moodcollectionofficial" target="_blank">Instagram</a><a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a></div>
-    </footer>
+    <button type="submit" class="submit-btn">Send Message</button>
+  </form>
+</div>
 
-    <script>
-        function toggleSearch() { document.getElementById('searchBar').classList.toggle('active'); }
-    </script>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
+</footer>
+
 </body>
 </html>
