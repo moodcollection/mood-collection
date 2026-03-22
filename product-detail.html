@@ -349,7 +349,8 @@ hoodie:{
 
 function loadProduct(){
 const params=new URLSearchParams(window.location.search);
-const key=params.get("name")||"busy-adulting";
+let key = params.get("name") || "busy-adulting";
+key = key.toLowerCase().replace(/\s+/g, "-");
 
 const product = products[key?.trim().toLowerCase()];
 if(!product){
