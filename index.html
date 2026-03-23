@@ -11,11 +11,18 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
 .nav-logo img { height: 55px; display: block; }
 .nav-links { display: flex; gap: 25px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
-.nav-links a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-family: 'Helvetica Neue', Arial, sans-serif; white-space: nowrap; }
+.nav-links a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-family: 'Cormorant Garamond', serif; white-space: nowrap; }
 .nav-links a:hover { opacity: 0.7; }
-.nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 120px; outline: none; }
+.nav-search { position: relative; }
+.nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 140px; outline: none; }
 .nav-search input::placeholder { color: #777; text-transform: uppercase; }
-.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Helvetica Neue', Arial, sans-serif; white-space: nowrap; cursor: pointer; }
+.search-results { position: absolute; top: 28px; left: 0; background: #fff; border: 1px solid #000; min-width: 220px; z-index: 9999; display: none; }
+.search-results.active { display: block; }
+.search-result-item { padding: 12px 16px; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #000; cursor: pointer; border-bottom: 1px solid #f0f0f0; text-decoration: none; display: block; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: #000; color: #fff; }
+.search-no-results { padding: 12px 16px; font-family: 'Cormorant Garamond', serif; font-size: 13px; color: #999; letter-spacing: 1px; }
+.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; }
 .hero { position: relative; height: 105vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center 10%; top: 0; left: 0; z-index: 1; }
 .hero-overlay { position: relative; z-index: 2; text-align: center; color: white; padding: 0 20px; margin-top: 100px; }
@@ -43,7 +50,7 @@ nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; dis
 .newsletter-section p { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 1px; color: #555; margin-bottom: 30px; }
 .newsletter-form { display: flex; justify-content: center; max-width: 500px; margin: 0 auto; }
 .newsletter-form input { flex: 1; padding: 14px 20px; border: 1px solid #000; border-right: none; font-family: 'Cormorant Garamond', serif; font-size: 14px; outline: none; background: #fff; }
-.newsletter-form button { padding: 14px 24px; background: #000; color: #fff; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Helvetica Neue', Arial, sans-serif; white-space: nowrap; }
+.newsletter-form button { padding: 14px 24px; background: #000; color: #fff; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; white-space: nowrap; }
 footer { background: #000; color: #fff; padding: 60px 5% 30px; }
 .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
 .footer-col h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; font-family: 'Helvetica Neue', Arial, sans-serif; }
@@ -59,8 +66,8 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; }
 .popup h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 15px; }
 .popup p { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #555; letter-spacing: 1px; margin-bottom: 25px; line-height: 1.7; }
 .popup input { width: 100%; padding: 14px 20px; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 14px; outline: none; margin-bottom: 15px; }
-.popup button.subscribe-btn { width: 100%; padding: 14px; background: #000; color: #fff; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Helvetica Neue', Arial, sans-serif; }
-.popup .no-thanks { margin-top: 15px; font-size: 11px; color: #aaa; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; background: none; border: none; width: 100%; font-family: 'Helvetica Neue', Arial, sans-serif; }
+.popup button.subscribe-btn { width: 100%; padding: 14px; background: #000; color: #fff; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; }
+.popup .no-thanks { margin-top: 15px; font-size: 11px; color: #aaa; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; background: none; border: none; width: 100%; font-family: 'Cormorant Garamond', serif; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .brand-name { font-size: 2rem; }
@@ -93,7 +100,10 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; }
     <a href="shop.html">Shop</a>
     <a href="login.html">My Account</a>
     <a href="about.html">Our Story</a>
-    <div class="nav-search"><input type="text" placeholder="Search"></div>
+    <div class="nav-search">
+      <input type="text" id="nav-search-input" placeholder="Search" autocomplete="off">
+      <div class="search-results" id="search-results"></div>
+    </div>
   </div>
   <div class="nav-right">My Cart (0)</div>
 </nav>
@@ -191,6 +201,62 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; }
 </footer>
 
 <script>
+const searchProducts = [
+  { name: "BUSY ADULTING", slug: "busy-adulting", keywords: ["busy", "adulting", "adult", "b", "bu", "bus"] },
+  { name: "AUTHENTICALLY ME", slug: "authentically-me", keywords: ["authentically", "authentic", "me", "a", "au", "auth"] },
+  { name: "PRESENT ENOUGH", slug: "present-enough", keywords: ["present", "enough", "p", "pr", "pre"] },
+  { name: "MENTALLY OFFLINE", slug: "mentally-offline", keywords: ["mentally", "mental", "offline", "off", "m", "me", "men"] },
+  { name: "FACE YOUR FRONT", slug: "face-your-front", keywords: ["face", "your", "front", "f", "fa", "fac"] }
+];
+
+const searchInput = document.getElementById('nav-search-input');
+const searchResults = document.getElementById('search-results');
+
+searchInput.addEventListener('input', function() {
+  const query = this.value.toLowerCase().trim();
+  searchResults.innerHTML = '';
+
+  if (query.length === 0) {
+    searchResults.classList.remove('active');
+    return;
+  }
+
+  const matches = searchProducts.filter(p =>
+    p.name.toLowerCase().includes(query) ||
+    p.keywords.some(k => k.startsWith(query) || query.startsWith(k))
+  );
+
+  if (matches.length > 0) {
+    matches.forEach(p => {
+      const a = document.createElement('a');
+      a.className = 'search-result-item';
+      a.href = 'product-detail.html?name=' + p.slug;
+      a.textContent = p.name;
+      searchResults.appendChild(a);
+    });
+  } else {
+    const div = document.createElement('div');
+    div.className = 'search-no-results';
+    div.textContent = 'No results found';
+    searchResults.appendChild(div);
+  }
+
+  searchResults.classList.add('active');
+});
+
+document.addEventListener('click', function(e) {
+  if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+    searchResults.classList.remove('active');
+  }
+});
+
+searchInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const first = searchResults.querySelector('.search-result-item');
+    if (first) window.location.href = first.href;
+  }
+});
+
 let slideIndex = 0;
 const track = document.getElementById('slideshow-track');
 const slides = track.querySelectorAll('.slide');
