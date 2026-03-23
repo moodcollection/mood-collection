@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | MØØD COLLECTION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" 
+<link rel="stylesheet" href="./style.css">
+rel="stylesheet">
     <style>
         :root { --neutral-light: #ffffff; --neutral-dark: #000000; --header-bg: #000000; --text-on-black: #ffffff; }
         body, html { margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--neutral-light); color: var(--neutral-dark); height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
