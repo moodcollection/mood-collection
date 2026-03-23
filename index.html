@@ -24,8 +24,10 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .slideshow-btn.prev { left: 0; }
 .slideshow-btn.next { right: 0; }
 .brand-statement { background: #000; color: #fff; padding: 80px 5%; text-align: center; }
-.brand-statement h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 20px; }
-.brand-statement p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; letter-spacing: 2px; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+.brand-statement { position: relative; overflow: hidden; }
+.brand-statement .bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-size: 10rem; font-weight: 600; color: rgba(255,255,255,0.08); letter-spacing: 20px; white-space: nowrap; pointer-events: none; }
+.brand-statement h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; color: #fff; position: relative; margin-bottom: 15px; }
+.brand-statement p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: #aaa; letter-spacing: 2px; position: relative; line-height: 1.8; margin: 0; }
 .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .testimonial { border: 1px solid #000; padding: 30px; text-align: center; }
 .testimonial-text { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; line-height: 1.8; margin-bottom: 20px; }
@@ -122,8 +124,9 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 </div>
 
 <div class="brand-statement">
-  <h2>DRESS YOUR ENERGY</h2>
-  <p>Every piece in the MØØD Collection is designed to reflect how you feel. Not just what you wear, but who you are. Heavyweight comfort. Intentional design. Built for every version of you.</p>
+  <div class="bg">MØØD</div>
+  <h2>You Are the Mood.</h2>
+  <p>Grounded. Offline. Present. Adulting. All of it.</p>
 </div>
 
 <div class="section">
