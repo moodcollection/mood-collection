@@ -52,8 +52,20 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; }
     <a href="about.html">Our Story</a>
     <div class="nav-search"><input type="text" placeholder="Search"></div>
   </div>
+  <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
   <div class="nav-right">My Cart (0)</div>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="shop.html" onclick="toggleMenu()">Shop</a>
+  <a href="login.html" onclick="toggleMenu()">My Account</a>
+  <a href="about.html" onclick="toggleMenu()">Our Story</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+  <a href="shipping.html" onclick="toggleMenu()">Shipping</a>
+  <a href="returns.html" onclick="toggleMenu()">Returns</a>
+  <input type="text" placeholder="Search">
+</div>
 
 <div class="hero">
   <img src="./images/DEBSSTORY.JPG" alt="The Story Behind The MØØD">
@@ -135,6 +147,11 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; }
     <p>MADE WITH INTENTION.</p>
   </div>
 </footer>
+  <script>
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('active');
+}
+</script>
 
 </body>
 </html>
