@@ -347,11 +347,15 @@ function loadProduct() {
   };
 
   document.getElementById("add-to-cart").onclick = () => {
-    const size = document.getElementById("size-select").value;
-    if (!size) { alert("Please select a size."); return; }
-    alert("Added to bag.");
-  };
-
+const size = document.getElementById("size-select").value;
+if (!size) { alert("Please select a size."); return; }
+if (!color) { alert("Please select a colour."); return; }
+const stripeLinks = {
+  crew: "https://buy.stripe.com/bJe5kCchx5IV3aQfhh5Rm03",
+  hoodie: "https://buy.stripe.com/cNi9AS1CT0oBh1G5GH5Rm01"
+};
+window.location.href = stripeLinks[type];
+};
   renderColors();
   update();
 }
