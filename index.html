@@ -55,10 +55,9 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .popup .no-thanks { margin-top: 15px; font-size: 11px; color: #aaa; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; background: none; border: none; width: 100%; font-family: 'Cormorant Garamond', serif; }
 .popup-thank-you { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 2px; color: #000; margin-top: 15px; display: none; }
 @media (max-width: 768px) {
-  .brand-name { font-size: 2rem; }
+  .hero-overlay { margin-top: -80px; }
+  .brand-name { font-size: 2rem; margin-top: 0; }
   .tagline { font-size: 0.9rem; }
-  .hero-overlay { margin-top: 0; }
-  .brand-name { margin-top: 40px; }
   .slide { min-width: 100%; }
   .newsletter-form { flex-direction: column; }
   .newsletter-form input { border-right: 1px solid #000; border-bottom: none; }
@@ -234,7 +233,7 @@ function goToReview(index) {
 }
 
 showReview(0);
-  setInterval(() => {
+setInterval(() => {
   currentReview = (currentReview + 1) % reviews.length;
   showReview(currentReview);
 }, 3000);
