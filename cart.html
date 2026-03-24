@@ -11,16 +11,18 @@
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
 .page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
 .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
-.cart-container { max-width: 800px; margin: 60px auto; padding: 0 30px; }
+.cart-container { max-width: 900px; margin: 60px auto; padding: 0 30px; }
 .cart-empty { text-align: center; padding: 60px 0; }
 .cart-empty p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; letter-spacing: 2px; color: #999; margin-bottom: 30px; }
 .cart-empty a { display: inline-block; padding: 15px 30px; background: #000; color: #fff; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
-.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #e0e0e0; }
+.cart-item { display: flex; align-items: center; gap: 25px; padding: 25px 0; border-bottom: 1px solid #e0e0e0; }
+.cart-item-image { width: 100px; height: 100px; object-fit: cover; flex-shrink: 0; background: #f5f5f5; }
 .cart-item-details { flex: 1; }
-.cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+.cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; line-height: 1.5; }
 .cart-item-price { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #666; }
-.cart-item-actions { display: flex; align-items: center; gap: 15px; }
-.qty-btn { background: none; border: 1px solid #000; width: 30px; height: 30px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.cart-item-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.qty-btn { background: none; border: 1px solid #000; width: 30px; height: 30px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.qty-btn:hover { background: #000; color: #fff; }
 .qty-display { font-family: 'Cormorant Garamond', serif; font-size: 1rem; min-width: 20px; text-align: center; }
 .remove-btn { background: none; border: none; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #999; text-decoration: underline; }
 .cart-summary { padding: 30px 0; text-align: right; }
@@ -31,6 +33,9 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .continue-btn:hover { background: #000; color: #fff; }
 @media (max-width: 768px) {
   .cart-container { padding: 0 20px; }
+  .cart-item { gap: 15px; }
+  .cart-item-image { width: 75px; height: 75px; }
+  .cart-item-name { font-size: 0.85rem; }
   .cart-summary { text-align: center; }
   .continue-btn, .checkout-btn { display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
 }
@@ -136,8 +141,13 @@ function renderCart() {
 
   let html = '';
   cart.forEach((item, index) => {
+    const imageHtml = item.image
+      ? `<img src="${item.image}" alt="${item.product}" class="cart-item-image">`
+      : `<div class="cart-item-image" style="display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;color:#999;letter-spacing:1px;">NO IMAGE</span></div>`;
+
     html += `
       <div class="cart-item">
+        ${imageHtml}
         <div class="cart-item-details">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">£${(item.price * item.quantity).toFixed(2)}</div>
