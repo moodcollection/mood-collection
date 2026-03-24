@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Bag | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+.page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
+.cart-container { max-width: 800px; margin: 60px auto; padding: 0 30px; }
+.cart-empty { text-align: center; padding: 60px 0; }
+.cart-empty p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; letter-spacing: 2px; color: #999; margin-bottom: 30px; }
+.cart-empty a { display: inline-block; padding: 15px 30px; background: #000; color: #fff; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #e0e0e0; }
+.cart-item-details { flex: 1; }
+.cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+.cart-item-price { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #666; }
+.cart-item-actions { display: flex; align-items: center; gap: 15px; }
+.qty-btn { background: none; border: 1px solid #000; width: 30px; height: 30px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.qty-display { font-family: 'Cormorant Garamond', serif; font-size: 1rem; min-width: 20px; text-align: center; }
+.remove-btn { background: none; border: none; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #999; text-decoration: underline; }
+.cart-summary { padding: 30px 0; text-align: right; }
+.cart-total { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 25px; }
+.checkout-btn { display: inline-block; padding: 18px 40px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; }
+.checkout-btn:hover { opacity: 0.8; }
+.continue-btn { display: inline-block; padding: 18px 40px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-right: 15px; text-decoration: none; transition: all 0.3s; }
+.continue-btn:hover { background: #000; color: #fff; }
+@media (max-width: 768px) {
+  .cart-container { padding: 0 20px; }
+  .cart-summary { text-align: center; }
+  .continue-btn, .checkout-btn { display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="login.html">My Account</a>
+    <a href="about.html">Our Story</a>
+    <div class="nav-search"><input type="text" placeholder="Search"></div>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
+  <div class="nav-right" onclick="window.location.href='cart.html'">My Cart (<span id="cart-count">0</span>)</div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="shop.html" onclick="toggleMenu()">Shop</a>
+  <a href="login.html" onclick="toggleMenu()">My Account</a>
+  <a href="about.html" onclick="toggleMenu()">Our Story</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+  <a href="shipping.html" onclick="toggleMenu()">Shipping</a>
+  <a href="returns.html" onclick="toggleMenu()">Returns</a>
+  <input type="text" placeholder="Search">
+</div>
+
+<div class="page-header">
+  <h1>MY BAG</h1>
+</div>
+
+<div class="cart-container">
+  <div id="cart-content"></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
+</footer>
+
+<script>
+function getCart() {
+  const cart = localStorage.getItem('mood_cart');
+  return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('mood_cart', JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const count = cart.reduce((total, item) => total + item.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+}
+
+function renderCart() {
+  const cart = getCart();
+  const container = document.getElementById('cart-content');
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="cart-empty">
+        <p>Your bag is empty.</p>
+        <a href="shop.html">Continue Shopping</a>
+      </div>`;
+    return;
+  }
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  let html = '';
+  cart.forEach((item, index) => {
+    html += `
+      <div class="cart-item">
+        <div class="cart-item-details">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">£${(item.price * item.quantity).toFixed(2)}</div>
+        </div>
+        <div class="cart-item-actions">
+          <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+          <span class="qty-display">${item.quantity}</span>
+          <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        </div>
+      </div>`;
+  });
+
+  html += `
+    <div class="cart-summary">
+      <div class="cart-total">Total: £${total.toFixed(2)}</div>
+      <a href="shop.html" class="continue-btn">Continue Shopping</a>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>`;
+
+  container.innerHTML = html;
+  updateCartCount();
+}
+
+function changeQty(index, dir) {
+  const cart = getCart();
+  cart[index].quantity += dir;
+  if (cart[index].quantity <= 0) cart.splice(index, 1);
+  saveCart(cart);
+  renderCart();
+}
+
+function removeItem(index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  renderCart();
+}
+
+async function checkout() {
+  const cart = getCart();
+  if (cart.length === 0) return;
+
+  const btn = document.querySelector('.checkout-btn');
+  btn.textContent = 'Processing...';
+  btn.disabled = true;
+
+  try {
+    const response = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: cart.map(item => ({
+          name: item.name,
+          description: item.product + ' - ' + (item.type === 'crew' ? 'Crewneck' : 'Hoodie'),
+          price: item.price,
+          quantity: item.quantity
+        }))
+      })
+    });
+
+    const data = await response.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again.');
+      btn.textContent = 'Checkout';
+      btn.disabled = false;
+    }
+  } catch (error) {
+    alert('Something went wrong. Please try again.');
+    btn.textContent = 'Checkout';
+    btn.disabled = false;
+  }
+}
+
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('active');
+}
+
+renderCart();
+</script>
+</body>
+</html>
