@@ -356,15 +356,16 @@ function loadProduct() {
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
-      cart.push({
-        name: itemName,
-        price: product.prices[type],
-        quantity: 1,
-        type: type,
-        color: color,
-        size: size,
-        product: product.name
-      });
+cart.push({
+  name: itemName,
+  price: product.prices[type],
+  quantity: 1,
+  type: type,
+  color: color,
+  size: size,
+  product: product.name,
+  image: product.variants[type][color].img
+});
     }
 
     saveCart(cart);
