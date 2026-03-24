@@ -6,17 +6,9 @@
 <title>Product Details | MØØD COLLECTION</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
-  <style>
+<style>
 *, *::before, *::after { box-sizing: border-box; }
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
-nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
-.nav-logo img { height: 72px; display: block; }
-.nav-links { display: flex; gap: 25px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
-.nav-links a { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-family: 'Cormorant Garamond', serif; white-space: nowrap; }
-.nav-links a:hover { opacity: 0.7; }
-.nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 120px; outline: none; }
-.nav-search input::placeholder { color: #777; text-transform: uppercase; }
-.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; }
 .container { max-width: 1100px; margin: 60px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 30px; }
 .product-image img { width: 100%; display: block; }
 .product-info h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; letter-spacing: 3px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; }
@@ -32,22 +24,15 @@ nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; dis
 .color-circle.selected { border: 2px solid #000; }
 .color-name { font-family: 'Cormorant Garamond', serif; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
 select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormorant Garamond', serif; font-size: 14px; border: 1px solid #000; margin-bottom: 20px; background: #fff; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; }
-.add-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: opacity 0.3s ease; display: block; }
+.add-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; transition: opacity 0.3s ease; display: block; }
 .add-btn:hover { opacity: 0.8; }
+.view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
+.view-cart-btn:hover { background: #000; color: #fff; }
+.added-message { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 1px; color: #000; margin-bottom: 15px; display: none; }
 .description { font-family: 'Cormorant Garamond', serif; line-height: 1.9; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
-footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cormorant Garamond', serif; }
-.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
-.footer-col h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
-.footer-col a { display: block; color: #aaa; text-decoration: none; font-size: 13px; letter-spacing: 1px; margin-bottom: 10px; }
-.footer-col a:hover { color: #fff; }
-.footer-social { display: flex; gap: 15px; margin-top: 10px; flex-direction: column; }
-.footer-bottom { border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-.footer-bottom p { font-size: 12px; color: #555; letter-spacing: 1px; margin: 0; }
 @media (max-width: 768px) {
-  .nav-links { display: none; }
   .container { grid-template-columns: 1fr; gap: 30px; margin: 30px auto; padding: 0 20px; }
-  .footer-grid { grid-template-columns: repeat(2, 1fr); }
-  .add-btn, select { max-width: 100%; }
+  .add-btn, select, .view-cart-btn { max-width: 100%; }
 }
 </style>
 </head>
@@ -63,7 +48,7 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
     <div class="nav-search"><input type="text" placeholder="Search"></div>
   </div>
   <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
-  <div class="nav-right">My Cart (0)</div>
+  <div class="nav-right" onclick="window.location.href='cart.html'">My Cart (<span id="cart-count">0</span>)</div>
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
@@ -107,6 +92,8 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
     </select>
 
     <button class="add-btn" id="add-to-cart">ADD TO BAG</button>
+    <p class="added-message" id="added-message">Added to your bag!</p>
+    <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
 
     <div class="description" id="product-description"></div>
   </div>
@@ -280,6 +267,21 @@ const products = {
   }
 };
 
+function getCart() {
+  const cart = localStorage.getItem('mood_cart');
+  return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('mood_cart', JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const count = cart.reduce((total, item) => total + item.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+}
+
 function loadProduct() {
   const params = new URLSearchParams(window.location.search);
   let key = params.get("name") || "busy-adulting";
@@ -309,23 +311,19 @@ function loadProduct() {
     Object.keys(product.variants[type]).forEach(c => {
       const wrapper = document.createElement("div");
       wrapper.className = "color-wrapper";
-
       const el = document.createElement("div");
       el.className = "color-circle";
       el.style.background = product.variants[type][c].color;
       if (color === c) el.classList.add("selected");
-
       const label = document.createElement("div");
       label.className = "color-name";
       label.textContent = c;
-
       el.onclick = () => {
         color = c;
         document.querySelectorAll(".color-circle").forEach(x => x.classList.remove("selected"));
         el.classList.add("selected");
         update();
       };
-
       wrapper.appendChild(el);
       wrapper.appendChild(label);
       colors.appendChild(wrapper);
@@ -347,25 +345,49 @@ function loadProduct() {
   };
 
   document.getElementById("add-to-cart").onclick = () => {
-const size = document.getElementById("size-select").value;
-if (!size) { alert("Please select a size."); return; }
-if (!color) { alert("Please select a colour."); return; }
-const stripeLinks = {
-  crew: "https://buy.stripe.com/bJe5kCchx5IV3aQfhh5Rm03",
-  hoodie: "https://buy.stripe.com/cNi9AS1CT0oBh1G5GH5Rm01"
-};
-window.location.href = stripeLinks[type];
-};
+    const size = document.getElementById("size-select").value;
+    if (!size) { alert("Please select a size."); return; }
+    if (!color) { alert("Please select a colour."); return; }
+
+    const cart = getCart();
+    const itemName = product.name + ' - ' + (type === 'crew' ? 'Crewneck' : 'Hoodie') + ' - ' + color + ' - Size ' + size;
+    const existingItem = cart.find(i => i.name === itemName);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        name: itemName,
+        price: product.prices[type],
+        quantity: 1,
+        type: type,
+        color: color,
+        size: size,
+        product: product.name
+      });
+    }
+
+    saveCart(cart);
+    updateCartCount();
+
+    document.getElementById('added-message').style.display = 'block';
+    document.getElementById('view-cart-btn').style.display = 'block';
+
+    setTimeout(() => {
+      document.getElementById('added-message').style.display = 'none';
+    }, 3000);
+  };
+
   renderColors();
   update();
+  updateCartCount();
 }
 
 loadProduct();
 
-  function toggleMenu() {
+function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('active');
 }
 </script>
-
 </body>
 </html>
