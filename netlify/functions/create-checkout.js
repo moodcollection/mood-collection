@@ -24,7 +24,7 @@ exports.handler = async (event) => {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'https://mymoodcollection.co.uk/thank-you.html',
+      success_url: 'https://mymoodcollection.co.uk/order-confirmed.html',
       cancel_url: 'https://mymoodcollection.co.uk/shop.html',
       shipping_address_collection: {
         allowed_countries: ['GB'],
