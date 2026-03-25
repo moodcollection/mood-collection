@@ -6,41 +6,48 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { items } = JSON.parse(event.body);
+    const { email } = JSON.parse(event.body);
 
-    const lineItems = items.map(item => ({
-      price_data: {
-        currency: 'gbp',
-        product_data: {
-          name: item.name,
-          description: item.description,
-        },
-        unit_amount: Math.round(item.price * 100),
-      },
-      quantity: item.quantity,
-    }));
+    if (!email) {
+      return { statusCode: 400, body: JSON.stringify({ error: 'Email is required' }) };
+    }
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: lineItems,
-      mode: 'payment',
-      success_url: 'https://mymoodcollection.co.uk/order-confirmed.html',
-      cancel_url: 'https://mymoodcollection.co.uk/shop.html',
-      shipping_address_collection: {
-        allowed_countries: ['GB'],
-      },
-      customer_creation: 'always',
-      billing_address_collection: 'required',
+    const customers = await stripe.customers.list({ email: email, limit: 10 });
+
+    if (customers.data.length === 0) {
+      return { statusCode: 200, body: JSON.stringify({ orders: [] }) };
+    }
+
+    const customerId = customers.data[0].id;
+
+    const sessions = await stripe.checkout.sessions.list({
+      customer: customerId,
+      limit: 20
     });
+
+    const orders = sessions.data
+      .filter(session => session.payment_status === 'paid')
+      .map(session => ({
+        id: session.id,
+        date: new Date(session.created * 1000).toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }),
+        amount: (session.amount_total / 100).toFixed(2),
+        currency: session.currency.toUpperCase(),
+        description: 'MØØD Collection Order'
+      }));
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ url: session.url }),
+      body: JSON.stringify({ orders })
     };
+
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: error.message })
     };
   }
 };
