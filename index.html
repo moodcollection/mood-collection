@@ -14,7 +14,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; letter-spacing: 10px; text-transform: uppercase; margin-top: 150px; text-shadow: 0px 1px 2px rgba(0,0,0,0.5), 0px 3px 6px rgba(0,0,0,0.35); }
 .tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; text-shadow: 0px 1px 2px rgba(0,0,0,0.45); }
 .hero-btn { margin-top: 20px; padding: 12px 28px; background: #e7dcd4; color: #54413b; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; }
-.section { padding: 80px 5%; max-width: 1400px; margin: 0 auto; }
+.section { padding: 50px 5%; max-width: 1400px; margin: 0 auto; }
 .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; text-align: center; margin-bottom: 50px; }
 .slideshow-wrapper { position: relative; overflow: hidden; width: 100%; }
 .slideshow-track { display: flex; transition: transform 0.6s ease; }
@@ -23,7 +23,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .slideshow-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #000; color: #fff; border: none; width: 44px; height: 44px; font-size: 18px; cursor: pointer; z-index: 10; }
 .slideshow-btn.prev { left: 0; }
 .slideshow-btn.next { right: 0; }
-.verdict-section { padding: 80px 5%; text-align: center; background: #fff; }
+.verdict-section { padding: 50px 5%; text-align: center; background: #fff; }
 .verdict-section .section-title { margin-bottom: 40px; }
 .verdict-stars { font-size: 16px; color: #000; letter-spacing: 4px; margin-bottom: 20px; }
 .verdict-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; line-height: 1.8; color: #333; max-width: 600px; margin: 0 auto 20px; }
@@ -87,7 +87,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
-   <a href="account.html">My Account</a>
+    <a href="account.html">My Account</a>
     <a href="about.html">Our Story</a>
     <div class="nav-search">
       <input type="text" id="nav-search-input" placeholder="Search" autocomplete="off">
@@ -95,12 +95,13 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
     </div>
   </div>
   <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
- <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
+  <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
   <a href="index.html" onclick="toggleMenu()">Home</a>
   <a href="shop.html" onclick="toggleMenu()">Shop</a>
-<a href="account.html" onclick="toggleMenu()">My Account</a>
+  <a href="account.html" onclick="toggleMenu()">My Account</a>
   <a href="about.html" onclick="toggleMenu()">Our Story</a>
   <a href="contact.html" onclick="toggleMenu()">Contact</a>
   <a href="shipping.html" onclick="toggleMenu()">Shipping</a>
@@ -198,7 +199,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 
 <script>
 const reviews = [
-  { quote: "The quality is unreal, premium cotton that is so rare to find these days. Soft on the skin, versatile and a total staple piece. I get a ton of compliments every time I wear it, and everyone always asks where it's from!", author: "Sana" },
+  { quote: "The quality is unreal, premium cotton that is so rare to find these days. Soft on the skin, versatile and a total staple piece. I get a ton of compliments every time I wear it and everyone always asks where it's from.", author: "Sana" },
   { quote: "I've spent £200 on jumpers from well known brands and been disappointed. The quality on this blew them all out of the water.", author: "Josh" },
   { quote: "Really soft, fits so well and just feels like good quality. It's one of those pieces I keep going back to because it's that comfy.", author: "Yayra" },
   { quote: "The colourway is great and matches with anything. I love styling it up with jeans or down with a tracksuit, it really is the most versatile staple piece in my wardrobe.", author: "Amara" }
