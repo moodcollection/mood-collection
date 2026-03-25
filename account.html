@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+.page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
+.page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
+.account-container { max-width: 700px; margin: 60px auto; padding: 0 30px; }
+.lookup-section { text-align: center; margin-bottom: 60px; }
+.lookup-section p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.9; color: #444; margin-bottom: 30px; letter-spacing: 1px; }
+.lookup-form { display: flex; gap: 0; max-width: 500px; margin: 0 auto; }
+.lookup-form input { flex: 1; padding: 14px 20px; border: 1px solid #000; border-right: none; font-family: 'Cormorant Garamond', serif; font-size: 14px; outline: none; background: #fff; }
+.lookup-form button { padding: 14px 24px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: opacity 0.3s; }
+.lookup-form button:hover { opacity: 0.8; }
+.orders-section { margin-top: 40px; }
+.orders-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 30px; text-align: center; }
+.order-item { border-bottom: 1px solid #e0e0e0; padding: 25px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.order-item:last-child { border-bottom: none; }
+.order-details { flex: 1; }
+.order-id { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 8px; }
+.order-description { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.order-date { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #666; margin-bottom: 6px; }
+.order-amount { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; }
+.refund-btn { padding: 10px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; white-space: nowrap; text-decoration: none; display: inline-block; }
+.refund-btn:hover { background: #000; color: #fff; }
+.no-orders { text-align: center; padding: 40px 0; }
+.no-orders p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #999; letter-spacing: 2px; margin-bottom: 20px; }
+.no-orders a { display: inline-block; padding: 15px 30px; background: #000; color: #fff; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+.error-message { text-align: center; padding: 20px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #999; letter-spacing: 1px; }
+@media (max-width: 768px) {
+  .account-container { padding: 0 20px; }
+  .lookup-form { flex-direction: column; }
+  .lookup-form input { border-right: 1px solid #000; border-bottom: none; }
+  .order-item { flex-direction: column; gap: 15px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="account.html">My Account</a>
+    <a href="about.html">Our Story</a>
+    <div class="nav-search"><input type="text" placeholder="Search"></div>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
+  <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="shop.html" onclick="toggleMenu()">Shop</a>
+  <a href="account.html" onclick="toggleMenu()">My Account</a>
+  <a href="about.html" onclick="toggleMenu()">Our Story</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+  <a href="shipping.html" onclick="toggleMenu()">Shipping</a>
+  <a href="returns.html" onclick="toggleMenu()">Returns</a>
+  <input type="text" placeholder="Search">
+</div>
+
+<div class="page-header">
+  <h1>MY ACCOUNT</h1>
+</div>
+
+<div class="account-container">
+  <div class="lookup-section">
+    <p>Enter the email address you used when placing your order to view your order history.</p>
+    <div class="lookup-form">
+      <input type="email" id="lookup-email" placeholder="YOUR EMAIL ADDRESS">
+      <button onclick="lookupOrders()">VIEW ORDERS</button>
+    </div>
+  </div>
+  <div id="orders-output"></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
+</footer>
+
+<script>
+async function lookupOrders() {
+  const email = document.getElementById('lookup-email').value;
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+
+  const output = document.getElementById('orders-output');
+  output.innerHTML = '<p class="error-message">Looking up your orders...</p>';
+
+  try {
+    const response = await fetch('/.netlify/functions/get-orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await response.json();
+
+    if (!data.orders || data.orders.length === 0) {
+      output.innerHTML = `
+        <div class="no-orders">
+          <p>No orders found for this email address.</p>
+          <a href="shop.html">Shop The Collection</a>
+        </div>`;
+      return;
+    }
+
+    let html = '<div class="orders-section"><h2 class="orders-title">Your Orders</h2>';
+    data.orders.forEach(order => {
+      const refundSubject = encodeURIComponent('Refund Request — Order ' + order.id);
+      const refundBody = encodeURIComponent('Hi MØØD Collection,\n\nI would like to request a refund for the following order:\n\nOrder ID: ' + order.id + '\nDate: ' + order.date + '\nAmount: £' + order.amount + '\n\nReason for refund:\n\n');
+      html += `
+        <div class="order-item">
+          <div class="order-details">
+            <div class="order-id">Order ${order.id}</div>
+            <div class="order-description">${order.description}</div>
+            <div class="order-date">${order.date}</div>
+            <div class="order-amount">£${order.amount}</div>
+          </div>
+          <a href="mailto:info@mymoodcollection.co.uk?subject=${refundSubject}&body=${refundBody}" class="refund-btn">Request Refund</a>
+        </div>`;
+    });
+    html += '</div>';
+    output.innerHTML = html;
+
+  } catch (error) {
+    output.innerHTML = '<p class="error-message">Something went wrong. Please try again or contact us at info@mymoodcollection.co.uk</p>';
+  }
+}
+
+function updateCartCount() {
+  const cart = localStorage.getItem('mood_cart');
+  const items = cart ? JSON.parse(cart) : [];
+  const count = items.reduce((total, item) => total + item.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+}
+
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('active');
+}
+
+updateCartCount();
+</script>
+</body>
+</html>
