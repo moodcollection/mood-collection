@@ -6,7 +6,7 @@
 <title>Contact | MØØD COLLECTION</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
-  <style>
+<style>
 *, *::before, *::after { box-sizing: border-box; }
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
 nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
@@ -16,7 +16,7 @@ nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; dis
 .nav-links a:hover { opacity: 0.7; }
 .nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 120px; outline: none; }
 .nav-search input::placeholder { color: #777; text-transform: uppercase; }
-.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; }
+.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; text-decoration: none; }
 .page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
 .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
 .contact-container { max-width: 600px; margin: 70px auto 100px; padding: 0 30px; }
@@ -51,7 +51,7 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
-<a href="https://billing.stripe.com/p/login/28E6oG4P57R312I8ST5Rm00" target="_blank">My Account</a>
+    <a href="account.html">My Account</a>
     <a href="about.html">Our Story</a>
     <div class="nav-search"><input type="text" placeholder="Search"></div>
   </div>
@@ -62,7 +62,7 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 <div class="mobile-menu" id="mobile-menu">
   <a href="index.html" onclick="toggleMenu()">Home</a>
   <a href="shop.html" onclick="toggleMenu()">Shop</a>
-  <a href="https://billing.stripe.com/p/login/28E6oG4P57R312I8ST5Rm00" target="_blank" onclick="toggleMenu()">My Account</a>
+  <a href="account.html" onclick="toggleMenu()">My Account</a>
   <a href="about.html" onclick="toggleMenu()">Our Story</a>
   <a href="contact.html" onclick="toggleMenu()">Contact</a>
   <a href="shipping.html" onclick="toggleMenu()">Shipping</a>
@@ -131,7 +131,8 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
     <p>MADE WITH INTENTION.</p>
   </div>
 </footer>
-  <script>
+
+<script>
 function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('active');
 }
