@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; min-height: 100vh; display: flex; flex-direction: column; }
+.confirmed-box { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 30px; }
+.logo img { height: 80px; margin-bottom: 40px; }
+h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin-bottom: 20px; }
+p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.9; color: #555; letter-spacing: 1px; max-width: 500px; margin-bottom: 15px; }
+.order-actions { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+.btn-primary { display: inline-block; padding: 15px 30px; background: #000; color: #fff; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+.btn-secondary { display: inline-block; padding: 15px 30px; background: #fff; color: #000; border: 1px solid #000; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="confirmed-box">
+  <div class="logo"><img src="./MOOD-LOGO-WHITE.png" alt="MØØD Collection" style="filter: invert(1);"></div>
+  <h1>Order Confirmed</h1>
+  <p>Thank you for your order. We are so excited for you to receive your MØØD.</p>
+  <p>You will receive a confirmation email shortly with your order details. Orders are dispatched within 1-2 working days.</p>
+  <p>If you have any questions please contact us at <a href="mailto:info@mymoodcollection.co.uk" style="color:#000;">info@mymoodcollection.co.uk</a></p>
+  <div class="order-actions">
+    <a href="account.html" class="btn-primary">View My Orders</a>
+    <a href="shop.html" class="btn-secondary">Continue Shopping</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
+</footer>
+
+<script>
+localStorage.removeItem('mood_cart');
+</script>
+
+</body>
+</html>
