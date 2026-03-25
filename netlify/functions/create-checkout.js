@@ -29,6 +29,8 @@ exports.handler = async (event) => {
       shipping_address_collection: {
         allowed_countries: ['GB'],
       },
+      customer_creation: 'always',
+      billing_address_collection: 'required',
     });
 
     return {
