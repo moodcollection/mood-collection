@@ -10,7 +10,16 @@
 *, *::before, *::after { box-sizing: border-box; }
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
 .container { max-width: 1100px; margin: 60px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 30px; }
+.product-image { position: relative; }
 .product-image img { width: 100%; display: block; }
+.image-nav { display: none; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; justify-content: space-between; padding: 0 10px; pointer-events: none; }
+.image-nav.visible { display: flex; }
+.image-nav-btn { background: #000; color: #fff; border: none; width: 36px; height: 36px; font-size: 16px; cursor: pointer; pointer-events: all; opacity: 0.7; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; }
+.image-nav-btn:hover { opacity: 1; }
+.image-dots { display: none; justify-content: center; gap: 6px; margin-top: 10px; }
+.image-dots.visible { display: flex; }
+.image-dot { width: 6px; height: 6px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s; }
+.image-dot.active { background: #000; }
 .product-info h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; letter-spacing: 3px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; }
 .price { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 25px; font-weight: 400; }
 .style-label, .color-label-heading, .size-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; color: #000; }
@@ -48,7 +57,7 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
     <div class="nav-search"><input type="text" placeholder="Search"></div>
   </div>
   <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
- <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
+  <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
@@ -65,6 +74,11 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
 <div class="container">
   <div class="product-image">
     <img id="product-image" alt="Product">
+    <div class="image-nav" id="image-nav">
+      <button class="image-nav-btn" onclick="changeImage(-1)">&#8592;</button>
+      <button class="image-nav-btn" onclick="changeImage(1)">&#8594;</button>
+    </div>
+    <div class="image-dots" id="image-dots"></div>
   </div>
 
   <div class="product-info">
@@ -176,7 +190,7 @@ const products = {
         "GROUNDED": { img: "/images/ba-b.png", color: "#beb8a9" },
         "MIDNIGHT": { img: "/images/ba-bl.png", color: "#000" },
         "DND": { img: "/images/ba-c.png", color: "#413e41" },
-        "AFTER HOURS": { img: "/images/JOSHBROWN.jpg", color: "#54413b" },
+        "AFTER HOURS": { img: "/images/JOSHBROWN.jpg", color: "#54413b", extraImages: ["/images/Edwardback.png"] },
         "CLOUD 9": { img: "/images/ba-v.png", color: "#e7dcd4" }
       }
     }
@@ -267,6 +281,48 @@ const products = {
   }
 };
 
+let currentImages = [];
+let currentImageIndex = 0;
+
+function updateImageGallery(images) {
+  currentImages = images;
+  currentImageIndex = 0;
+  const img = document.getElementById('product-image');
+  const nav = document.getElementById('image-nav');
+  const dots = document.getElementById('image-dots');
+
+  img.src = images[0];
+
+  if (images.length > 1) {
+    nav.classList.add('visible');
+    dots.classList.add('visible');
+    dots.innerHTML = '';
+    images.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'image-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToImage(i);
+      dots.appendChild(dot);
+    });
+  } else {
+    nav.classList.remove('visible');
+    dots.classList.remove('visible');
+    dots.innerHTML = '';
+  }
+}
+
+function changeImage(dir) {
+  currentImageIndex = (currentImageIndex + dir + currentImages.length) % currentImages.length;
+  goToImage(currentImageIndex);
+}
+
+function goToImage(index) {
+  currentImageIndex = index;
+  document.getElementById('product-image').src = currentImages[index];
+  document.querySelectorAll('.image-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
 function getCart() {
   const cart = localStorage.getItem('mood_cart');
   return cart ? JSON.parse(cart) : [];
@@ -292,7 +348,6 @@ function loadProduct() {
   let type = "crew";
   let color = null;
 
-  const img = document.getElementById("product-image");
   const price = document.getElementById("product-price");
   const title = document.getElementById("product-title");
   const colors = document.getElementById("color-options");
@@ -302,7 +357,16 @@ function loadProduct() {
   desc.innerHTML = formatDescription(product.description);
 
   function update() {
-    img.src = color === null ? product.hero : product.variants[type][color].img;
+    if (color === null) {
+      updateImageGallery([product.hero]);
+    } else {
+      const variant = product.variants[type][color];
+      const images = [variant.img];
+      if (variant.extraImages) {
+        images.push(...variant.extraImages);
+      }
+      updateImageGallery(images);
+    }
     price.textContent = "£" + product.prices[type].toFixed(2);
   }
 
@@ -356,16 +420,16 @@ function loadProduct() {
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
-cart.push({
-  name: itemName,
-  price: product.prices[type],
-  quantity: 1,
-  type: type,
-  color: color,
-  size: size,
-  product: product.name,
-  image: product.variants[type][color].img
-});
+      cart.push({
+        name: itemName,
+        price: product.prices[type],
+        quantity: 1,
+        type: type,
+        color: color,
+        size: size,
+        product: product.name,
+        image: product.variants[type][color].img
+      });
     }
 
     saveCart(cart);
