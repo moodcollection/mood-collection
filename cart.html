@@ -33,12 +33,17 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .discount-input::placeholder { color: #aaa; }
 .discount-btn { padding: 12px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: opacity 0.3s; }
 .discount-btn:hover { opacity: 0.8; }
+.discount-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .cart-total { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 25px; text-align: right; }
 .cart-actions { display: flex; justify-content: flex-end; gap: 15px; }
 .checkout-btn { display: inline-block; padding: 18px 40px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; }
 .checkout-btn:hover { opacity: 0.8; }
 .continue-btn { display: inline-block; padding: 18px 40px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 0.3s; }
 .continue-btn:hover { background: #000; color: #fff; }
+.price-breakdown { text-align: right; margin-bottom: 10px; }
+.price-breakdown-row { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 1px; margin-bottom: 8px; color: #666; }
+.price-breakdown-row.discount { color: #000; }
+.price-breakdown-row.total { font-size: 1.3rem; letter-spacing: 2px; color: #000; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e0e0; }
 @media (max-width: 768px) {
   .cart-container { padding: 0 20px; }
   .cart-item { gap: 15px; }
@@ -47,7 +52,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   .cart-summary { text-align: center; }
   .discount-section { max-width: 100%; }
   .shipping-notice { text-align: center; }
-  .cart-total { text-align: center; }
+  .price-breakdown { text-align: center; }
   .cart-actions { flex-direction: column; }
   .continue-btn, .checkout-btn { display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
 }
@@ -182,9 +187,11 @@ function renderCart() {
       <p class="shipping-notice ${isFreeShipping ? 'free' : ''}">${shippingText}</p>
       <div class="discount-section">
         <input type="text" class="discount-input" id="discount-code" placeholder="Discount code">
-        <button class="discount-btn" onclick="applyDiscount()">Apply</button>
+        <button class="discount-btn" id="discount-btn" onclick="applyDiscount()">Apply</button>
       </div>
-      <div class="cart-total">Subtotal: £${total.toFixed(2)}</div>
+      <div id="price-breakdown" class="price-breakdown">
+        <div class="price-breakdown-row total">Subtotal: £${total.toFixed(2)}</div>
+      </div>
       <div class="cart-actions">
         <a href="shop.html" class="continue-btn">Continue Shopping</a>
         <button class="checkout-btn" onclick="checkout()">Checkout</button>
@@ -198,8 +205,25 @@ function renderCart() {
 function applyDiscount() {
   const code = document.getElementById('discount-code').value.trim().toUpperCase();
   if (!code) { alert('Please enter a discount code.'); return; }
-  if (code !== 'MOOD26') { alert('Invalid discount code. Please try again.'); return; }
-  alert('Code MOOD26 will be applied at checkout.');
+  if (code !== 'MOOD26') {
+    alert('Invalid discount code. Please try again.');
+    return;
+  }
+
+  const cart = getCart();
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const discount = subtotal * 0.10;
+  const newTotal = subtotal - discount;
+
+  document.getElementById('price-breakdown').innerHTML = `
+    <div class="price-breakdown-row">Subtotal: £${subtotal.toFixed(2)}</div>
+    <div class="price-breakdown-row discount">Discount (MOOD26 — 10% off): -£${discount.toFixed(2)}</div>
+    <div class="price-breakdown-row total">Total: £${newTotal.toFixed(2)}</div>
+  `;
+
+  document.getElementById('discount-btn').textContent = 'Applied';
+  document.getElementById('discount-btn').disabled = true;
+  document.getElementById('discount-code').disabled = true;
 }
 
 function changeQty(index, dir) {
@@ -225,9 +249,8 @@ async function checkout() {
   btn.textContent = 'Processing...';
   btn.disabled = true;
 
-  const discountCode = document.getElementById('discount-code')
-    ? document.getElementById('discount-code').value.trim().toUpperCase()
-    : '';
+  const discountCodeEl = document.getElementById('discount-code');
+  const discountCode = discountCodeEl ? discountCodeEl.value.trim().toUpperCase() : '';
 
   try {
     const response = await fetch('/.netlify/functions/create-checkout', {
