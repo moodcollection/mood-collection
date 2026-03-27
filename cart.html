@@ -25,11 +25,19 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .qty-btn:hover { background: #000; color: #fff; }
 .qty-display { font-family: 'Cormorant Garamond', serif; font-size: 1rem; min-width: 20px; text-align: center; }
 .remove-btn { background: none; border: none; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #999; text-decoration: underline; }
-.cart-summary { padding: 30px 0; text-align: right; }
-.cart-total { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 25px; }
+.cart-summary { padding: 30px 0; }
+.shipping-notice { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #666; letter-spacing: 1px; margin-bottom: 20px; text-align: right; }
+.shipping-notice.free { color: #000; font-weight: 600; }
+.discount-section { display: flex; gap: 0; margin-bottom: 20px; max-width: 350px; margin-left: auto; }
+.discount-input { flex: 1; padding: 12px 15px; border: 1px solid #000; border-right: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; outline: none; background: #fff; }
+.discount-input::placeholder { color: #aaa; }
+.discount-btn { padding: 12px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: opacity 0.3s; }
+.discount-btn:hover { opacity: 0.8; }
+.cart-total { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 25px; text-align: right; }
+.cart-actions { display: flex; justify-content: flex-end; gap: 15px; }
 .checkout-btn { display: inline-block; padding: 18px 40px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; }
 .checkout-btn:hover { opacity: 0.8; }
-.continue-btn { display: inline-block; padding: 18px 40px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-right: 15px; text-decoration: none; transition: all 0.3s; }
+.continue-btn { display: inline-block; padding: 18px 40px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 0.3s; }
 .continue-btn:hover { background: #000; color: #fff; }
 @media (max-width: 768px) {
   .cart-container { padding: 0 20px; }
@@ -37,6 +45,10 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   .cart-item-image { width: 75px; height: 75px; }
   .cart-item-name { font-size: 0.85rem; }
   .cart-summary { text-align: center; }
+  .discount-section { max-width: 100%; }
+  .shipping-notice { text-align: center; }
+  .cart-total { text-align: center; }
+  .cart-actions { flex-direction: column; }
   .continue-btn, .checkout-btn { display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
 }
 </style>
@@ -53,7 +65,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
     <div class="nav-search"><input type="text" placeholder="Search"></div>
   </div>
   <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
-<a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
+  <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
@@ -138,6 +150,10 @@ function renderCart() {
   }
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const isFreeShipping = total >= 70;
+  const shippingText = isFreeShipping
+    ? 'Free shipping applied'
+    : `Shipping: £3.99 — Spend £${(70 - total).toFixed(2)} more for free shipping`;
 
   let html = '';
   cart.forEach((item, index) => {
@@ -163,13 +179,27 @@ function renderCart() {
 
   html += `
     <div class="cart-summary">
-      <div class="cart-total">Total: £${total.toFixed(2)}</div>
-      <a href="shop.html" class="continue-btn">Continue Shopping</a>
-      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+      <p class="shipping-notice ${isFreeShipping ? 'free' : ''}">${shippingText}</p>
+      <div class="discount-section">
+        <input type="text" class="discount-input" id="discount-code" placeholder="Discount code">
+        <button class="discount-btn" onclick="applyDiscount()">Apply</button>
+      </div>
+      <div class="cart-total">Subtotal: £${total.toFixed(2)}</div>
+      <div class="cart-actions">
+        <a href="shop.html" class="continue-btn">Continue Shopping</a>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+      </div>
     </div>`;
 
   container.innerHTML = html;
   updateCartCount();
+}
+
+function applyDiscount() {
+  const code = document.getElementById('discount-code').value.trim().toUpperCase();
+  if (!code) { alert('Please enter a discount code.'); return; }
+  if (code !== 'MOOD26') { alert('Invalid discount code. Please try again.'); return; }
+  alert('Code MOOD26 will be applied at checkout.');
 }
 
 function changeQty(index, dir) {
@@ -195,6 +225,10 @@ async function checkout() {
   btn.textContent = 'Processing...';
   btn.disabled = true;
 
+  const discountCode = document.getElementById('discount-code')
+    ? document.getElementById('discount-code').value.trim().toUpperCase()
+    : '';
+
   try {
     const response = await fetch('/.netlify/functions/create-checkout', {
       method: 'POST',
@@ -205,7 +239,8 @@ async function checkout() {
           description: item.product + ' - ' + (item.type === 'crew' ? 'Crewneck' : 'Hoodie'),
           price: item.price,
           quantity: item.quantity
-        }))
+        })),
+        discountCode: discountCode || null
       })
     });
 
