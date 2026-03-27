@@ -6,48 +6,63 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { email } = JSON.parse(event.body);
+    const { items, discountCode } = JSON.parse(event.body);
 
-    if (!email) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Email is required' }) };
+    const lineItems = items.map(item => ({
+      price_data: {
+        currency: 'gbp',
+        product_data: {
+          name: item.name,
+          description: item.description,
+        },
+        unit_amount: Math.round(item.price * 100),
+      },
+      quantity: item.quantity,
+    }));
+
+    const cartTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const shippingRate = cartTotal >= 70 
+      ? 'shr_1TFinSACqvQrWEreI0bRnnnK'
+      : 'shr_1TFilmACqvQrWEre5R2hjIwr';
+
+    const sessionParams = {
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      mode: 'payment',
+      success_url: 'https://mymoodcollection.co.uk/order-confirmed.html',
+      cancel_url: 'https://mymoodcollection.co.uk/shop.html',
+      shipping_address_collection: {
+        allowed_countries: ['GB'],
+      },
+      shipping_options: [
+        { shipping_rate: shippingRate }
+      ],
+      customer_creation: 'always',
+      billing_address_collection: 'required',
+      allow_promotion_codes: true,
+    };
+
+    if (discountCode) {
+      try {
+        const coupon = await stripe.coupons.retrieve(discountCode);
+        if (coupon) {
+          sessionParams.discounts = [{ coupon: coupon.id }];
+        }
+      } catch (e) {
+        // Invalid code, just ignore it
+      }
     }
 
-    const customers = await stripe.customers.list({ email: email, limit: 10 });
-
-    if (customers.data.length === 0) {
-      return { statusCode: 200, body: JSON.stringify({ orders: [] }) };
-    }
-
-    const customerId = customers.data[0].id;
-
-    const sessions = await stripe.checkout.sessions.list({
-      customer: customerId,
-      limit: 20
-    });
-
-    const orders = sessions.data
-      .filter(session => session.payment_status === 'paid')
-      .map(session => ({
-        id: session.id,
-        date: new Date(session.created * 1000).toLocaleDateString('en-GB', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }),
-        amount: (session.amount_total / 100).toFixed(2),
-        currency: session.currency.toUpperCase(),
-        description: 'MØØD Collection Order'
-      }));
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ orders })
+      body: JSON.stringify({ url: session.url }),
     };
-
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message })
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
