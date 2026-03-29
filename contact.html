@@ -136,6 +136,9 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('active');
 }
+  window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});
 </script>
 
 </body>
