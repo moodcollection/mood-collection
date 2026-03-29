@@ -1,6 +1,6 @@
 ---
 title: "THE STORY BEHIND THE MØØD "
-page_image: /images/hi0a5818.jpg
+page_image: /images/DEBSUPDATED.jpg
 story_title: WHERE IT ALL BEGAN
 ---
 MØØD COLLECTION wasn’t born in a boardroom. It was born in the midst of uncertainty, frustration, and the desire for change.
