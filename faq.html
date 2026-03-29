@@ -6,7 +6,7 @@
 <title>FAQ | MØØD COLLECTION</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
-  <style>
+<style>
 *, *::before, *::after { box-sizing: border-box; }
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
 nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; display: flex; justify-content: space-between; align-items: center; z-index: 1000; padding: 0 30px; }
@@ -16,13 +16,14 @@ nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; dis
 .nav-links a:hover { opacity: 0.7; }
 .nav-search input { background: none; border: none; border-bottom: 1px solid #555; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 1px; padding: 2px 6px; width: 120px; outline: none; }
 .nav-search input::placeholder { color: #777; text-transform: uppercase; }
-.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; }
+.nav-right { color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; white-space: nowrap; cursor: pointer; text-decoration: none; }
 .page-header { padding: 60px 5%; text-align: center; border-bottom: 1px solid #000; }
 .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
 .content { max-width: 800px; margin: 0 auto; padding: 60px 5%; }
 .faq-item { border-bottom: 1px solid #e0e0e0; padding: 25px 0; cursor: pointer; }
 .faq-question { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; color: #000; }
 .faq-answer { font-family: 'Cormorant Garamond', serif; font-size: 1rem; line-height: 1.9; color: #333; margin-top: 15px; display: none; }
+.faq-answer a { color: #000 !important; }
 .faq-answer.open { display: block; }
 .faq-toggle { font-size: 22px; font-weight: 300; line-height: 1; }
 footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cormorant Garamond', serif; }
@@ -36,6 +37,7 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .content { padding: 40px 20px; }
 }
 </style>
 </head>
@@ -64,6 +66,7 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
   <a href="returns.html" onclick="toggleMenu()">Returns</a>
   <input type="text" placeholder="Search">
 </div>
+
 <div class="page-header"><h1>FAQ</h1></div>
 
 <div class="content">
@@ -72,8 +75,16 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
     <div class="faq-answer">All orders are dispatched within 1-2 working days. Once dispatched, please allow 3-5 working days for delivery within the UK.</div>
   </div>
   <div class="faq-item">
+    <div class="faq-question">How much does shipping cost? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">Standard UK delivery is £3.99. Orders over £70 qualify for free shipping, applied automatically at checkout.</div>
+  </div>
+  <div class="faq-item">
     <div class="faq-question">Can I return my order? <span class="faq-toggle">+</span></div>
-    <div class="faq-answer">Yes. We accept returns within 14 days of delivery. Items must be unworn, unclean, and free from any scent. Please contact us at info@mymoodcollection.co.uk to initiate a return and we will do our best to accommodate you.</div>
+    <div class="faq-answer">Yes. We accept returns within 14 days of delivery. Items must be unworn, unwashed, and free from any scent. Please contact us at <a href="mailto:info@mymoodcollection.co.uk">info@mymoodcollection.co.uk</a> to initiate a return. Please note we offer refunds only and do not accept exchanges.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Do you offer exchanges? <span class="faq-toggle">+</span></div>
+    <div class="faq-answer">We do not offer exchanges. If you would like a different size or colour, please return your original item for a refund and place a new order. For more information visit our <a href="returns.html">returns page</a>.</div>
   </div>
   <div class="faq-item">
     <div class="faq-question">What sizes do you offer? <span class="faq-toggle">+</span></div>
@@ -89,12 +100,11 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
   </div>
   <div class="faq-item">
     <div class="faq-question">Do you ship internationally? <span class="faq-toggle">+</span></div>
-    <div class="faq-answer">We currently ship within the UK. International shipping is coming soon. Sign up to our newsletter to be the first to know when we expand.</div>
+    <div class="faq-answer">We currently ship within the UK only. International shipping is coming soon. Sign up to our newsletter to be the first to know when we expand.</div>
   </div>
   <div class="faq-item">
     <div class="faq-question">I have a question not listed here. How do I get in touch? <span class="faq-toggle">+</span></div>
-   You can reach us at <a href="mailto:info@mymoodcollection.co.uk" style="color:#000;">info@mymoodcollection.co.uk</a> and we will get back to you as soon as possible.
-</div>
+    <div class="faq-answer">You can reach us at <a href="mailto:info@mymoodcollection.co.uk">info@mymoodcollection.co.uk</a> and we will get back to you as soon as possible.</div>
   </div>
 </div>
 
@@ -140,15 +150,24 @@ document.querySelectorAll('.faq-item').forEach(item => {
     toggle.textContent = answer.classList.contains('open') ? '−' : '+';
   });
 });
-  
-  function toggleMenu() {
+
+function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('active');
-    }
-    window.addEventListener('load', function() {
+}
+
+function updateCartCount() {
+  const cart = localStorage.getItem('mood_cart');
+  const items = cart ? JSON.parse(cart) : [];
+  const count = items.reduce((total, item) => total + item.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+}
+
+updateCartCount();
+
+window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
 </script>
-
 
 </body>
 </html>
