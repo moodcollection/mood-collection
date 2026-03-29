@@ -155,7 +155,22 @@ function formatDescription(text) {
   return html;
 }
 
-const baseDescription = `Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
+const baseDescriptionCrew = `Experience the ultimate in comfort and quality with our heavyweight crewneck. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
+
+Ready to match your MØØD.
+
+Style & Color Options:
+Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
+
+Fabric Composition:
+70% Ring-spun Cotton
+30% Recycled Polyester
+440 GSM heavyweight fabric for superior quality.
+
+Fit & Styling:
+Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`;
+
+const baseDescriptionHoodie = `Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. Features a front pouch pocket with an inner media pocket — perfect for keeping your essentials close. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
 Ready to match your MØØD.
 
@@ -177,7 +192,8 @@ const products = {
   "busy-adulting": {
     name: "BUSY ADULTING",
     hero: "/images/THELMABA.JPG",
-    description: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.\n\n${baseDescription}`,
+    descriptionCrew: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.\n\n${baseDescriptionCrew}`,
+    descriptionHoodie: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 39.99 },
     variants: {
       crew: {
@@ -198,7 +214,8 @@ const products = {
   "authentically-me": {
     name: "AUTHENTICALLY ME",
     hero: "/images/KEETS.JPG",
-    description: `Soft confidence. No explaining. No shrinking. Just showing up as you are.\n\n${baseDescription}`,
+    descriptionCrew: `Soft confidence. No explaining. No shrinking. Just showing up as you are.\n\n${baseDescriptionCrew}`,
+    descriptionHoodie: `Soft confidence. No explaining. No shrinking. Just showing up as you are.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 39.99 },
     variants: {
       crew: {
@@ -219,7 +236,8 @@ const products = {
   "present-enough": {
     name: "PRESENT ENOUGH",
     hero: "/images/RIRI2.jpg",
-    description: `For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.\n\n${baseDescription}`,
+    descriptionCrew: `For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.\n\n${baseDescriptionCrew}`,
+    descriptionHoodie: `For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 39.99 },
     variants: {
       crew: {
@@ -240,7 +258,8 @@ const products = {
   "mentally-offline": {
     name: "MENTALLY OFFLINE",
     hero: "/images/LEX.JPG",
-    description: `When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.\n\n${baseDescription}`,
+    descriptionCrew: `When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.\n\n${baseDescriptionCrew}`,
+    descriptionHoodie: `When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 39.99 },
     variants: {
       crew: {
@@ -261,7 +280,8 @@ const products = {
   "face-your-front": {
     name: "FACE YOUR FRONT",
     hero: "/images/JOSH2.JPG",
-    description: `A reminder to focus on your own lane, your own pace, your own path.\n\n${baseDescription}`,
+    descriptionCrew: `A reminder to focus on your own lane, your own pace, your own path.\n\n${baseDescriptionCrew}`,
+    descriptionHoodie: `A reminder to focus on your own lane, your own pace, your own path.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 39.99 },
     variants: {
       crew: {
@@ -354,7 +374,7 @@ function loadProduct() {
   const desc = document.getElementById("product-description");
 
   title.textContent = product.name;
-  desc.innerHTML = formatDescription(product.description);
+  desc.innerHTML = formatDescription(product.descriptionCrew);
 
   function update() {
     if (color === null) {
@@ -368,6 +388,7 @@ function loadProduct() {
       updateImageGallery(images);
     }
     price.textContent = "£" + product.prices[type].toFixed(2);
+    desc.innerHTML = formatDescription(type === 'crew' ? product.descriptionCrew : product.descriptionHoodie);
   }
 
   function renderColors() {
@@ -453,7 +474,8 @@ loadProduct();
 function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('active');
 }
-  window.addEventListener('load', function() {
+
+window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
 </script>
