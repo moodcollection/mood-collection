@@ -453,6 +453,9 @@ loadProduct();
 function toggleMenu() {
   document.getElementById('mobile-menu').classList.toggle('active');
 }
+  window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});
 </script>
 </body>
 </html>
