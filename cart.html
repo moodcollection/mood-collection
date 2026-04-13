@@ -28,6 +28,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .cart-summary { padding: 30px 0; }
 .shipping-notice { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #666; letter-spacing: 1px; margin-bottom: 20px; text-align: right; }
 .shipping-notice.free { color: #000; font-weight: 600; }
+.preorder-notice { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: #555; letter-spacing: 0.5px; line-height: 1.7; margin-bottom: 20px; padding: 15px 20px; border: 1px solid #e0e0e0; background: #f7f5f2; font-style: italic; }
 .discount-section { display: flex; gap: 0; margin-bottom: 20px; max-width: 350px; margin-left: auto; }
 .discount-input { flex: 1; padding: 12px 15px; border: 1px solid #000; border-right: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; outline: none; background: #fff; }
 .discount-input::placeholder { color: #aaa; }
@@ -52,6 +53,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   .cart-summary { text-align: center; }
   .discount-section { max-width: 100%; }
   .shipping-notice { text-align: center; }
+  .preorder-notice { text-align: center; }
   .price-breakdown { text-align: center; }
   .cart-actions { flex-direction: column; }
   .continue-btn, .checkout-btn { display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
@@ -185,6 +187,9 @@ function renderCart() {
   html += `
     <div class="cart-summary">
       <p class="shipping-notice ${isFreeShipping ? 'free' : ''}">${shippingText}</p>
+      <div class="preorder-notice">
+        Please note: This is a pre-order. Your item will be carefully made and dispatched within 2-4 weeks of your order being placed. You will receive a confirmation email once your order is on its way.
+      </div>
       <div class="discount-section">
         <input type="text" class="discount-input" id="discount-code" placeholder="Discount code">
         <button class="discount-btn" id="discount-btn" onclick="applyDiscount()">Apply</button>
@@ -287,7 +292,7 @@ function toggleMenu() {
 }
 
 renderCart();
-  window.addEventListener('load', function() {
+window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
 </script>
