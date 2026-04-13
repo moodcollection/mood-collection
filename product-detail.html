@@ -155,6 +155,8 @@ function formatDescription(text) {
   return html;
 }
 
+const backImages = ["/images/debssideback.JPG", "/images/debsposeside.JPG"];
+
 const baseDescriptionCrew = `Experience the ultimate in comfort and quality with our heavyweight crewneck. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
 Ready to match your MØØD.
@@ -192,110 +194,115 @@ const products = {
   "busy-adulting": {
     name: "BUSY ADULTING",
     hero: "/images/THELMABA.JPG",
+    heroImages: ["/images/THELMABA.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.\n\n${baseDescriptionCrew}`,
     descriptionHoodie: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 44.99 },
     variants: {
       crew: {
-        "GROUNDED": { img: "/images/ba-b-crewneck.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/ba-bl-crewneck.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/ba-c-crewneck.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/espressoba.png", color: "#54413b", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/ba-b-crewneck.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/ba-bl-crewneck.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/ba-c-crewneck.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/espressoba.png", color: "#54413b", extraImages: backImages }
       },
       hoodie: {
-        "GROUNDED": { img: "/images/THELMABA.JPG", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/ba-bl.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/ba-c.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/JOSHBROWN.jpg", color: "#54413b", extraImages: ["/images/debsback.JPG"] },
-        "CLOUD 9": { img: "/images/vanillabusyadulting.png", color: "#e7dcd4", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/THELMABA.JPG", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/ba-bl.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/ba-c.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/JOSHBROWN.jpg", color: "#54413b", extraImages: backImages },
+        "CLOUD 9": { img: "/images/vanillabusyadulting.png", color: "#e7dcd4", extraImages: backImages }
       }
     }
   },
   "authentically-me": {
     name: "AUTHENTICALLY ME",
     hero: "/images/KEETS.JPG",
+    heroImages: ["/images/KEETS.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `Soft confidence. No explaining. No shrinking. Just showing up as you are.\n\n${baseDescriptionCrew}`,
     descriptionHoodie: `Soft confidence. No explaining. No shrinking. Just showing up as you are.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 44.99 },
     variants: {
       crew: {
-        "GROUNDED": { img: "/images/am-b-crewneck.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/KEETS2.JPG", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/am-c-crewneck.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/espressoam.png", color: "#54413b", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/am-b-crewneck.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/KEETS2.JPG", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/am-c-crewneck.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/espressoam.png", color: "#54413b", extraImages: backImages }
       },
       hoodie: {
-        "GROUNDED": { img: "/images/am-b.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/am-bl.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/am-c.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/espressoauthentic.png", color: "#54413b", extraImages: ["/images/debsback.JPG"] },
-        "CLOUD 9": { img: "/images/vanillaauthentic.png", color: "#e7dcd4", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/am-b.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/am-bl.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/am-c.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/espressoauthentic.png", color: "#54413b", extraImages: backImages },
+        "CLOUD 9": { img: "/images/vanillaauthentic.png", color: "#e7dcd4", extraImages: backImages }
       }
     }
   },
   "present-enough": {
     name: "PRESENT ENOUGH",
     hero: "/images/RIRI2.jpg",
+    heroImages: ["/images/RIRI2.jpg", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.\n\n${baseDescriptionCrew}`,
     descriptionHoodie: `For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 44.99 },
     variants: {
       crew: {
-        "GROUNDED": { img: "/images/pe-b-crewneck.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/pe-bl-crewneck.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/pe-c-crewneck.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/espressope.png", color: "#54413b", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/pe-b-crewneck.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/pe-bl-crewneck.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/pe-c-crewneck.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/espressope.png", color: "#54413b", extraImages: backImages }
       },
       hoodie: {
-        "GROUNDED": { img: "/images/pe-b.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/pe-bl.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/pe-c.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/BERENICEPRESENT.jpg", color: "#54413b", extraImages: ["/images/debsback.JPG"] },
-        "CLOUD 9": { img: "/RIRIPRESENTENOUGH.JPG", color: "#e7dcd4", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/pe-b.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/pe-bl.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/pe-c.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/BERENICEPRESENT.jpg", color: "#54413b", extraImages: backImages },
+        "CLOUD 9": { img: "/RIRIPRESENTENOUGH.JPG", color: "#e7dcd4", extraImages: backImages }
       }
     }
   },
   "mentally-offline": {
     name: "MENTALLY OFFLINE",
     hero: "/images/LEX.JPG",
+    heroImages: ["/images/LEX.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.\n\n${baseDescriptionCrew}`,
     descriptionHoodie: `When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 44.99 },
     variants: {
       crew: {
-        "GROUNDED": { img: "/images/mo-b-crewneck.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/mo-bl-crewneck.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/mo-c-crewneck.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/espressomo.png", color: "#54413b", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/mo-b-crewneck.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/mo-bl-crewneck.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/mo-c-crewneck.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/espressomo.png", color: "#54413b", extraImages: backImages }
       },
       hoodie: {
-        "GROUNDED": { img: "/images/mo-b.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/me-bl.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/LEXMO.jpg", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/espressomentallyoffline.png", color: "#54413b", extraImages: ["/images/debsback.JPG"] },
-        "CLOUD 9": { img: "/images/vanillamentallyoffline.png", color: "#e7dcd4", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/mo-b.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/me-bl.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/LEXMO.jpg", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/espressomentallyoffline.png", color: "#54413b", extraImages: backImages },
+        "CLOUD 9": { img: "/images/vanillamentallyoffline.png", color: "#e7dcd4", extraImages: backImages }
       }
     }
   },
   "face-your-front": {
     name: "FACE YOUR FRONT",
     hero: "/images/JOSH2.JPG",
+    heroImages: ["/images/JOSH2.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `A reminder to focus on your own lane, your own pace, your own path.\n\n${baseDescriptionCrew}`,
     descriptionHoodie: `A reminder to focus on your own lane, your own pace, your own path.\n\n${baseDescriptionHoodie}`,
     prices: { crew: 34.99, hoodie: 44.99 },
     variants: {
       crew: {
-        "GROUNDED": { img: "/images/fyf-b-crewneck.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/fyf-bl-crewneck.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/fyf-c-crewneck.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/SANA.JPG", color: "#54413b", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/fyf-b-crewneck.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/fyf-bl-crewneck.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/fyf-c-crewneck.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/SANA.JPG", color: "#54413b", extraImages: backImages }
       },
       hoodie: {
-        "GROUNDED": { img: "/images/fyf-b.png", color: "#beb8a9", extraImages: ["/images/debsback.JPG"] },
-        "MIDNIGHT": { img: "/images/fyf-bl.png", color: "#000", extraImages: ["/images/debsback.JPG"] },
-        "DND": { img: "/images/fyf-c.png", color: "#413e41", extraImages: ["/images/debsback.JPG"] },
-        "AFTER HOURS": { img: "/images/fyf-e.png", color: "#54413b", extraImages: ["/images/debsback.JPG"] },
-        "CLOUD 9": { img: "/images/vanillafyf.png", color: "#e7dcd4", extraImages: ["/images/debsback.JPG"] }
+        "GROUNDED": { img: "/images/fyf-b.png", color: "#beb8a9", extraImages: backImages },
+        "MIDNIGHT": { img: "/images/fyf-bl.png", color: "#000", extraImages: backImages },
+        "DND": { img: "/images/fyf-c.png", color: "#413e41", extraImages: backImages },
+        "AFTER HOURS": { img: "/images/fyf-e.png", color: "#54413b", extraImages: backImages },
+        "CLOUD 9": { img: "/images/vanillafyf.png", color: "#e7dcd4", extraImages: backImages }
       }
     }
   }
@@ -378,13 +385,10 @@ function loadProduct() {
 
   function update() {
     if (color === null) {
-      updateImageGallery([product.hero]);
+      updateImageGallery(product.heroImages);
     } else {
       const variant = product.variants[type][color];
-      const images = [variant.img];
-      if (variant.extraImages) {
-        images.push(...variant.extraImages);
-      }
+      const images = [variant.img, ...variant.extraImages];
       updateImageGallery(images);
     }
     price.textContent = "£" + product.prices[type].toFixed(2);
