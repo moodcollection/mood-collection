@@ -18,6 +18,10 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; letter-spacing: 10px; text-transform: uppercase; margin-top: 150px; text-shadow: 0px 1px 2px rgba(0,0,0,0.5), 0px 3px 6px rgba(0,0,0,0.35); }
 .tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; text-shadow: 0px 1px 2px rgba(0,0,0,0.45); }
 .hero-btn { margin-top: 20px; padding: 12px 28px; background: #e7dcd4; color: #54413b; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; }
+.preorder-banner { background: #f7f5f2; padding: 25px 5%; text-align: center; border-bottom: 1px solid #e0dcd8; }
+.preorder-banner p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 2px; color: #333; margin: 0 0 12px 0; font-style: italic; }
+.preorder-banner a { display: inline-block; padding: 12px 30px; background: #000; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
+.preorder-banner a:hover { opacity: 0.8; }
 .section { padding: 50px 5%; max-width: 1400px; margin: 0 auto; }
 .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; text-align: center; margin-bottom: 50px; }
 .slideshow-wrapper { position: relative; overflow: hidden; width: 100%; }
@@ -71,6 +75,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   .verdict-quote { font-size: 1.1rem; }
   .brand-statement .bg { font-size: 8rem; letter-spacing: 8px; }
   .brand-statement h2 { font-size: 1.3rem; letter-spacing: 6px; }
+  .preorder-banner p { font-size: 0.9rem; }
 }
 </style>
 </head>
@@ -127,9 +132,14 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   <div class="hero-overlay">
     <h1 class="brand-name">MØØD COLLECTION</h1>
     <p class="tagline">YOUR MØØD, YOUR STYLE</p>
-    <button class="hero-btn" onclick="window.location.href='shop.html'">SHOP THE MØØD</button>
+    <button class="hero-btn" onclick="window.location.href='shop.html'">PRE-ORDER NOW</button>
   </div>
 </section>
+
+<div class="preorder-banner">
+  <p>Pre-orders are now open — estimated dispatch within 6 weeks of order.</p>
+  <a href="https://mailchi.mp/bdaf3f00497e/md-waiting-list" target="_blank">JOIN THE WAITLIST</a>
+</div>
 
 <div class="verdict-section">
   <h2 class="section-title">THE MØØD VERDICT</h2>
@@ -148,15 +158,15 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   <div class="slideshow-wrapper">
     <button class="slideshow-btn prev" onclick="moveSlide(-1)">&#8592;</button>
     <div class="slideshow-track" id="slideshow-track">
-  <div class="slide"><img src="./KTB.jpg" alt="MØØD Moment"style="object-position: center top;"></div>
-  <div class="slide"><img src="./TJMOOD.png" alt="MØØD Moment"></div>
-  <div class="slide"><img src="./LEXMISIT.jpg" alt="MØØD Moment"></div>
-  <div class="slide"><img src="./DEBSMILE.jpg" alt="MØØD Moment"style="object-position: center top;"></div>
-  <div class="slide"><img src="./JOSHTJ.jpg" alt="MØØD Moment"style="object-position: center top;"></div>
-  <div class="slide"><img src="./MBT2.jpg" alt="MØØD Moment"></div>
-  <div class="slide"><img src="./MOODCOLLECTIONN.jpg" alt="MØØD Moment"style="object-position: center top;"></div>
-  <div class="slide"><img src="./SANA.jpg" alt="MØØD Moment"></div>
-</div>
+      <div class="slide"><img src="./KTB.jpg" alt="MØØD Moment" style="object-position: center top;"></div>
+      <div class="slide"><img src="./TJMOOD.png" alt="MØØD Moment"></div>
+      <div class="slide"><img src="./LEXMISIT.jpg" alt="MØØD Moment"></div>
+      <div class="slide"><img src="./DEBSMILE.jpg" alt="MØØD Moment" style="object-position: center top;"></div>
+      <div class="slide"><img src="./JOSHTJ.jpg" alt="MØØD Moment" style="object-position: center top;"></div>
+      <div class="slide"><img src="./MBT2.jpg" alt="MØØD Moment"></div>
+      <div class="slide"><img src="./MOODCOLLECTIONN.jpg" alt="MØØD Moment" style="object-position: center top;"></div>
+      <div class="slide"><img src="./SANA.jpg" alt="MØØD Moment"></div>
+    </div>
     <button class="slideshow-btn next" onclick="moveSlide(1)">&#8594;</button>
   </div>
 </div>
@@ -426,7 +436,8 @@ function updateCartCount() {
 
 updateCartCount();
 </script>
-  <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#000; color:#fff; padding:15px 30px; z-index:99999; display:flex; align-items:center; justify-content:space-between; gap:20px; box-sizing:border-box;">
+
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#000; color:#fff; padding:15px 30px; z-index:99999; display:flex; align-items:center; justify-content:space-between; gap:20px; box-sizing:border-box;">
   <p style="margin:0; font-family:'Helvetica Neue',Arial,sans-serif; font-size:11px; letter-spacing:1px; color:#aaa;">We use cookies to improve your experience. By continuing to browse you agree to our <a href="privacy.html" style="color:#fff; text-decoration:underline;">Privacy Policy</a>.</p>
   <button onclick="acceptCookies()" style="background:#fff; color:#000; border:none; padding:8px 20px; font-family:'Helvetica Neue',Arial,sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; white-space:nowrap; flex-shrink:0;">Accept</button>
 </div>
@@ -439,7 +450,7 @@ function acceptCookies() {
 if (!localStorage.getItem('mood_cookies_accepted')) {
   document.getElementById('cookie-banner').style.display = 'flex';
 }
-  window.addEventListener('load', function() {
+window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
 </script>
