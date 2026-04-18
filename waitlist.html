@@ -18,28 +18,43 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .klaviyo-wrapper { width: 100%; max-width: 480px; margin: 0 auto; }
 .back-link { margin-top: 40px; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #aaa; text-decoration: none; border-bottom: 1px solid #aaa; padding-bottom: 2px; transition: color 0.2s; }
 .back-link:hover { color: #fff; border-color: #fff; }
-.page-intro { transition: opacity 0.5s ease; }
-.page-intro.hidden { opacity: 0; pointer-events: none; height: 0; overflow: hidden; margin: 0; padding: 0; }
+.success-section { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.success-section img { width: 200px; margin-bottom: 30px; }
+.success-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
+.success-section p { font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 1px; color: #aaa; line-height: 1.8; max-width: 480px; margin-bottom: 15px; }
+.success-section .social { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 30px; }
 @media (max-width: 768px) {
   .waitlist-logo { width: 160px; }
   .waitlist-page h1 { font-size: 1.5rem; letter-spacing: 5px; }
   .waitlist-page .description { font-size: 13px; }
+  .success-section h2 { font-size: 1.5rem; letter-spacing: 5px; }
 }
 </style>
 </head>
 <body>
 
 <div class="waitlist-page">
-  <div class="page-intro" id="page-intro">
+
+  <div id="form-section">
     <img src="./MOOD-LOGO-WHITE.png" alt="MØØD Collection" class="waitlist-logo">
     <h1>Join the MØØD</h1>
     <p class="subtitle">Built in silence. Launching soon.</p>
     <p class="description">Enter your name and email below to be first in line when pre-orders open.</p>
+    <div class="klaviyo-wrapper">
+      <div class="klaviyo-form-UvsKmU"></div>
+    </div>
+    <a href="index.html" class="back-link">Back to website</a>
   </div>
-  <div class="klaviyo-wrapper">
-    <div class="klaviyo-form-UvsKmU"></div>
+
+  <div class="success-section" id="success-section">
+    <img src="./MOOD-LOGO-WHITE.png" alt="MØØD Collection">
+    <h2>You are in.</h2>
+    <p>Pre-orders are opening soon and you will be the first to know.</p>
+    <p class="social">Follow us on TikTok and Instagram<br>@moodcollectionofficial</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:13px; letter-spacing:1px; color:#555;">Please check your junk or spam folder if you do not receive a confirmation email from us.</p>
+    <a href="index.html" class="back-link">Back to website</a>
   </div>
-  <a href="index.html" class="back-link" id="back-link">Back to website</a>
+
 </div>
 
 <script>
@@ -47,18 +62,15 @@ window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
 
-const observer = new MutationObserver(function() {
-  const successEl = document.querySelector('.klaviyo-form-UvsKmU [data-testid="success-component"]') ||
-                    document.querySelector('.klaviyo-form-UvsKmU .go3958893599') ||
-                    document.querySelector('.klaviyo-form-UvsKmU form ~ div') ||
-                    document.querySelector('.klaviyo-form-UvsKmU [class*="success"]');
-  if (successEl && successEl.offsetParent !== null) {
-    document.getElementById('page-intro').classList.add('hidden');
-    document.getElementById('back-link').style.marginTop = '30px';
+window._klOnsite = window._klOnsite || [];
+window._klOnsite.push(['openForm', function() {}]);
+
+document.addEventListener('klaviyoForms', function(e) {
+  if (e.detail.type === 'submit') {
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('success-section').style.display = 'flex';
   }
 });
-
-observer.observe(document.body, { childList: true, subtree: true, attributes: true });
 </script>
 </body>
 </html>
