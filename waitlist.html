@@ -62,13 +62,36 @@ window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
 
-window._klOnsite = window._klOnsite || [];
-window._klOnsite.push(['openForm', function() {}]);
+function showSuccess() {
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('success-section').style.display = 'flex';
+}
+
+function checkForSuccess() {
+  const klaviyoWrapper = document.querySelector('.klaviyo-form-UvsKmU');
+  if (!klaviyoWrapper) return;
+
+  const form = klaviyoWrapper.querySelector('form');
+  const successEl = klaviyoWrapper.querySelector('[class*="success"], [class*="Success"], [class*="thank"], [class*="Thank"], [class*="confirmation"], [class*="Confirmation"]');
+
+  if (successEl && successEl.offsetParent !== null) {
+    showSuccess();
+    return;
+  }
+
+  if (!form && klaviyoWrapper.children.length > 0) {
+    showSuccess();
+  }
+}
+
+const observer = new MutationObserver(checkForSuccess);
+observer.observe(document.body, { childList: true, subtree: true, attributes: true });
 
 document.addEventListener('klaviyoForms', function(e) {
-  if (e.detail.type === 'submit') {
-    document.getElementById('form-section').style.display = 'none';
-    document.getElementById('success-section').style.display = 'flex';
+  if (e.detail.type === 'submit' || e.detail.type === 'redirectedToUrl' || e.detail.type === 'open') {
+    if (e.detail.type === 'submit') {
+      showSuccess();
+    }
   }
 });
 </script>
