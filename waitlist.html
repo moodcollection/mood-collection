@@ -18,6 +18,8 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .klaviyo-wrapper { width: 100%; max-width: 480px; margin: 0 auto; }
 .back-link { margin-top: 40px; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #aaa; text-decoration: none; border-bottom: 1px solid #aaa; padding-bottom: 2px; transition: color 0.2s; }
 .back-link:hover { color: #fff; border-color: #fff; }
+.page-intro { transition: opacity 0.5s ease; }
+.page-intro.hidden { opacity: 0; pointer-events: none; height: 0; overflow: hidden; margin: 0; padding: 0; }
 @media (max-width: 768px) {
   .waitlist-logo { width: 160px; }
   .waitlist-page h1 { font-size: 1.5rem; letter-spacing: 5px; }
@@ -28,20 +30,35 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 <body>
 
 <div class="waitlist-page">
-  <img src="./MOOD-LOGO-WHITE.png" alt="MØØD Collection" class="waitlist-logo">
-  <h1>Join the MØØD</h1>
-  <p class="subtitle">Built in silence. Launching soon.</p>
-  <p class="description">Enter your name and email below to be first in line when pre-orders open.</p>
+  <div class="page-intro" id="page-intro">
+    <img src="./MOOD-LOGO-WHITE.png" alt="MØØD Collection" class="waitlist-logo">
+    <h1>Join the MØØD</h1>
+    <p class="subtitle">Built in silence. Launching soon.</p>
+    <p class="description">Enter your name and email below to be first in line when pre-orders open.</p>
+  </div>
   <div class="klaviyo-wrapper">
     <div class="klaviyo-form-UvsKmU"></div>
   </div>
-  <a href="index.html" class="back-link">Back to website</a>
+  <a href="index.html" class="back-link" id="back-link">Back to website</a>
 </div>
 
 <script>
 window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
+
+const observer = new MutationObserver(function() {
+  const successEl = document.querySelector('.klaviyo-form-UvsKmU [data-testid="success-component"]') ||
+                    document.querySelector('.klaviyo-form-UvsKmU .go3958893599') ||
+                    document.querySelector('.klaviyo-form-UvsKmU form ~ div') ||
+                    document.querySelector('.klaviyo-form-UvsKmU [class*="success"]');
+  if (successEl && successEl.offsetParent !== null) {
+    document.getElementById('page-intro').classList.add('hidden');
+    document.getElementById('back-link').style.marginTop = '30px';
+  }
+});
+
+observer.observe(document.body, { childList: true, subtree: true, attributes: true });
 </script>
 </body>
 </html>
