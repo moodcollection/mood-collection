@@ -17,7 +17,8 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .hero-overlay { position: relative; z-index: 2; text-align: center; color: white; padding: 0 20px; margin-top: 100px; }
 .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; letter-spacing: 10px; text-transform: uppercase; margin-top: 150px; text-shadow: 0px 1px 2px rgba(0,0,0,0.5), 0px 3px 6px rgba(0,0,0,0.35); }
 .tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; text-shadow: 0px 1px 2px rgba(0,0,0,0.45); }
-.hero-btn { margin-top: 20px; padding: 12px 28px; background: #e7dcd4; color: #54413b; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; }
+.hero-btn { margin-top: 20px; padding: 12px 28px; background: rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.4); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: not-allowed; font-family: 'Cormorant Garamond', serif; }
+.hero-btn-sub { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; letter-spacing: 2px; color: rgba(255,255,255,0.7); margin-top: 8px; text-shadow: 0px 1px 2px rgba(0,0,0,0.45); }
 .preorder-banner { background: #f7f5f2; padding: 25px 5%; text-align: center; border-bottom: 1px solid #e0dcd8; }
 .preorder-banner p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 2px; color: #333; margin: 0 0 12px 0; font-style: italic; }
 .preorder-banner a { display: inline-block; padding: 12px 30px; background: #000; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
@@ -132,12 +133,13 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   <div class="hero-overlay">
     <h1 class="brand-name">MØØD COLLECTION</h1>
     <p class="tagline">YOUR MØØD, YOUR STYLE</p>
-    <button class="hero-btn" onclick="window.location.href='shop.html'">PRE-ORDER NOW</button>
+    <button class="hero-btn" disabled>PRE-ORDERS OPENING SOON</button>
+    <p class="hero-btn-sub">Join the waitlist below to be first</p>
   </div>
 </section>
 
 <div class="preorder-banner">
-  <p>Pre-orders are now open — estimated dispatch within 2-4 weeks of order.</p>
+  <p>Pre-orders opening soon — join the waitlist to be first in line.</p>
   <a href="waitlist.html">JOIN THE WAITLIST</a>
 </div>
 
