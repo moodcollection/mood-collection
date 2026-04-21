@@ -6,6 +6,7 @@
 <title>MØØD COLLECTION | Official Store</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=UxvBHU"></script>
 <style>
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 .announcement-bar { background: #000; overflow: hidden; padding: 10px 0; width: 100%; position: relative; }
@@ -50,19 +51,16 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .newsletter-section { background: #f7f5f2; padding: 80px 5%; text-align: center; }
 .newsletter-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; margin-bottom: 15px; }
 .newsletter-section p { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 1px; color: #555; margin-bottom: 30px; }
-.newsletter-form { display: flex; justify-content: center; max-width: 500px; margin: 0 auto; }
-.newsletter-form input { flex: 1; padding: 14px 20px; border: 1px solid #000; border-right: none; font-family: 'Cormorant Garamond', serif; font-size: 14px; outline: none; background: #fff; }
-.newsletter-form button { padding: 14px 24px; background: #000; color: #fff; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; white-space: nowrap; }
+.newsletter-btn { display: inline-block; padding: 14px 40px; background: #000; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; border: none; cursor: pointer; }
+.newsletter-btn:hover { opacity: 0.8; }
 .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; }
 .popup-overlay.active { display: flex; }
 .popup { background: #fff; max-width: 480px; width: 90%; padding: 50px 40px; position: relative; text-align: center; }
 .popup-close { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 20px; cursor: pointer; color: #000; }
 .popup h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 15px; }
 .popup p { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #555; letter-spacing: 1px; margin-bottom: 25px; line-height: 1.7; }
-.popup input { width: 100%; padding: 14px 20px; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 14px; outline: none; margin-bottom: 15px; box-sizing: border-box; }
-.popup button.subscribe-btn { width: 100%; padding: 14px; background: #000; color: #fff; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; }
+.popup-btn { width: 100%; padding: 14px; background: #000; color: #fff; border: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Cormorant Garamond', serif; text-decoration: none; display: block; }
 .popup .no-thanks { margin-top: 15px; font-size: 11px; color: #aaa; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; background: none; border: none; width: 100%; font-family: 'Cormorant Garamond', serif; }
-.popup-thank-you { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 2px; color: #000; margin-top: 15px; display: none; }
 @media (max-width: 768px) {
   .announcement-item { font-size: 9px; letter-spacing: 1.5px; padding: 0 10px; }
   .announcement-sep { padding: 0 3px; }
@@ -71,8 +69,6 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   .tagline { font-size: 0.9rem; }
   .hero-btn { margin-top: 60px; }
   .slide { min-width: 100%; }
-  .newsletter-form { flex-direction: column; }
-  .newsletter-form input { border-right: 1px solid #000; border-bottom: none; }
   .verdict-quote { font-size: 1.1rem; }
   .brand-statement .bg { font-size: 8rem; letter-spacing: 8px; }
   .brand-statement h2 { font-size: 1.3rem; letter-spacing: 6px; }
@@ -86,11 +82,9 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   <div class="popup">
     <button class="popup-close" id="popup-close">&times;</button>
     <h2>JOIN THE MØØD</h2>
-    <p>Be the first to know about new drops, exclusive offers, and MØØD moments.</p>
-    <input type="email" placeholder="YOUR EMAIL ADDRESS" id="popup-email">
-    <button class="subscribe-btn" onclick="handlePopupSubscribe()">SUBSCRIBE</button>
+    <p>Be the first to know when pre-orders go live. Join the waitlist now.</p>
+    <a href="waitlist.html" class="popup-btn">JOIN THE WAITLIST</a>
     <button class="no-thanks" id="popup-no-thanks">No thanks</button>
-    <p class="popup-thank-you" id="popup-thank-you">THANK YOU FOR JOINING THE MØØD.</p>
   </div>
 </div>
 
@@ -181,12 +175,8 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 
 <div class="newsletter-section">
   <h2>JOIN THE MØØD</h2>
-  <p>EARLY ACCESS. EXCLUSIVE DROPS.</p>
-  <div class="newsletter-form">
-    <input type="email" placeholder="YOUR EMAIL ADDRESS" id="newsletter-email">
-    <button onclick="handleSubscribe()">SUBSCRIBE</button>
-  </div>
-  <p id="newsletter-success" style="display:none; margin-top:20px; font-family:'Cormorant Garamond',serif; font-size:1rem; letter-spacing:2px; color:#000;">THANK YOU FOR JOINING THE MØØD.</p>
+  <p>BE FIRST IN LINE WHEN PRE-ORDERS OPEN.</p>
+  <a href="waitlist.html" class="newsletter-btn">JOIN THE WAITLIST</a>
 </div>
 
 <footer>
@@ -315,43 +305,6 @@ setInterval(() => {
   currentReview = (currentReview + 1) % reviews.length;
   showReview(currentReview);
 }, 5000);
-
-const MAILCHIMP_URL = 'https://mymoodcollection.us22.list-manage.com/subscribe/post?u=79fbb943999b76376ce2568d9&id=1511948489&f_id=0058c2e1f0';
-
-function submitToMailchimp(email, onSuccess) {
-  const data = new FormData();
-  data.append('EMAIL', email);
-  data.append('b_79fbb943999b76376ce2568d9_1511948489', '');
-  fetch(MAILCHIMP_URL, { method: 'POST', body: data, mode: 'no-cors' })
-    .then(() => onSuccess())
-    .catch(() => onSuccess());
-}
-
-function handleSubscribe() {
-  const email = document.getElementById('newsletter-email').value;
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  submitToMailchimp(email, function() {
-    document.getElementById('newsletter-email').value = '';
-    document.getElementById('newsletter-success').style.display = 'block';
-  });
-}
-
-function handlePopupSubscribe() {
-  const email = document.getElementById('popup-email').value;
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  submitToMailchimp(email, function() {
-    document.getElementById('popup-email').value = '';
-    document.querySelector('.subscribe-btn').style.display = 'none';
-    document.getElementById('popup-no-thanks').style.display = 'none';
-    document.getElementById('popup-thank-you').style.display = 'block';
-    setTimeout(() => {
-      document.getElementById('popup-overlay').classList.remove('active');
-      document.querySelector('.subscribe-btn').style.display = 'block';
-      document.getElementById('popup-no-thanks').style.display = 'block';
-      document.getElementById('popup-thank-you').style.display = 'none';
-    }, 2500);
-  });
-}
 
 document.getElementById('popup-close').onclick = function() { document.getElementById('popup-overlay').classList.remove('active'); };
 document.getElementById('popup-no-thanks').onclick = function() { document.getElementById('popup-overlay').classList.remove('active'); };
