@@ -58,6 +58,28 @@ async function addToKlaviyoList(email, firstName, lastName, orderDetails) {
   }
 
   if (profileId) {
+    // Remove from list first
+    await fetch(`https://a.klaviyo.com/api/lists/Vbw9d6/relationships/profiles/`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_PRIVATE_KEY}`,
+        'Content-Type': 'application/json',
+        'revision': '2023-12-15'
+      },
+      body: JSON.stringify({
+        data: [
+          {
+            type: 'profile',
+            id: profileId
+          }
+        ]
+      })
+    });
+
+    // Wait a moment then add back
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Add back to list to trigger flow
     await fetch(`https://a.klaviyo.com/api/lists/Vbw9d6/relationships/profiles/`, {
       method: 'POST',
       headers: {
