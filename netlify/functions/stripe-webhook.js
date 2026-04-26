@@ -1,7 +1,8 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-async function triggerKlaviyoFlow(email, firstName, lastName, total) {
-  await fetch('https://a.klaviyo.com/api/profiles/', {
+async function addToKlaviyoList(email, firstName, lastName) {
+  // First create or update the profile
+  const profileResponse = await fetch('https://a.klaviyo.com/api/profiles/', {
     method: 'POST',
     headers: {
       'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_PRIVATE_KEY}`,
@@ -20,44 +21,34 @@ async function triggerKlaviyoFlow(email, firstName, lastName, total) {
     })
   });
 
-  await fetch('https://a.klaviyo.com/api/events/', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_PRIVATE_KEY}`,
-      'Content-Type': 'application/json',
-      'revision': '2023-12-15'
-    },
-    body: JSON.stringify({
-      data: {
-        type: 'event',
-        attributes: {
-          metric: {
-            data: {
-              type: 'metric',
-              attributes: {
-                name: 'Successfully Paid'
-              }
-            }
-          },
-          profile: {
-            data: {
-              type: 'profile',
-              attributes: {
-                email: email,
-                first_name: firstName,
-                last_name: lastName
-              }
-            }
-          },
-          properties: {
-            total: total,
-            currency: 'GBP'
-          },
-          time: new Date().toISOString()
-        }
-      }
-    })
-  });
+  let profileId;
+  
+  if (profileResponse.status === 201) {
+    const profileData = await profileResponse.json();
+    profileId = profileData.data.id;
+  } else if (profileResponse.status === 409) {
+    const profileData = await profileResponse.json();
+    profileId = profileData.errors[0].meta.duplicate_profile_id;
+  }
+
+  if (profileId) {
+    await fetch(`https://a.klaviyo.com/api/lists/Vbw9d6/relationships/profiles/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Klaviyo-API-Key ${process.env.KLAVIYO_PRIVATE_KEY}`,
+        'Content-Type': 'application/json',
+        'revision': '2023-12-15'
+      },
+      body: JSON.stringify({
+        data: [
+          {
+            type: 'profile',
+            id: profileId
+          }
+        ]
+      })
+    });
+  }
 }
 
 exports.handler = async (event) => {
@@ -75,7 +66,7 @@ exports.handler = async (event) => {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
-    return { statusCode: 400, body: `Webhook Error: ${err.message }` };
+    return { statusCode: 400, body: `Webhook Error: ${err.message}` };
   }
 
   if (stripeEvent.type === 'checkout.session.completed') {
@@ -83,10 +74,9 @@ exports.handler = async (event) => {
     const email = session.customer_details?.email;
     const firstName = session.customer_details?.name?.split(' ')[0] || '';
     const lastName = session.customer_details?.name?.split(' ').slice(1).join(' ') || '';
-    const total = session.amount_total / 100;
 
     if (email) {
-      await triggerKlaviyoFlow(email, firstName, lastName, total);
+      await addToKlaviyoList(email, firstName, lastName);
     }
   }
 
