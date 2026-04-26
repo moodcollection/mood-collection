@@ -61,8 +61,8 @@ exports.handler = async (event) => {
     }));
     const cartTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const shippingRate = cartTotal >= 70 
-      ? 'shr_1TFinSACqvQrWEreI0bRnnnK'
-      : 'shr_1TFilmACqvQrWEre5R2hjIwr';
+  ? 'shr_1TQUnfACqvQrWErerDnmYhfg'
+  : 'shr_1TQUo2ACqvQrWEreav8C22wi';
     const sessionParams = {
       payment_method_types: ['card'],
       line_items: lineItems,
