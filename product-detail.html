@@ -459,12 +459,13 @@ function loadProduct() {
     saveCart(cart);
     updateCartCount();
 
-    document.getElementById('added-message').style.display = 'block';
-    document.getElementById('view-cart-btn').style.display = 'block';
+    const btn = document.getElementById('add-to-cart');
+btn.textContent = 'ADDED TO BAG';
+document.getElementById('view-cart-btn').style.display = 'block';
 
-    setTimeout(() => {
-      document.getElementById('added-message').style.display = 'none';
-    }, 3000);
+setTimeout(() => {
+  btn.textContent = 'PRE-ORDER NOW';
+}, 2000);
   };
 
   renderColors();
