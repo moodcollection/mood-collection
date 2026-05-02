@@ -34,17 +34,20 @@ exports.handler = async (event) => {
         { shipping_rate: shippingRate }
       ],
       customer_creation: 'always',
-      billing_address_collection: 'required',
-      allow_promotion_codes: true,
-      custom_fields: [
-        {
-          key: 'order_note',
-          label: {
-            type: 'custom',
-            custom: 'Add a note to your order'
-          },
-          type: 'text',
-          optional: true,
+billing_address_collection: 'required',
+allow_promotion_codes: true,
+phone_number_collection: {
+  enabled: true,
+},
+custom_fields: [
+  {
+    key: 'order_note',
+    label: {
+      type: 'custom',
+      custom: 'Add a note to your order'
+    },
+    type: 'text',
+    optional: true,
         }
       ],
     };
