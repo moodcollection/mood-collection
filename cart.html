@@ -29,6 +29,12 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .shipping-notice { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #666; letter-spacing: 1px; margin-bottom: 20px; text-align: right; }
 .shipping-notice.free { color: #000; font-weight: 600; }
 .preorder-notice { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: #555; letter-spacing: 0.5px; line-height: 1.7; margin-bottom: 20px; padding: 15px 20px; border: 1px solid #e0e0e0; background: #f7f5f2; font-style: italic; }
+.discount-section { display: flex; gap: 0; margin-bottom: 20px; max-width: 350px; margin-left: auto; }
+.discount-input { flex: 1; padding: 12px 15px; border: 1px solid #000; border-right: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; outline: none; background: #fff; }
+.discount-input::placeholder { color: #aaa; }
+.discount-btn { padding: 12px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: opacity 0.3s; }
+.discount-btn:hover { opacity: 0.8; }
+.discount-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .cart-total { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 25px; text-align: right; }
 .cart-actions { display: flex; justify-content: flex-end; gap: 15px; }
 .checkout-btn { display: inline-block; padding: 18px 40px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; }
@@ -37,6 +43,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .continue-btn:hover { background: #000; color: #fff; }
 .price-breakdown { text-align: right; margin-bottom: 10px; }
 .price-breakdown-row { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 1px; margin-bottom: 8px; color: #666; }
+.price-breakdown-row.discount { color: #000; }
 .price-breakdown-row.total { font-size: 1.3rem; letter-spacing: 2px; color: #000; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e0e0; }
 @media (max-width: 768px) {
   .cart-container { padding: 0 20px; }
@@ -44,6 +51,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
   .cart-item-image { width: 75px; height: 75px; }
   .cart-item-name { font-size: 0.85rem; }
   .cart-summary { text-align: center; }
+  .discount-section { max-width: 100%; }
   .shipping-notice { text-align: center; }
   .preorder-notice { text-align: center; }
   .price-breakdown { text-align: center; }
@@ -182,10 +190,13 @@ function renderCart() {
       <div class="preorder-notice">
         Please note: This is a pre-order. Your item will be carefully made and dispatched within 2-4 weeks of your order being placed. You will receive a confirmation email once your order is on its way.
       </div>
-      <div class="price-breakdown">
+      <div class="discount-section">
+        <input type="text" class="discount-input" id="discount-code" placeholder="Discount code">
+        <button class="discount-btn" id="discount-btn" onclick="applyDiscount()">Apply</button>
+      </div>
+      <div id="price-breakdown" class="price-breakdown">
         <div class="price-breakdown-row total">Subtotal: £${total.toFixed(2)}</div>
       </div>
-      <p style="font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:1px; color:#999; font-style:italic; text-align:right; margin-bottom:20px;">Discount codes can be applied at checkout</p>
       <div class="cart-actions">
         <a href="shop.html" class="continue-btn">Continue Shopping</a>
         <button class="checkout-btn" onclick="checkout()">Checkout</button>
@@ -194,6 +205,43 @@ function renderCart() {
 
   container.innerHTML = html;
   updateCartCount();
+}
+
+function applyDiscount() {
+  const code = document.getElementById('discount-code').value.trim().toUpperCase();
+  if (!code) { alert('Please enter a discount code.'); return; }
+
+  const validCodes = ['MOOD26', 'NEWMOOD26'];
+  if (!validCodes.includes(code)) {
+    alert('Invalid discount code. Please try again.');
+    return;
+  }
+
+  const cart = getCart();
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  let discount = 0;
+  let discountLabel = '';
+
+  if (code === 'MOOD26') {
+    discount = subtotal * 0.10;
+    discountLabel = 'MOOD26 — 10% off';
+  } else if (code === 'NEWMOOD26') {
+    discount = subtotal;
+    discountLabel = 'NEWMOOD26 — 100% off';
+  }
+
+  const newTotal = subtotal - discount;
+
+  document.getElementById('price-breakdown').innerHTML = `
+    <div class="price-breakdown-row">Subtotal: £${subtotal.toFixed(2)}</div>
+    <div class="price-breakdown-row discount">Discount (${discountLabel}): -£${discount.toFixed(2)}</div>
+    <div class="price-breakdown-row total">Total: £${newTotal.toFixed(2)}</div>
+  `;
+
+  document.getElementById('discount-btn').textContent = 'Applied';
+  document.getElementById('discount-btn').disabled = true;
+  document.getElementById('discount-code').disabled = true;
 }
 
 function changeQty(index, dir) {
@@ -219,6 +267,9 @@ async function checkout() {
   btn.textContent = 'Processing...';
   btn.disabled = true;
 
+  const discountCodeEl = document.getElementById('discount-code');
+  const discountCode = discountCodeEl ? discountCodeEl.value.trim().toUpperCase() : '';
+
   try {
     const response = await fetch('/.netlify/functions/create-checkout', {
       method: 'POST',
@@ -229,7 +280,8 @@ async function checkout() {
           description: item.product + ' - ' + (item.type === 'crew' ? 'Crewneck' : 'Hoodie'),
           price: item.price,
           quantity: item.quantity
-        }))
+        })),
+        discountCode: discountCode || null
       })
     });
 
