@@ -18,7 +18,8 @@ exports.handler = async (event) => {
       quantity: item.quantity,
     }));
     const cartTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shippingRate = cartTotal >= 70 
+    const discountUpper = (discountCode || '').toUpperCase();
+    const shippingRate = (cartTotal >= 70 || discountUpper === 'NEWMOOD26')
       ? 'shr_1TQUnfACqvQrWErerDnmYhfg'
       : 'shr_1TQUo2ACqvQrWEreav8C22wi';
     const sessionParams = {
@@ -34,20 +35,20 @@ exports.handler = async (event) => {
         { shipping_rate: shippingRate }
       ],
       customer_creation: 'always',
-billing_address_collection: 'required',
-allow_promotion_codes: true,
-phone_number_collection: {
-  enabled: true,
-},
-custom_fields: [
-  {
-    key: 'order_note',
-    label: {
-      type: 'custom',
-      custom: 'Add a note to your order'
-    },
-    type: 'text',
-    optional: true,
+      billing_address_collection: 'required',
+      allow_promotion_codes: true,
+      phone_number_collection: {
+        enabled: true,
+      },
+      custom_fields: [
+        {
+          key: 'order_note',
+          label: {
+            type: 'custom',
+            custom: 'Add a note to your order'
+          },
+          type: 'text',
+          optional: true,
         }
       ],
     };
