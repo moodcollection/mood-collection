@@ -11,7 +11,7 @@
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
 .container { max-width: 1100px; margin: 60px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 30px; }
 .product-image { position: relative; }
-.product-image img { width: 100%; display: block; }
+.product-image img { width: 100%; display: block; height: auto; }
 .image-nav { display: none; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; justify-content: space-between; padding: 0 10px; pointer-events: none; }
 .image-nav.visible { display: flex; }
 .image-nav-btn { background: #000; color: #fff; border: none; width: 36px; height: 36px; font-size: 16px; cursor: pointer; pointer-events: all; opacity: 0.7; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; }
@@ -95,7 +95,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
     <p style="font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:1px; color:#999; font-style:italic; margin-bottom:15px;">Every item is made to order and dispatched within 2-4 weeks.</p>
     <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
 
-    <div class="description">Not just a bag. A MØØD. 🖤
+    <div class="description">Not just a bag. A MØØD.
 
 The MØØD Tote is oversized by design and intentional in every detail. Big enough for your day trip essentials, your commute must haves or your weekend haul — this is the bag that moves with you however your day looks.
 
@@ -146,15 +146,15 @@ Weight: 451g</div>
 <script>
 const toteVariants = {
   black: {
-    images: ['/images/blackmockup.png', '/images/blacktote.JPG'],
+    images: ['./images/blacktote.JPG'],
     title: 'MØØD TOTE — BLACK'
   },
   cream: {
     black: {
-      images: ['/images/whitemockup.png', '/images/blackwritingtote.JPG', '/images/bothtotes.JPG']
+      images: ['./images/HI0A5528.JPG', './images/blackwritingtote.JPG']
     },
     brown: {
-      images: ['/images/brownmockup.png', '/images/browntote.JPG', '/images/brownsana.JPG']
+      images: ['./images/HI0A5528.JPG']
     },
     title: 'MØØD TOTE — CREAM'
   }
@@ -253,8 +253,8 @@ function updateCartCount() {
 }
 
 document.getElementById('add-to-cart').onclick = function() {
-  const itemName = 'MØØD Tote — ' + (currentColour === 'black' ? 'Black' : 'Cream' + ' (' + currentTextColour + ' text)');
-  const itemImage = currentColour === 'black' ? '/images/blackmockup.png' : currentTextColour === 'black' ? '/images/whitemockup.png' : '/images/brownmockup.png';
+  const itemName = 'MØØD Tote — ' + (currentColour === 'black' ? 'Black' : 'Cream (' + currentTextColour + ' text)');
+  const itemImage = currentColour === 'black' ? './images/blacktote.JPG' : './images/HI0A5528.JPG';
 
   const cart = getCart();
   const existingItem = cart.find(i => i.name === itemName);
