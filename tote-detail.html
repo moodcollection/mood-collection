@@ -65,7 +65,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 
 <div class="container">
   <div class="product-image">
-    <img id="product-image" alt="MØØD Tote">
+    <img id="product-image" src="./images/bothtotes.JPG" alt="MØØD Tote">
     <div class="image-nav" id="image-nav">
       <button class="image-nav-btn" onclick="changeImage(-1)">&#8592;</button>
       <button class="image-nav-btn" onclick="changeImage(1)">&#8594;</button>
@@ -144,15 +144,15 @@ Weight: 451g</div>
 <script>
 const toteVariants = {
   black: {
-    images: ['./images/bothtotes.JPG', './images/blacktote.JPG'],
+    images: ['./images/blacktote.JPG'],
     title: 'MØØD TOTE — BLACK'
   },
   cream: {
     black: {
-      images: ['./images/bothtotes.JPG', './images/blackwritingtote.JPG']
+      images: ['./images/blackwritingtote.JPG']
     },
     brown: {
-      images: ['./images/bothtotes.JPG', './images/HI0A5528.JPG']
+      images: ['./images/HI0A5528.JPG']
     },
     title: 'MØØD TOTE — CREAM'
   }
@@ -252,7 +252,7 @@ function updateCartCount() {
 
 document.getElementById('add-to-cart').onclick = function() {
   const itemName = 'MØØD Tote — ' + (currentColour === 'black' ? 'Black' : 'Cream (' + currentTextColour + ' text)');
-  const itemImage = currentColour === 'black' ? './images/bothtotes.JPG' : './images/bothtotes.JPG';
+  const itemImage = currentColour === 'black' ? './images/blacktote.JPG' : './images/blackwritingtote.JPG';
 
   const cart = getCart();
   const existingItem = cart.find(i => i.name === itemName);
@@ -286,8 +286,6 @@ const slug = params.get('name');
 
 if (slug === 'tote-cream') {
   selectColour('cream');
-} else {
-  selectColour('black');
 }
 
 updateCartCount();
