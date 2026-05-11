@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MØØD Tote | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1100px; margin: 60px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 30px; }
+.product-image { position: relative; }
+.product-image img { width: 100%; display: block; }
+.image-nav { display: none; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; justify-content: space-between; padding: 0 10px; pointer-events: none; }
+.image-nav.visible { display: flex; }
+.image-nav-btn { background: #000; color: #fff; border: none; width: 36px; height: 36px; font-size: 16px; cursor: pointer; pointer-events: all; opacity: 0.7; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; }
+.image-nav-btn:hover { opacity: 1; }
+.image-dots { display: none; justify-content: center; gap: 6px; margin-top: 10px; }
+.image-dots.visible { display: flex; }
+.image-dot { width: 6px; height: 6px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s; }
+.image-dot.active { background: #000; }
+.product-info h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; letter-spacing: 3px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; }
+.price { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 25px; font-weight: 400; }
+.color-label-heading { font-family: 'Cormorant Garamond', serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; color: #000; }
+.type-buttons { display: flex; gap: 10px; margin-bottom: 25px; }
+.type-btn { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; padding: 10px 20px; background: #fff; color: #000; border: 1px solid #000; cursor: pointer; transition: all 0.2s ease; }
+.type-btn.active, .type-btn:hover { background: #000; color: #fff; }
+.add-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; transition: opacity 0.3s ease; display: block; }
+.add-btn:hover { opacity: 0.8; }
+.view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
+.view-cart-btn:hover { background: #000; color: #fff; }
+.description { font-family: 'Cormorant Garamond', serif; line-height: 1.9; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
+@media (max-width: 768px) {
+  .container { grid-template-columns: 1fr; gap: 30px; margin: 30px auto; padding: 0 20px; }
+  .add-btn, .view-cart-btn { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="account.html">My Account</a>
+    <a href="about.html">Our Story</a>
+    <div class="nav-search"><input type="text" placeholder="Search"></div>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
+  <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="shop.html" onclick="toggleMenu()">Shop</a>
+  <a href="account.html" onclick="toggleMenu()">My Account</a>
+  <a href="about.html" onclick="toggleMenu()">Our Story</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+  <a href="shipping.html" onclick="toggleMenu()">Shipping</a>
+  <a href="returns.html" onclick="toggleMenu()">Returns</a>
+  <input type="text" placeholder="Search">
+</div>
+
+<div class="container">
+  <div class="product-image">
+    <img id="product-image" alt="MØØD Tote">
+    <div class="image-nav" id="image-nav">
+      <button class="image-nav-btn" onclick="changeImage(-1)">&#8592;</button>
+      <button class="image-nav-btn" onclick="changeImage(1)">&#8594;</button>
+    </div>
+    <div class="image-dots" id="image-dots"></div>
+  </div>
+
+  <div class="product-info">
+    <h1 id="product-title">MØØD TOTE</h1>
+    <div class="price">£21.99</div>
+
+    <span class="color-label-heading">Colour</span>
+    <div class="type-buttons">
+      <button class="type-btn active" id="black-btn" onclick="selectColour('black')">Black</button>
+      <button class="type-btn" id="cream-btn" onclick="selectColour('cream')">Cream</button>
+    </div>
+
+    <div id="text-colour-section" style="display:none;">
+      <span class="color-label-heading">Text Colour</span>
+      <div class="type-buttons">
+        <button class="type-btn active" id="black-text-btn" onclick="selectTextColour('black')">Black</button>
+        <button class="type-btn" id="brown-text-btn" onclick="selectTextColour('brown')">Brown</button>
+      </div>
+    </div>
+
+    <button class="add-btn" id="add-to-cart">PRE-ORDER NOW</button>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:1px; color:#999; font-style:italic; margin-bottom:15px;">Every item is made to order and dispatched within 2-4 weeks.</p>
+    <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
+
+    <div class="description">Not just a bag. A MØØD. 🖤
+
+The MØØD Tote is oversized by design and intentional in every detail. Big enough for your day trip essentials, your commute must haves or your weekend haul — this is the bag that moves with you however your day looks.
+
+Crafted from durable heavyweight 100% cotton canvas, the MØØD Tote is built to last and styled to stand out. Soft webbing handles sit comfortably over the shoulder or in hand — however your MØØD carries you.
+
+This is not an afterthought. It is an extension of the collection.
+
+Fabric: 100% cotton canvas 475GSM
+Capacity: 37 litres
+Dimensions: 56 x 41 x 16cm
+Weight: 451g</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
+</footer>
+
+<script>
+const toteVariants = {
+  black: {
+    images: ['/images/blackmockup.png', '/images/blacktote.JPG'],
+    title: 'MØØD TOTE — BLACK'
+  },
+  cream: {
+    black: {
+      images: ['/images/whitemockup.png', '/images/blackwritingtote.JPG', '/images/bothtotes.JPG']
+    },
+    brown: {
+      images: ['/images/brownmockup.png', '/images/browntote.JPG', '/images/brownsana.JPG']
+    },
+    title: 'MØØD TOTE — CREAM'
+  }
+};
+
+let currentColour = 'black';
+let currentTextColour = 'black';
+let currentImages = [];
+let currentImageIndex = 0;
+
+function updateImageGallery(images) {
+  currentImages = images;
+  currentImageIndex = 0;
+  const img = document.getElementById('product-image');
+  const nav = document.getElementById('image-nav');
+  const dots = document.getElementById('image-dots');
+
+  img.src = images[0];
+
+  if (images.length > 1) {
+    nav.classList.add('visible');
+    dots.classList.add('visible');
+    dots.innerHTML = '';
+    images.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'image-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToImage(i);
+      dots.appendChild(dot);
+    });
+  } else {
+    nav.classList.remove('visible');
+    dots.classList.remove('visible');
+    dots.innerHTML = '';
+  }
+}
+
+function changeImage(dir) {
+  currentImageIndex = (currentImageIndex + dir + currentImages.length) % currentImages.length;
+  goToImage(currentImageIndex);
+}
+
+function goToImage(index) {
+  currentImageIndex = index;
+  document.getElementById('product-image').src = currentImages[index];
+  document.querySelectorAll('.image-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+function selectColour(colour) {
+  currentColour = colour;
+  currentTextColour = 'black';
+
+  document.getElementById('black-btn').classList.toggle('active', colour === 'black');
+  document.getElementById('cream-btn').classList.toggle('active', colour === 'cream');
+
+  const textSection = document.getElementById('text-colour-section');
+  if (colour === 'cream') {
+    textSection.style.display = 'block';
+    document.getElementById('black-text-btn').classList.add('active');
+    document.getElementById('brown-text-btn').classList.remove('active');
+    updateImageGallery(toteVariants.cream.black.images);
+    document.getElementById('product-title').textContent = toteVariants.cream.title;
+  } else {
+    textSection.style.display = 'none';
+    updateImageGallery(toteVariants.black.images);
+    document.getElementById('product-title').textContent = toteVariants.black.title;
+  }
+}
+
+function selectTextColour(textColour) {
+  currentTextColour = textColour;
+  document.getElementById('black-text-btn').classList.toggle('active', textColour === 'black');
+  document.getElementById('brown-text-btn').classList.toggle('active', textColour === 'brown');
+
+  if (textColour === 'black') {
+    updateImageGallery(toteVariants.cream.black.images);
+  } else {
+    updateImageGallery(toteVariants.cream.brown.images);
+  }
+}
+
+function getCart() {
+  const cart = localStorage.getItem('mood_cart');
+  return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('mood_cart', JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const count = cart.reduce((total, item) => total + item.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+}
+
+document.getElementById('add-to-cart').onclick = function() {
+  const itemName = 'MØØD Tote — ' + (currentColour === 'black' ? 'Black' : 'Cream' + ' (' + currentTextColour + ' text)');
+  const itemImage = currentColour === 'black' ? '/images/blackmockup.png' : currentTextColour === 'black' ? '/images/whitemockup.png' : '/images/brownmockup.png';
+
+  const cart = getCart();
+  const existingItem = cart.find(i => i.name === itemName);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      name: itemName,
+      price: 21.99,
+      quantity: 1,
+      product: 'MØØD Tote',
+      image: itemImage
+    });
+  }
+
+  saveCart(cart);
+  updateCartCount();
+
+  const btn = document.getElementById('add-to-cart');
+  btn.textContent = 'ADDED TO BAG';
+  document.getElementById('view-cart-btn').style.display = 'block';
+
+  setTimeout(() => {
+    btn.textContent = 'PRE-ORDER NOW';
+  }, 2000);
+};
+
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('name');
+
+if (slug === 'tote-cream') {
+  selectColour('cream');
+} else {
+  selectColour('black');
+}
+
+updateCartCount();
+
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('active');
+}
+
+window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});
+</script>
+</body>
+</html>
