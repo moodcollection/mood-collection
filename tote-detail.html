@@ -151,15 +151,15 @@ const toteVariants = {
   },
   cream: {
     black: {
-      images: ['./images/blackwritingtote.JPG']
+      images: ['./images/bothtotes.JPG', './images/blackwritingtote.JPG']
     },
     brown: {
-      images: ['./images/HI0A5528.JPG']
+      images: ['./images/bothtotes.JPG', './images/HI0A5528.JPG']
     },
     title: 'MØØD TOTE — CREAM'
   }
 };
-  
+
 let currentColour = 'black';
 let currentTextColour = 'black';
 let currentImages = [];
@@ -254,7 +254,7 @@ function updateCartCount() {
 
 document.getElementById('add-to-cart').onclick = function() {
   const itemName = 'MØØD Tote — ' + (currentColour === 'black' ? 'Black' : 'Cream (' + currentTextColour + ' text)');
-  const itemImage = currentColour === 'black' ? './images/blacktote.JPG' : './images/HI0A5528.JPG';
+  const itemImage = currentColour === 'black' ? './images/bothtotes.JPG' : './images/bothtotes.JPG';
 
   const cart = getCart();
   const existingItem = cart.find(i => i.name === itemName);
