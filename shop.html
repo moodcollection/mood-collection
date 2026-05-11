@@ -20,15 +20,18 @@ nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; dis
 .shop-header { padding: 60px 5%; text-align: center; }
 .shop-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; letter-spacing: 8px; font-weight: 300; }
 .collection-grid { padding: 40px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 30px; }
+.last-row { display: flex; justify-content: center; gap: 30px; padding: 0 5%; max-width: 1400px; margin: 0 auto 40px; }
+.last-row .product-card { width: calc(33.333% - 15px); }
 .product-card { text-align: center; text-decoration: none; color: inherit; }
 .image-box { width: 100%; aspect-ratio: 3/4; background: #f7f7f7; overflow: hidden; margin-bottom: 20px; }
 .image-box img { width: 100%; height: 100%; object-fit: cover; }
 .product-title { font-family: 'Cormorant Garamond', serif; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; font-weight: 600; }
 .product-price { font-family: 'Cormorant Garamond', serif; font-size: 13px; margin-top: 5px; color: #555; }
-.accessories-section { padding: 40px 5% 60px; max-width: 1400px; margin: 0 auto; }
+.accessories-section { padding: 20px 5% 60px; max-width: 1400px; margin: 0 auto; }
 .accessories-divider { border: none; border-top: 1px solid #e0e0e0; margin-bottom: 40px; }
 .accessories-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; text-transform: uppercase; text-align: center; font-weight: 300; margin-bottom: 40px; color: #000; }
-.accessories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 30px; }
+.accessories-center { display: flex; justify-content: center; }
+.accessories-center .product-card { width: calc(33.333% - 15px); }
 footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cormorant Garamond', serif; }
 .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
 .footer-col h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
@@ -40,7 +43,9 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .collection-grid { grid-template-columns: 1fr; }
-  .accessories-grid { grid-template-columns: repeat(2, 1fr); }
+  .last-row { flex-direction: column; }
+  .last-row .product-card { width: 100%; }
+  .accessories-center .product-card { width: 100%; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
@@ -76,11 +81,18 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 </div>
 
 <div class="collection-grid" id="shop-grid"></div>
+<div class="last-row" id="last-row"></div>
 
 <div class="accessories-section">
   <hr class="accessories-divider">
   <p class="accessories-title">Accessories</p>
-  <div class="accessories-grid" id="accessories-grid"></div>
+  <div class="accessories-center">
+    <a href="tote-detail.html?name=tote-black" class="product-card">
+      <div class="image-box"><img src="./images/blacktote.JPG" alt="MØØD Tote"></div>
+      <div class="product-title">MØØD TOTE</div>
+      <div class="product-price">£21.99</div>
+    </a>
+  </div>
 </div>
 
 <footer>
@@ -118,16 +130,14 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 
 <script>
 const products = [
-  { name: "BUSY ADULTING", slug: "busy-adulting", image: "/images/THELMABA.JPG" },
-  { name: "AUTHENTICALLY ME", slug: "authentically-me", image: "/images/KEETS.JPG" },
-  { name: "PRESENT ENOUGH", slug: "present-enough", image: "/images/RIRI2.jpg" },
-  { name: "MENTALLY OFFLINE", slug: "mentally-offline", image: "/images/LEX.JPG" },
-  { name: "FACE YOUR FRONT", slug: "face-your-front", image: "/images/JOSH2.JPG" }
+  { name: "BUSY ADULTING", slug: "busy-adulting", image: "./images/THELMABA.JPG" },
+  { name: "AUTHENTICALLY ME", slug: "authentically-me", image: "./images/KEETS.JPG" },
+  { name: "PRESENT ENOUGH", slug: "present-enough", image: "./images/RIRI2.jpg" }
 ];
 
-const accessories = [
-  { name: "MØØD TOTE — BLACK", slug: "tote-black", image: "/images/blackmockup.png", price: "£21.99" },
-  { name: "MØØD TOTE — CREAM", slug: "tote-cream", image: "/images/whitemockup.png", price: "£21.99" }
+const lastRowProducts = [
+  { name: "MENTALLY OFFLINE", slug: "mentally-offline", image: "./images/LEX.JPG" },
+  { name: "FACE YOUR FRONT", slug: "face-your-front", image: "./images/JOSH2.JPG" }
 ];
 
 const grid = document.getElementById("shop-grid");
@@ -141,13 +151,13 @@ products.forEach(product => {
   `;
 });
 
-const accessoriesGrid = document.getElementById("accessories-grid");
-accessories.forEach(item => {
-  accessoriesGrid.innerHTML += `
-    <a href="tote-detail.html?name=${item.slug}" class="product-card">
-      <div class="image-box"><img src="${item.image}" alt="${item.name}"></div>
-      <div class="product-title">${item.name}</div>
-      <div class="product-price">${item.price}</div>
+const lastRow = document.getElementById("last-row");
+lastRowProducts.forEach(product => {
+  lastRow.innerHTML += `
+    <a href="product-detail.html?name=${product.slug}" class="product-card">
+      <div class="image-box"><img src="${product.image}" alt="${product.name}"></div>
+      <div class="product-title">${product.name}</div>
+      <div class="product-price">From £34.99</div>
     </a>
   `;
 });
