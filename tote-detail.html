@@ -11,7 +11,7 @@
 body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
 .container { max-width: 1100px; margin: 60px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 30px; }
 .product-image { position: relative; }
-.product-image img { width: 100%; display: block; height: auto; }
+.product-image img { width: 100%; display: block; height: auto; object-fit: contain; }
 .image-nav { display: none; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; justify-content: space-between; padding: 0 10px; pointer-events: none; }
 .image-nav.visible { display: flex; }
 .image-nav-btn { background: #000; color: #fff; border: none; width: 36px; height: 36px; font-size: 16px; cursor: pointer; pointer-events: all; opacity: 0.7; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; }
