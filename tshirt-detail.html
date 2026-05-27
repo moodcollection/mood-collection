@@ -1,1 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MØØD T-Shirt | MØØD COLLECTION</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; background: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1100px; margin: 60px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 0 30px; }
+.product-image { position: relative; }
+.product-image img { width: 100%; display: block; }
+.image-nav { display: none; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; justify-content: space-between; padding: 0 10px; pointer-events: none; }
+.image-nav.visible { display: flex; }
+.image-nav-btn { background: #000; color: #fff; border: none; width: 36px; height: 36px; font-size: 16px; cursor: pointer; pointer-events: all; opacity: 0.7; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; }
+.image-nav-btn:hover { opacity: 1; }
+.image-dots { display: none; justify-content: center; gap: 6px; margin-top: 10px; }
+.image-dots.visible { display: flex; }
+.image-dot { width: 6px; height: 6px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s; }
+.image-dot.active { background: #000; }
+.product-info h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; letter-spacing: 3px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; }
+.price { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 25px; font-weight: 400; }
+.size-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; color: #000; }
+select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormorant Garamond', serif; font-size: 14px; border: 1px solid #000; margin-bottom: 20px; background: #fff; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; }
+.add-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; transition: opacity 0.3s ease; display: block; }
+.add-btn:hover { opacity: 0.8; }
+.view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
+.view-cart-btn:hover { background: #000; color: #fff; }
+.description { font-family: 'Cormorant Garamond', serif; line-height: 1.9; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
+@media (max-width: 768px) {
+  .container { grid-template-columns: 1fr; gap: 30px; margin: 30px auto; padding: 0 20px; }
+  .add-btn, select, .view-cart-btn { max-width: 100%; }
+}
+</style>
+</head>
+<body>
 
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="./MOOD-LOGO-WHITE.png"></a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="account.html">My Account</a>
+    <a href="about.html">Our Story</a>
+    <div class="nav-search"><input type="text" placeholder="Search"></div>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMenu()">MENU</button>
+  <a href="./cart.html" class="nav-right">My Cart (<span id="cart-count">0</span>)</a>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="shop.html" onclick="toggleMenu()">Shop</a>
+  <a href="account.html" onclick="toggleMenu()">My Account</a>
+  <a href="about.html" onclick="toggleMenu()">Our Story</a>
+  <a href="contact.html" onclick="toggleMenu()">Contact</a>
+  <a href="shipping.html" onclick="toggleMenu()">Shipping</a>
+  <a href="returns.html" onclick="toggleMenu()">Returns</a>
+  <input type="text" placeholder="Search">
+</div>
+
+<div class="container">
+  <div class="product-image">
+    <img id="product-image" alt="MØØD T-Shirt">
+    <div class="image-nav" id="image-nav">
+      <button class="image-nav-btn" onclick="changeImage(-1)">&#8592;</button>
+      <button class="image-nav-btn" onclick="changeImage(1)">&#8594;</button>
+    </div>
+    <div class="image-dots" id="image-dots"></div>
+  </div>
+
+  <div class="product-info">
+    <h1 id="product-title"></h1>
+    <div class="price">£18.99</div>
+
+    <span class="size-label">Size</span>
+    <select id="size-select">
+      <option value="">Select Size</option>
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <button class="add-btn" id="add-to-cart">ADD TO BAG</button>
+    <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
+
+    <div class="description" id="product-description"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>LEGAL</h4>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>COLLECTION</h4>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>FOLLOW THE MØØD</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/moodcollectionofficial/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@moodcollectionofficial" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MØØD COLLECTION. ALL RIGHTS RESERVED.</p>
+    <p>MADE WITH INTENTION.</p>
+  </div>
+</footer>
+
+<script>
+const baseDescription = `Not just a t-shirt. A MØØD.
+
+Ultra heavyweight 280GSM organic cotton that feels nothing like what you are used to. Oversized, boxy and built with intention — this is the tee that earns its place in your wardrobe and stays there.
+
+Every piece carries a phrase that speaks to a real human feeling. Wear yours.
+
+Fit & Style:
+Oversized boxy fit. For an even more relaxed silhouette size up.
+
+Fabric:
+100% organic ringspun combed cotton
+280GSM ultra heavyweight
+Ribbed collar
+Twin needle stitching
+Available in sizes XS — XL
+Available in White Noise, Grounded, Midnight and DnD`;
+
+const products = {
+  'busy-adulting-tshirt': {
+    name: 'BUSY ADULTING',
+    images: ['./images/busyadultinghero.jpg', './images/busyadultingblack.jpg'],
+    description: `For the days filled with life admin, errands and the relentless to do list that never quite ends. The meetings, the bills, the responsibilities. You are doing it. All of it. And that counts for something.\n\n${baseDescription}`
+  },
+  'own-your-pace-tshirt': {
+    name: 'OWN YOUR PACE',
+    images: ['./images/ownyourpacehero.jpg'],
+    description: `Not everyone moves at the same speed and that is exactly how it should be. Your timeline is yours. Your journey is yours. Stop measuring your progress against someone else's highlight reel and own every step of your pace.\n\n${baseDescription}`
+  },
+  'too-close-tshirt': {
+    name: 'TOO CLOSE',
+    images: ['./images/ifyoucanreadthishero.jpg', './images/ifyoucanreadthistwo.jpg'],
+    description: `Self explanatory.\n\n${baseDescription}`
+  },
+  'authentically-me-tshirt': {
+    name: 'AUTHENTICALLY ME',
+    images: ['./images/authenticallymehero.jpg'],
+    description: `No explanations. No shrinking. No performing. Just you, exactly as you are, showing up without apology. This is for everyone who has ever been told they are too much — and chose to show up anyway.\n\n${baseDescription}`
+  },
+  'mentally-offline-tshirt': {
+    name: 'MENTALLY OFFLINE',
+    images: ['./images/mentallyofflinehero.jpg'],
+    description: `Permission granted to disconnect. Step away from the noise, the notifications and the constant demand for your attention. Your peace is non negotiable. This one is for the days you need to switch off and just exist.\n\n${baseDescription}`
+  },
+  'present-enough-tshirt': {
+    name: 'PRESENT ENOUGH',
+    images: ['./images/presentenoughhero.jpg'],
+    description: `For the days when you are here but gently. When showing up is enough and the pressure to perform is off. You do not have to be at full capacity to be present. This one is for the days when just being here is more than enough.\n\n${baseDescription}`
+  },
+  'face-your-front-tshirt': {
+    name: 'FACE YOUR FRONT',
+    images: ['./images/faceyourfronthero.jpg', './images/faceyourfrontsecond.jpg', './images/faceyourfrontthird.jpg'],
+    description: `A reminder to stay in your own lane. Your path, your pace, your journey. What someone else is doing has nothing to do with where you are going. Eyes forward. Head down. Face your front.\n\n${baseDescription}`
+  }
+};
+
+let currentImages = [];
+let currentImageIndex = 0;
+
+function updateImageGallery(images) {
+  currentImages = images;
+  currentImageIndex = 0;
+  const img = document.getElementById('product-image');
+  const nav = document.getElementById('image-nav');
+  const dots = document.getElementById('image-dots');
+
+  img.src = images[0];
+
+  if (images.length > 1) {
+    nav.classList.add('visible');
+    dots.classList.add('visible');
+    dots.innerHTML = '';
+    images.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'image-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToImage(i);
+      dots.appendChild(dot);
+    });
+  } else {
+    nav.classList.remove('visible');
+    dots.classList.remove('visible');
+    dots.innerHTML = '';
+  }
+}
+
+function changeImage(dir) {
+  currentImageIndex = (currentImageIndex + dir + currentImages.length) % currentImages.length;
+  goToImage(currentImageIndex);
+}
+
+function goToImage(index) {
+  currentImageIndex = index;
+  document.getElementById('product-image').src = currentImages[index];
+  document.querySelectorAll('.image-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+function getCart() {
+  const cart = localStorage.getItem('mood_cart');
+  return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('mood_cart', JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const count = cart.reduce((total, item) => total + item.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+}
+
+function loadProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('name') || 'busy-adulting-tshirt';
+  const product = products[key];
+  if (!product) return;
+
+  document.getElementById('product-title').textContent = product.name;
+  document.getElementById('product-description').textContent = product.description;
+  updateImageGallery(product.images);
+
+  document.getElementById('add-to-cart').onclick = () => {
+    const size = document.getElementById('size-select').value;
+    if (!size) { alert('Please select a size.'); return; }
+
+    const itemName = product.name + ' T-Shirt — Size ' + size;
+    const cart = getCart();
+    const existingItem = cart.find(i => i.name === itemName);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        name: itemName,
+        price: 18.99,
+        quantity: 1,
+        product: product.name,
+        image: product.images[0]
+      });
+    }
+
+    saveCart(cart);
+    updateCartCount();
+
+    const btn = document.getElementById('add-to-cart');
+    btn.textContent = 'ADDED TO BAG';
+    document.getElementById('view-cart-btn').style.display = 'block';
+
+    setTimeout(() => {
+      btn.textContent = 'ADD TO BAG';
+    }, 2000);
+  };
+}
+
+loadProduct();
+updateCartCount();
+
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('active');
+}
+
+window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});
+</script>
+</body>
+</html>
