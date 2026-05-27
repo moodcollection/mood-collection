@@ -22,12 +22,16 @@ nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; dis
 .category-section { padding: 40px 5% 20px; max-width: 1400px; margin: 0 auto; }
 .category-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 6px; text-transform: uppercase; text-align: center; font-weight: 300; margin-bottom: 40px; color: #000; }
 .category-divider { border: none; border-top: 1px solid #e0e0e0; margin-bottom: 40px; }
-.collection-grid { max-width: 1400px; margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 30px; }
+.collection-grid { max-width: 1400px; margin: 0 auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 30px; }
+.centred-row { display: flex; justify-content: center; gap: 30px; max-width: 1400px; margin: 40px auto 40px; padding: 0; }
+.centred-row .product-card { width: calc(33.333% - 20px); }
 .accessories-row { display: flex; justify-content: center; gap: 30px; max-width: 1400px; margin: 0 auto 60px; }
 .accessories-row .product-card { width: calc(33.333% - 15px); }
 .product-card { text-align: center; text-decoration: none; color: inherit; position: relative; }
 .image-box { width: 100%; aspect-ratio: 3/4; background: #f7f7f7; overflow: hidden; margin-bottom: 20px; }
 .image-box img { width: 100%; height: 100%; object-fit: cover; }
+.tote-image-box { width: 100%; aspect-ratio: 1/1; background: #fff; overflow: hidden; margin-bottom: 20px; }
+.tote-image-box img { width: 100%; height: 100%; object-fit: contain; }
 .product-title { font-family: 'Cormorant Garamond', serif; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; font-weight: 600; }
 .product-price { font-family: 'Cormorant Garamond', serif; font-size: 13px; margin-top: 5px; color: #555; }
 .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; }
@@ -42,6 +46,8 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .collection-grid { grid-template-columns: 1fr; }
+  .centred-row { flex-direction: column; }
+  .centred-row .product-card { width: 100%; }
   .accessories-row { flex-direction: column; }
   .accessories-row .product-card { width: 100%; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
@@ -81,12 +87,14 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 <div class="category-section">
   <p class="category-title">MØØD T-SHIRTS</p>
   <div class="collection-grid" id="tshirt-grid"></div>
+  <div class="centred-row" id="tshirt-last-row"></div>
 </div>
 
 <div class="category-section">
   <hr class="category-divider">
   <p class="category-title">MØØD JUMPERS</p>
   <div class="collection-grid" id="jumper-grid"></div>
+  <div class="centred-row" id="jumper-last-row"></div>
 </div>
 
 <div class="category-section">
@@ -129,20 +137,26 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 </footer>
 
 <script>
-const allTshirts = [
+const tshirts = [
   { name: "BUSY ADULTING", slug: "busy-adulting-tshirt", image: "./images/busyadultinghero.jpg", badge: null },
   { name: "OWN YOUR PACE", slug: "own-your-pace-tshirt", image: "./images/ownyourpacehero.jpg", badge: "NEW MØØD" },
   { name: "TOO CLOSE", slug: "too-close-tshirt", image: "./images/ifyoucanreadthishero.jpg", badge: "NEW MØØD" },
   { name: "AUTHENTICALLY ME", slug: "authentically-me-tshirt", image: "./images/authenticallymehero.jpg", badge: null },
   { name: "MENTALLY OFFLINE", slug: "mentally-offline-tshirt", image: "./images/mentallyofflinehero.jpg", badge: null },
-  { name: "PRESENT ENOUGH", slug: "present-enough-tshirt", image: "./images/presentenoughhero.jpg", badge: null },
+  { name: "PRESENT ENOUGH", slug: "present-enough-tshirt", image: "./images/presentenoughhero.jpg", badge: null }
+];
+
+const tshirtLastRow = [
   { name: "FACE YOUR FRONT", slug: "face-your-front-tshirt", image: "./images/faceyourfronthero.jpg", badge: null }
 ];
 
-const allJumpers = [
+const jumpers = [
   { name: "BUSY ADULTING", slug: "busy-adulting", image: "./images/THELMABA.JPG" },
   { name: "AUTHENTICALLY ME", slug: "authentically-me", image: "./images/KEETS.JPG" },
-  { name: "PRESENT ENOUGH", slug: "present-enough", image: "./images/RIRI2.jpg" },
+  { name: "PRESENT ENOUGH", slug: "present-enough", image: "./images/RIRI2.jpg" }
+];
+
+const jumpersLastRow = [
   { name: "MENTALLY OFFLINE", slug: "mentally-offline", image: "./images/LEX.JPG" },
   { name: "FACE YOUR FRONT", slug: "face-your-front", image: "./images/JOSH2.JPG" }
 ];
@@ -166,15 +180,17 @@ function renderProducts(containerId, products, pagePrefix, price) {
   });
 }
 
-renderProducts('tshirt-grid', allTshirts, 'tshirt-detail.html', '£18.99');
-renderProducts('jumper-grid', allJumpers, 'product-detail.html', 'From £34.99');
+renderProducts('tshirt-grid', tshirts, 'tshirt-detail.html', '£18.99');
+renderProducts('tshirt-last-row', tshirtLastRow, 'tshirt-detail.html', '£18.99');
+renderProducts('jumper-grid', jumpers, 'product-detail.html', 'From £34.99');
+renderProducts('jumper-last-row', jumpersLastRow, 'product-detail.html', 'From £34.99');
 
 const accessoriesGrid = document.getElementById('accessories-grid');
 accessories.forEach(item => {
   accessoriesGrid.innerHTML += `
     <a href="tote-detail.html?name=${item.slug}" class="product-card">
       ${item.badge ? `<span class="badge">${item.badge}</span>` : ''}
-      <div style="width:100%; background:#fff; overflow:hidden; margin-bottom:20px;"><img src="${item.image}" alt="${item.name}" style="width:100%; height:auto; display:block;"></div>
+      <div class="tote-image-box"><img src="${item.image}" alt="${item.name}"></div>
       <div class="product-title">${item.name}</div>
       <div class="product-price">${item.price}</div>
     </a>
