@@ -38,6 +38,7 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
 .view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
 .view-cart-btn:hover { background: #000; color: #fff; }
 .description { font-family: 'Cormorant Garamond', serif; line-height: 1.2; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
+.model-size { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 1px; color: #999; font-style: italic; margin-top: 20px; }
 @media (max-width: 768px) {
   .container { grid-template-columns: 1fr; gap: 30px; margin: 30px auto; padding: 0 20px; }
   .add-btn, select, .view-cart-btn { max-width: 100%; }
@@ -109,6 +110,7 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
     <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
 
     <div class="description" id="product-description"></div>
+    <p class="model-size" id="model-size"></p>
   </div>
 </div>
 
@@ -150,6 +152,7 @@ function formatDescription(text) {
   let html = text;
   html = html.replace(/MØØD\./g, '<strong>MØØD.</strong>');
   html = html.replace(/signature MØØD/g, 'signature <strong>MØØD</strong>');
+  html = html.replace(/Ready to match your MØØD/g, 'Ready to match your <strong>MØØD</strong>');
   html = html.replace(/\n/g, '<br>');
   return html;
 }
@@ -160,7 +163,7 @@ const baseDescriptionCrew = `Experience the ultimate in comfort and quality with
 
 Ready to match your MØØD.
 
-Style & Color Options:
+Style & Colour Options:
 Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
 
 Fabric Composition:
@@ -169,13 +172,13 @@ Fabric Composition:
 440 GSM heavyweight fabric for superior quality.
 
 Fit & Styling:
-Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`;
+Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up. To keep it fitted, size down.`;
 
 const baseDescriptionHoodie = `Experience the ultimate in comfort and quality with our heavyweight hoodie. Crafted for softness and durability, you'll feel the difference the moment you put it on. It's warm without bulk, structured without stiffness, and comfortable enough to become your everyday essential. Features a front pouch pocket with an inner media pocket — perfect for keeping your essentials close. Every hoodie also features our signature MØØD Collection logo printed on the back. The clean, versatile design makes it effortless to style and wear on repeat. It looks good, feels even better, and is built to last.
 
 Ready to match your MØØD.
 
-Style & Color Options:
+Style & Colour Options:
 Hoodie: Available in Midnight, After Hours, DnD, Grounded, and Cloud 9.
 Crewneck: Available in Midnight, After Hours, DnD, and Grounded.
 
@@ -187,11 +190,12 @@ Fabric Composition:
 440 GSM heavyweight fabric for superior quality.
 
 Fit & Styling:
-Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up.`;
+Designed for a clean, structured look. For the signature MØØD oversized silhouette, we recommend sizing up. To keep it fitted, size down.`;
 
 const products = {
   "busy-adulting": {
     name: "BUSY ADULTING",
+    modelSize: "Model is wearing size L.",
     hero: "/images/THELMABA.JPG",
     heroImages: ["/images/THELMABA.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `For the days filled with errands, busy schedules, and life admin. Comfort that keeps up while you get things done.\n\n${baseDescriptionCrew}`,
@@ -215,6 +219,7 @@ const products = {
   },
   "authentically-me": {
     name: "AUTHENTICALLY ME",
+    modelSize: "Model is wearing size M.",
     hero: "/images/KEETS.JPG",
     heroImages: ["/images/KEETS.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `Soft confidence. No explaining. No shrinking. Just showing up as you are.\n\n${baseDescriptionCrew}`,
@@ -238,6 +243,7 @@ const products = {
   },
   "present-enough": {
     name: "PRESENT ENOUGH",
+    modelSize: "Model is wearing size L.",
     hero: "/images/RIRI2.jpg",
     heroImages: ["/images/RIRI2.jpg", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `For the days when you're here.. but gently. When you're showing up without pressure, doing what you can, and letting that be enough.\n\n${baseDescriptionCrew}`,
@@ -261,6 +267,7 @@ const products = {
   },
   "mentally-offline": {
     name: "MENTALLY OFFLINE",
+    modelSize: "Model is wearing size S.",
     hero: "/images/LEX.JPG",
     heroImages: ["/images/LEX.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `When the world gets loud, find your quiet. For those moments when you need to disconnect, recharge, and reclaim your peace. This is your permission to switch off and just be.\n\n${baseDescriptionCrew}`,
@@ -284,6 +291,7 @@ const products = {
   },
   "face-your-front": {
     name: "FACE YOUR FRONT",
+    modelSize: "Model is wearing size XL.",
     hero: "/images/JOSH2.JPG",
     heroImages: ["/images/JOSH2.JPG", "/images/debssideback.JPG", "/images/debsposeside.JPG"],
     descriptionCrew: `A reminder to focus on your own lane, your own pace, your own path.\n\n${baseDescriptionCrew}`,
@@ -316,9 +324,7 @@ function updateImageGallery(images) {
   const img = document.getElementById('product-image');
   const nav = document.getElementById('image-nav');
   const dots = document.getElementById('image-dots');
-
   img.src = images[0];
-
   if (images.length > 1) {
     nav.classList.add('visible');
     dots.classList.add('visible');
@@ -378,8 +384,10 @@ function loadProduct() {
   const title = document.getElementById("product-title");
   const colors = document.getElementById("color-options");
   const desc = document.getElementById("product-description");
+  const modelSizeEl = document.getElementById("model-size");
 
   title.textContent = product.name;
+  modelSizeEl.textContent = product.modelSize;
   desc.innerHTML = formatDescription(product.descriptionCrew);
 
   function update() {
