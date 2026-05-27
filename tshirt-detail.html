@@ -29,6 +29,7 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
 .view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
 .view-cart-btn:hover { background: #000; color: #fff; }
 .description { font-family: 'Cormorant Garamond', serif; line-height: 1.2; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
+.model-size { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 1px; color: #999; font-style: italic; margin-top: 20px; }
 @media (max-width: 768px) {
   .container { grid-template-columns: 1fr; gap: 30px; margin: 30px auto; padding: 0 20px; }
   .add-btn, select, .view-cart-btn { max-width: 100%; }
@@ -89,6 +90,7 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
     <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
 
     <div class="description" id="product-description"></div>
+    <p class="model-size" id="model-size"></p>
   </div>
 </div>
 
@@ -126,55 +128,72 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
 </footer>
 
 <script>
+function formatDescription(text) {
+  let html = text;
+  html = html.replace(/MØØD\./g, '<strong>MØØD.</strong>');
+  html = html.replace(/signature MØØD/g, 'signature <strong>MØØD</strong>');
+  html = html.replace(/Ready to match your MØØD/g, 'Ready to match your <strong>MØØD</strong>');
+  html = html.replace(/\n/g, '<br>');
+  return html;
+}
+
 const baseDescription = `Not just a t-shirt. A MØØD.
 
-Ultra heavyweight 280GSM organic cotton that feels nothing like what you are used to. Oversized, boxy and built with intention — this is the tee that earns its place in your wardrobe and stays there.
+Experience the ultimate in comfort and quality with our ultra heavyweight t-shirt. Crafted for softness and durability, you'll feel the difference the moment you put it on. Oversized, boxy and built with intention — this is the tee that earns its place in your wardrobe and stays there. It looks good, feels even better, and is built to last.
 
-Fit & Style:
-Oversized boxy fit. For an even more relaxed silhouette size up.
+Ready to match your MØØD.
 
-Fabric:
+Colour Options:
+Available in White Noise, Grounded, Midnight and DnD.
+
+Fabric Composition:
 100% organic ringspun combed cotton
-280GSM ultra heavyweight
-Ribbed collar
-Twin needle stitching
-Available in sizes XS — XL
-Available in White Noise, Grounded, Midnight and DnD`;
+280GSM ultra heavyweight fabric for superior quality.
+
+Fit & Styling:
+Designed for an oversized boxy fit. For a more fitted silhouette, we recommend sizing down.`;
 
 const products = {
   'busy-adulting-tshirt': {
     name: 'BUSY ADULTING',
     images: ['./images/busyadultinghero.jpg', './images/busyadultingblack.jpg'],
+    modelSize: 'Model is wearing size M.',
     description: `For the days filled with life admin, errands and the relentless to do list that never quite ends. The meetings, the bills, the responsibilities. You are doing it. All of it. And that counts for something.\n\n${baseDescription}`
   },
   'own-your-pace-tshirt': {
     name: 'OWN YOUR PACE',
     images: ['./images/newownyourpaceherotwo.jpg'],
+    modelSize: 'Model is wearing size M.',
     description: `Not everyone moves at the same speed and that is exactly how it should be. Your timeline is yours. Your journey is yours. Stop measuring your progress against someone else's highlight reel and own every step of your pace.\n\n${baseDescription}`
   },
   'too-close-tshirt': {
     name: 'TOO CLOSE',
     images: ['./images/ifyoucanreadthishero.jpg', './images/ifyoucanreadthistwo.jpg'],
+    modelSize: 'Model is wearing size S.',
     description: `Self explanatory.\n\n${baseDescription}`
   },
   'authentically-me-tshirt': {
     name: 'AUTHENTICALLY ME',
     images: ['./images/authenticallymehero.jpg'],
+    modelSize: 'Model is wearing size S.',
     description: `No explanations. No shrinking. No performing. Just you, exactly as you are, showing up without apology. This is for everyone who has ever been told they are too much — and chose to show up anyway.\n\n${baseDescription}`
   },
   'mentally-offline-tshirt': {
     name: 'MENTALLY OFFLINE',
     images: ['./images/mentallyofflinehero.jpg'],
+    modelSize: 'Model is wearing size M.',
     description: `Permission granted to disconnect. Step away from the noise, the notifications and the constant demand for your attention. Your peace is non negotiable. This one is for the days you need to switch off and just exist.\n\n${baseDescription}`
   },
   'present-enough-tshirt': {
     name: 'PRESENT ENOUGH',
     images: ['./images/newpresentenoughhero.jpg'],
+    modelSize: 'Model is wearing size M.',
     description: `For the days when you are here but gently. When showing up is enough and the pressure to perform is off. You do not have to be at full capacity to be present. This one is for the days when just being here is more than enough.\n\n${baseDescription}`
   },
   'face-your-front-tshirt': {
     name: 'FACE YOUR FRONT',
     images: ['./images/faceyourfronthero.jpg', './images/faceyourfrontsecond.jpg', './images/faceyourfrontthird.jpg'],
+    modelSize: 'Model is wearing size S.',
     description: `A reminder to stay in your own lane. Your path, your pace, your journey. What someone else is doing has nothing to do with where you are going. Eyes forward. Head down. Face your front.\n\n${baseDescription}`
   }
 };
@@ -188,9 +207,7 @@ function updateImageGallery(images) {
   const img = document.getElementById('product-image');
   const nav = document.getElementById('image-nav');
   const dots = document.getElementById('image-dots');
-
   img.src = images[0];
-
   if (images.length > 1) {
     nav.classList.add('visible');
     dots.classList.add('visible');
@@ -243,7 +260,8 @@ function loadProduct() {
   if (!product) return;
 
   document.getElementById('product-title').textContent = product.name;
-  document.getElementById('product-description').textContent = product.description;
+  document.getElementById('product-description').innerHTML = formatDescription(product.description);
+  document.getElementById('model-size').textContent = product.modelSize;
   updateImageGallery(product.images);
 
   document.getElementById('add-to-cart').onclick = () => {
