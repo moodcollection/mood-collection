@@ -75,7 +75,7 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 
   <div class="product-info">
     <h1 id="product-title">MØØD TOTE</h1>
-    <div class="price">£14.99</div>
+    <div class="price" id="product-price">£14.99</div>
 
     <span class="color-label-heading">Colour</span>
     <div class="type-buttons">
@@ -91,20 +91,11 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
       </div>
     </div>
 
-<button class="add-btn" id="add-to-cart" disabled style="background:#ccc; color:#888; cursor:not-allowed; opacity:0.6;">PRE-ORDERS CLOSED</button>
+    <button class="add-btn" id="add-to-cart">PRE-ORDER NOW</button>
     <p style="font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:1px; color:#999; font-style:italic; margin-bottom:15px;">Every item is made to order and dispatched within 2-4 weeks.</p>
     <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
 
-    <div class="description">Not just a bag. A MØØD.
-
-The MØØD Tote is oversized by design and intentional in every detail. Big enough for your day trip essentials, your commute must haves or your weekend haul — this is the bag that moves with you however your day looks.
-
-Crafted from durable heavyweight 100% Cotton canvas, the MØØD Tote is built to last and styled to stand out. Soft webbing handles sit comfortably over the shoulder or in hand — however your MØØD carries you.
-
-Fabric: 100% Cotton canvas 475GSM
-Capacity: 37 litres
-Dimensions: 56 x 41 x 16cm
-Weight: 451g</div>
+    <div class="description" id="product-description"></div>
   </div>
 </div>
 
@@ -142,21 +133,60 @@ Weight: 451g</div>
 </footer>
 
 <script>
-const toteVariants = {
-  black: {
-    images: ['./images/HI0A5714.JPG'],
-    title: 'MØØD TOTE — BLACK'
+const toteData = {
+  large: {
+    title: 'MØØD TOTE — LARGE',
+    price: 14.99,
+    heroImage: './images/bothtotes.JPG',
+    description: `Not just a bag. A MØØD.
+
+The MØØD Tote is oversized by design and intentional in every detail. Big enough for your day trip essentials, your commute must haves or your weekend haul — this is the bag that moves with you however your day looks.
+
+Crafted from durable heavyweight 100% Cotton canvas, the MØØD Tote is built to last and styled to stand out. Soft webbing handles sit comfortably over the shoulder or in hand — however your MØØD carries you.
+
+Fabric: 100% Cotton canvas 475GSM
+Capacity: 37 litres
+Dimensions: 56 x 41 x 16cm
+Weight: 451g`,
+    variants: {
+      black: { images: ['./images/blacktote.JPG'] },
+      cream: {
+        black: { images: ['./images/blackwritingtote.JPG'] },
+        brown: { images: ['./images/HI0A5528.JPG'] }
+      }
+    }
   },
-  cream: {
-    black: {
-      images: ['./images/blackwritingtote.JPG']
-    },
-    brown: {
-      images: ['./images/HI0A5528.JPG']
-    },
-    title: 'MØØD TOTE — CREAM'
+  small: {
+    title: 'MØØD TOTE — SMALL',
+    price: 11.99,
+    heroImage: './images/smalltotehero.jpg',
+    description: `Not just a bag. A MØØD.
+
+The MØØD Tote Small is compact by design and intentional in every detail. Perfect for your everyday essentials — keys, wallet, phone and everything in between. Light enough to carry anywhere, strong enough to last everywhere.
+
+Crafted from durable heavyweight 100% Cotton canvas with soft webbing handles that sit comfortably over the shoulder or in hand — however your MØØD carries you.
+
+Fabric: 100% Cotton canvas
+Available in Black and Cream`,
+    variants: {
+      black: { images: ['./images/smalltoteblack.jpg'] },
+      cream: {
+        black: { images: ['./images/smalltoteblackwriting.jpg'] },
+        brown: { images: ['./images/smalltotebrown.jpg'] }
+      }
+    }
   }
 };
+
+const params = new URLSearchParams(window.location.search);
+const sizeParam = params.get('name');
+const isSmall = sizeParam === 'tote-small';
+const currentTote = isSmall ? toteData.small : toteData.large;
+
+document.getElementById('product-title').textContent = currentTote.title;
+document.getElementById('product-price').textContent = '£' + currentTote.price.toFixed(2);
+document.getElementById('product-description').textContent = currentTote.description;
+document.getElementById('product-image').src = currentTote.heroImage;
 
 let currentColour = 'black';
 let currentTextColour = 'black';
@@ -214,12 +244,12 @@ function selectColour(colour) {
     textSection.style.display = 'block';
     document.getElementById('black-text-btn').classList.add('active');
     document.getElementById('brown-text-btn').classList.remove('active');
-    updateImageGallery(toteVariants.cream.black.images);
-    document.getElementById('product-title').textContent = toteVariants.cream.title;
+    updateImageGallery(currentTote.variants.cream.black.images);
+    document.getElementById('product-title').textContent = currentTote.title + ' — CREAM';
   } else {
     textSection.style.display = 'none';
-    updateImageGallery(toteVariants.black.images);
-    document.getElementById('product-title').textContent = toteVariants.black.title;
+    updateImageGallery(currentTote.variants.black.images);
+    document.getElementById('product-title').textContent = currentTote.title + ' — BLACK';
   }
 }
 
@@ -229,9 +259,9 @@ function selectTextColour(textColour) {
   document.getElementById('brown-text-btn').classList.toggle('active', textColour === 'brown');
 
   if (textColour === 'black') {
-    updateImageGallery(toteVariants.cream.black.images);
+    updateImageGallery(currentTote.variants.cream.black.images);
   } else {
-    updateImageGallery(toteVariants.cream.brown.images);
+    updateImageGallery(currentTote.variants.cream.brown.images);
   }
 }
 
@@ -251,8 +281,9 @@ function updateCartCount() {
 }
 
 document.getElementById('add-to-cart').onclick = function() {
-  const itemName = 'MØØD Tote — ' + (currentColour === 'black' ? 'Black' : 'Cream (' + currentTextColour + ' text)');
-  const itemImage = currentColour === 'black' ? './images/blacktote.JPG' : './images/blackwritingtote.JPG';
+  const size = isSmall ? 'Small' : 'Large';
+  const itemName = 'MØØD Tote ' + size + ' — ' + (currentColour === 'black' ? 'Black' : 'Cream (' + currentTextColour + ' text)');
+  const itemImage = currentColour === 'black' ? currentTote.variants.black.images[0] : currentTote.variants.cream.black.images[0];
 
   const cart = getCart();
   const existingItem = cart.find(i => i.name === itemName);
@@ -262,9 +293,9 @@ document.getElementById('add-to-cart').onclick = function() {
   } else {
     cart.push({
       name: itemName,
-      price: 14.99,
+      price: currentTote.price,
       quantity: 1,
-      product: 'MØØD Tote',
+      product: 'MØØD Tote ' + size,
       image: itemImage
     });
   }
@@ -280,13 +311,6 @@ document.getElementById('add-to-cart').onclick = function() {
     btn.textContent = 'PRE-ORDER NOW';
   }, 2000);
 };
-
-const params = new URLSearchParams(window.location.search);
-const slug = params.get('name');
-
-if (slug === 'tote-cream') {
-  selectColour('cream');
-}
 
 updateCartCount();
 
