@@ -22,7 +22,13 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .image-dot.active { background: #000; }
 .product-info h1 { font-family: 'Cormorant Garamond', serif; font-size: 28px; letter-spacing: 3px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase; }
 .price { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 25px; font-weight: 400; }
-.size-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; color: #000; }
+.color-label-heading, .size-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; color: #000; }
+.colors { margin: 0 0 25px 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.color-wrapper { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; }
+.color-circle { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ccc; transition: transform 0.2s ease; }
+.color-circle:hover { transform: scale(1.1); }
+.color-circle.selected { border: 2px solid #000; }
+.color-name { font-family: 'Cormorant Garamond', serif; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
 select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormorant Garamond', serif; font-size: 14px; border: 1px solid #000; margin-bottom: 20px; background: #fff; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; }
 .add-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; transition: opacity 0.3s ease; display: block; }
 .add-btn:hover { opacity: 0.8; }
@@ -75,6 +81,9 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
   <div class="product-info">
     <h1 id="product-title"></h1>
     <div class="price">£18.99</div>
+
+    <span class="color-label-heading">Colour</span>
+    <div class="colors" id="color-options"></div>
 
     <span class="size-label">Size</span>
     <select id="size-select">
@@ -141,6 +150,8 @@ const baseDescription = `Not just a t-shirt. A MØØD.
 
 Experience the ultimate in comfort and quality with our ultra heavyweight t-shirt. Crafted for softness and durability, you'll feel the difference the moment you put it on. Oversized, boxy and built with intention — this is the tee that earns its place in your wardrobe and stays there. It looks good, feels even better, and is built to last.
 
+Ready to match your MØØD.
+
 Colour Options:
 Available in White Noise, Grounded, Midnight and DnD.
 
@@ -151,53 +162,111 @@ Fabric Composition:
 Fit & Styling:
 Designed for an oversized boxy fit. For a more fitted silhouette, we recommend sizing down.`;
 
+const colourways = [
+  { name: 'WHITE NOISE', color: '#fff', key: 'white' },
+  { name: 'GROUNDED', color: '#beb8a9', key: 'stone' },
+  { name: 'MIDNIGHT', color: '#000', key: 'black' },
+  { name: 'DND', color: '#413e41', key: 'charcoal' }
+];
+
 const products = {
   'busy-adulting-tshirt': {
     name: 'BUSY ADULTING',
-    images: ['./images/busyadultinghero.jpg', './images/busyadultingblack.jpg'],
+    heroImage: './images/busyadultinghero.jpg',
     modelSize: 'Model is wearing size M.',
+    colourImages: {
+      white: ['./images/whitebusyadultingtee.png'],
+      stone: ['./images/stonebusyadultingtee.png'],
+      black: ['./images/blackbusyadultingtee.png'],
+      charcoal: ['./images/charcoalbusyadultingtee.png']
+    },
+    extraImages: ['./images/busyadultingblack.jpg'],
     description: `For the days filled with life admin, errands and the relentless to do list that never quite ends. The meetings, the bills, the responsibilities. You are doing it. All of it. And that counts for something.\n\n${baseDescription}`
   },
   'own-your-pace-tshirt': {
     name: 'OWN YOUR PACE',
-    images: ['./images/newownyourpaceherotwo.jpg'],
+    heroImage: './images/newownyourpaceherotwo.jpg',
     modelSize: 'Model is wearing size M.',
+    colourImages: {
+      white: ['./images/whiteownyourpacetee.png'],
+      stone: ['./images/stoneownyourpacetee.png'],
+      black: ['./images/blackownyourpacetee.png'],
+      charcoal: ['./images/charcoalownyourpacetee.png']
+    },
+    extraImages: [],
     description: `Not everyone moves at the same speed and that is exactly how it should be. Your timeline is yours. Your journey is yours. Stop measuring your progress against someone else's highlight reel and own every step of your pace.\n\n${baseDescription}`
   },
   'too-close-tshirt': {
     name: 'TOO CLOSE',
-    images: ['./images/ifyoucanreadthishero.jpg', './images/ifyoucanreadthistwo.jpg'],
+    heroImage: './images/ifyoucanreadthishero.jpg',
     modelSize: 'Model is wearing size S.',
+    colourImages: {
+      white: ['./images/whitetooclosetee.png'],
+      stone: ['./images/stonetooclosetee.png'],
+      black: ['./images/blacktooclosetee.png'],
+      charcoal: ['./images/charcoaltooclosetee.png']
+    },
+    extraImages: ['./images/ifyoucanreadthistwo.jpg'],
     description: `Self explanatory.\n\n${baseDescription}`
   },
   'authentically-me-tshirt': {
     name: 'AUTHENTICALLY ME',
-    images: ['./images/authenticallymehero.jpg'],
+    heroImage: './images/authenticallymehero.jpg',
     modelSize: 'Model is wearing size S.',
+    colourImages: {
+      white: ['./images/whiteauthenticallymetee.png'],
+      stone: ['./images/stoneauthenticallymetee.png'],
+      black: ['./images/blackauthenticallymetee.png'],
+      charcoal: ['./images/charcoalauthenticallymetee.png']
+    },
+    extraImages: [],
     description: `No explanations. No shrinking. No performing. Just you, exactly as you are, showing up without apology. This is for everyone who has ever been told they are too much — and chose to show up anyway.\n\n${baseDescription}`
   },
   'mentally-offline-tshirt': {
     name: 'MENTALLY OFFLINE',
-    images: ['./images/mentallyofflinehero.jpg'],
+    heroImage: './images/mentallyofflinehero.jpg',
     modelSize: 'Model is wearing size M.',
+    colourImages: {
+      white: ['./images/whitementallyofflinetee.png'],
+      stone: ['./images/stonementallyofflinetee.png'],
+      black: ['./images/blackmentallyofflinetee.png'],
+      charcoal: ['./images/charcoalmentallyofflinetee.png']
+    },
+    extraImages: [],
     description: `Permission granted to disconnect. Step away from the noise, the notifications and the constant demand for your attention. Your peace is non negotiable. This one is for the days you need to switch off and just exist.\n\n${baseDescription}`
   },
   'present-enough-tshirt': {
     name: 'PRESENT ENOUGH',
-    images: ['./images/newpresentenoughhero.jpg'],
+    heroImage: './images/newpresentenoughhero.jpg',
     modelSize: 'Model is wearing size M.',
+    colourImages: {
+      white: ['./images/whitepresentenoughtee.png'],
+      stone: ['./images/stonepresentenoughtee.png'],
+      black: ['./images/blackpresentenoughtee.png'],
+      charcoal: ['./images/charcoalpresentenoughtee.png']
+    },
+    extraImages: [],
     description: `For the days when you are here but gently. When showing up is enough and the pressure to perform is off. You do not have to be at full capacity to be present. This one is for the days when just being here is more than enough.\n\n${baseDescription}`
   },
   'face-your-front-tshirt': {
     name: 'FACE YOUR FRONT',
-    images: ['./images/faceyourfronthero.jpg', './images/faceyourfrontsecond.jpg', './images/faceyourfrontthird.jpg'],
+    heroImage: './images/faceyourfronthero.jpg',
     modelSize: 'Model is wearing size S.',
+    colourImages: {
+      white: ['./images/whitefacialfronttee.png'],
+      stone: ['./images/stonefacialfronttee.png'],
+      black: ['./images/blackfacialfronttee.png'],
+      charcoal: ['./images/charcoalfacialfronttee.png']
+    },
+    extraImages: ['./images/faceyourfrontsecond.jpg', './images/faceyourfrontthird.jpg'],
     description: `A reminder to stay in your own lane. Your path, your pace, your journey. What someone else is doing has nothing to do with where you are going. Eyes forward. Head down. Face your front.\n\n${baseDescription}`
   }
 };
 
 let currentImages = [];
 let currentImageIndex = 0;
+let currentProduct = null;
+let selectedColour = null;
 
 function updateImageGallery(images) {
   currentImages = images;
@@ -251,22 +320,51 @@ function updateCartCount() {
   document.getElementById('cart-count').textContent = count;
 }
 
+function renderColours(product) {
+  const container = document.getElementById('color-options');
+  container.innerHTML = '';
+  colourways.forEach(c => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'color-wrapper';
+    const circle = document.createElement('div');
+    circle.className = 'color-circle';
+    circle.style.background = c.color;
+    if (c.color === '#fff') circle.style.border = '1px solid #ccc';
+    const label = document.createElement('div');
+    label.className = 'color-name';
+    label.textContent = c.name;
+    circle.onclick = () => {
+      selectedColour = c;
+      document.querySelectorAll('.color-circle').forEach(x => x.classList.remove('selected'));
+      circle.classList.add('selected');
+      const images = [...product.colourImages[c.key], ...product.extraImages];
+      updateImageGallery(images);
+    };
+    wrapper.appendChild(circle);
+    wrapper.appendChild(label);
+    container.appendChild(wrapper);
+  });
+}
+
 function loadProduct() {
   const params = new URLSearchParams(window.location.search);
   const key = params.get('name') || 'busy-adulting-tshirt';
   const product = products[key];
   if (!product) return;
+  currentProduct = product;
 
   document.getElementById('product-title').textContent = product.name;
   document.getElementById('product-description').innerHTML = formatDescription(product.description);
   document.getElementById('model-size').textContent = product.modelSize;
-  updateImageGallery(product.images);
+  updateImageGallery([product.heroImage, ...product.extraImages]);
+  renderColours(product);
 
   document.getElementById('add-to-cart').onclick = () => {
     const size = document.getElementById('size-select').value;
     if (!size) { alert('Please select a size.'); return; }
+    if (!selectedColour) { alert('Please select a colour.'); return; }
 
-    const itemName = product.name + ' T-Shirt — Size ' + size;
+    const itemName = product.name + ' T-Shirt — ' + selectedColour.name + ' — Size ' + size;
     const cart = getCart();
     const existingItem = cart.find(i => i.name === itemName);
 
@@ -278,7 +376,7 @@ function loadProduct() {
         price: 18.99,
         quantity: 1,
         product: product.name,
-        image: product.images[0]
+        image: product.colourImages[selectedColour.key][0]
       });
     }
 
