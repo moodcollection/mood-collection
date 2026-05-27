@@ -37,7 +37,6 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
 .add-btn:hover { opacity: 0.8; }
 .view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
 .view-cart-btn:hover { background: #000; color: #fff; }
-.added-message { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 1px; color: #000; margin-bottom: 15px; display: none; }
 .description { font-family: 'Cormorant Garamond', serif; line-height: 1.9; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
 @media (max-width: 768px) {
   .container { grid-template-columns: 1fr; gap: 30px; margin: 30px auto; padding: 0 20px; }
@@ -103,8 +102,10 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
       <option>L</option>
       <option>XL</option>
       <option>XXL</option>
+      <option>3XL</option>
     </select>
-<button class="add-btn" id="add-to-cart" disabled style="background:#ccc; color:#888; cursor:not-allowed; opacity:0.6;">PRE-ORDERS CLOSED</button>
+
+    <button class="add-btn" id="add-to-cart">ADD TO BAG</button>
     <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
 
     <div class="description" id="product-description"></div>
@@ -459,12 +460,12 @@ function loadProduct() {
     updateCartCount();
 
     const btn = document.getElementById('add-to-cart');
-btn.textContent = 'ADDED TO BAG';
-document.getElementById('view-cart-btn').style.display = 'block';
+    btn.textContent = 'ADDED TO BAG';
+    document.getElementById('view-cart-btn').style.display = 'block';
 
-setTimeout(() => {
-  btn.textContent = 'PRE-ORDER NOW';
-}, 2000);
+    setTimeout(() => {
+      btn.textContent = 'ADD TO BAG';
+    }, 2000);
   };
 
   renderColors();
