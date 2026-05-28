@@ -21,7 +21,7 @@ exports.handler = async (event) => {
     const discountUpper = (discountCode || '').toUpperCase();
     const shippingRate = (cartTotal >= 70 || discountUpper === 'NEWMOOD26')
       ? 'shr_1TQUnfACqvQrWErerDnmYhfg'
-      : 'shr_1TQUo2ACqvQrWEreav8C22wi';
+      : 'shr_1TbxTsACqvQrWErer8xLP36i';
     const sessionParams = {
       payment_method_types: ['card'],
       line_items: lineItems,
