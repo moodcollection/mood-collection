@@ -176,9 +176,10 @@ function renderCart() {
       </div>`;
   });
 
-  html += `
+ html += `
     <div class="cart-summary">
       <p class="shipping-notice ${isFreeShipping ? 'free' : ''}">${shippingText}</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:13px; letter-spacing:1px; color:#555; font-style:italic; margin-bottom:20px;">All orders are dispatched within 5-7 working days.</p>
       <div class="price-breakdown">
         <div class="price-breakdown-row total">Subtotal: £${total.toFixed(2)}</div>
       </div>
