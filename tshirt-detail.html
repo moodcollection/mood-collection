@@ -364,7 +364,7 @@ function loadProduct() {
     if (!size) { alert('Please select a size.'); return; }
     if (!selectedColour) { alert('Please select a colour.'); return; }
 
-    const itemName = product.name + ' T-Shirt — ' + selectedColour.name + ' — Size ' + size;
+    const itemName = product.name + ' — ' + selectedColour.name + ' — Size ' + size;
     const cart = getCart();
     const existingItem = cart.find(i => i.name === itemName);
 
