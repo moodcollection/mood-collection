@@ -222,10 +222,10 @@ async function checkout() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         items: cart.map(item => ({
-          name: item.name,
-          description: item.product + ' - ' + (item.type === 'crew' ? 'Crewneck' : 'Hoodie'),
-          price: item.price,
-          quantity: item.quantity
+  name: item.name,
+  description: item.type ? item.product + ' - ' + (item.type === 'crew' ? 'Crewneck' : 'Hoodie') : item.product,
+  price: item.price,
+  quantity: item.quantity
         }))
       })
     });
