@@ -239,7 +239,27 @@ function selectColour(colour) {
   document.getElementById('black-btn').classList.toggle('active', colour === 'black');
   document.getElementById('cream-btn').classList.toggle('active', colour === 'cream');
 
+  const btn = document.getElementById('add-to-cart');
   const textSection = document.getElementById('text-colour-section');
+
+  const isOutOfStock = isSmall && colour === 'black';
+
+  if (isOutOfStock) {
+    btn.textContent = 'OUT OF STOCK';
+    btn.disabled = true;
+    btn.style.background = '#ccc';
+    btn.style.color = '#888';
+    btn.style.cursor = 'not-allowed';
+    btn.style.opacity = '0.6';
+  } else {
+    btn.textContent = 'ADD TO BAG';
+    btn.disabled = false;
+    btn.style.background = '#000';
+    btn.style.color = '#fff';
+    btn.style.cursor = 'pointer';
+    btn.style.opacity = '1';
+  }
+
   if (colour === 'cream') {
     textSection.style.display = 'block';
     document.getElementById('black-text-btn').classList.add('active');
