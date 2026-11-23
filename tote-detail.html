@@ -28,6 +28,8 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 .type-btn.active, .type-btn:hover { background: #000; color: #fff; }
 .add-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; transition: opacity 0.3s ease; display: block; }
 .add-btn:hover { opacity: 0.8; }
+.add-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; opacity: 0.6; }
+.add-btn:disabled:hover { opacity: 0.6; }
 .view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
 .view-cart-btn:hover { background: #000; color: #fff; }
 .description { font-family: 'Cormorant Garamond', serif; line-height: 1.2; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
@@ -92,7 +94,6 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
     </div>
 
     <button class="add-btn" id="add-to-cart">ADD TO BAG</button>
-    <p style="font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:1px; color:#999; font-style:italic; margin-bottom:15px;">Dispatched within 5-7 working days.</p>
     <a href="cart.html" class="view-cart-btn" id="view-cart-btn">VIEW BAG</a>
 
     <div class="description" id="product-description"></div>
@@ -133,6 +134,8 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 </footer>
 
 <script>
+const SOLD_OUT = true;
+
 const toteData = {
   large: {
     title: 'MØØD TOTE — LARGE',
@@ -193,6 +196,22 @@ let currentTextColour = 'black';
 let currentImages = [];
 let currentImageIndex = 0;
 
+function updateButtonState() {
+  const btn = document.getElementById('add-to-cart');
+  const colourOut = isSmall && currentColour === 'black';
+
+  if (SOLD_OUT) {
+    btn.textContent = 'SOLD OUT';
+    btn.disabled = true;
+  } else if (colourOut) {
+    btn.textContent = 'OUT OF STOCK';
+    btn.disabled = true;
+  } else {
+    btn.textContent = 'ADD TO BAG';
+    btn.disabled = false;
+  }
+}
+
 function updateImageGallery(images) {
   currentImages = images;
   currentImageIndex = 0;
@@ -239,26 +258,9 @@ function selectColour(colour) {
   document.getElementById('black-btn').classList.toggle('active', colour === 'black');
   document.getElementById('cream-btn').classList.toggle('active', colour === 'cream');
 
-  const btn = document.getElementById('add-to-cart');
   const textSection = document.getElementById('text-colour-section');
 
-  const isOutOfStock = isSmall && colour === 'black';
-
-  if (isOutOfStock) {
-    btn.textContent = 'OUT OF STOCK';
-    btn.disabled = true;
-    btn.style.background = '#ccc';
-    btn.style.color = '#888';
-    btn.style.cursor = 'not-allowed';
-    btn.style.opacity = '0.6';
-  } else {
-    btn.textContent = 'ADD TO BAG';
-    btn.disabled = false;
-    btn.style.background = '#000';
-    btn.style.color = '#fff';
-    btn.style.cursor = 'pointer';
-    btn.style.opacity = '1';
-  }
+  updateButtonState();
 
   if (colour === 'cream') {
     textSection.style.display = 'block';
@@ -301,6 +303,8 @@ function updateCartCount() {
 }
 
 document.getElementById('add-to-cart').onclick = function() {
+  if (this.disabled) return;
+
   const size = isSmall ? 'Small' : 'Large';
   const itemName = 'MØØD Tote ' + size + ' — ' + (currentColour === 'black' ? 'Black' : 'Cream (' + currentTextColour + ' text)');
   const itemImage = currentColour === 'black' ? currentTote.variants.black.images[0] : currentTote.variants.cream.black.images[0];
@@ -328,10 +332,11 @@ document.getElementById('add-to-cart').onclick = function() {
   document.getElementById('view-cart-btn').style.display = 'block';
 
   setTimeout(() => {
-    btn.textContent = 'ADD TO BAG';
+    updateButtonState();
   }, 2000);
 };
 
+updateButtonState();
 updateCartCount();
 
 function toggleMenu() {
