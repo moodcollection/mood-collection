@@ -1,9 +1,19 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
+const SOLD_OUT = true;
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
+
+  if (SOLD_OUT) {
+    return {
+      statusCode: 503,
+      body: JSON.stringify({ error: 'Everything is currently sold out. Please check back soon.' }),
+    };
+  }
+
   try {
     const { items, discountCode } = JSON.parse(event.body);
     const lineItems = items.map(item => ({
