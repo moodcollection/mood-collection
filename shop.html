@@ -35,7 +35,9 @@ nav { position: sticky; top: 0; width: 100%; height: 65px; background: #000; dis
 .tote-image-box img { width: 100%; height: 100%; object-fit: cover; }
 .product-title { font-family: 'Cormorant Garamond', serif; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; font-weight: 600; }
 .product-price { font-family: 'Cormorant Garamond', serif; font-size: 13px; margin-top: 5px; color: #555; }
-.badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; }
+.badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; z-index: 2; }
+.sold-out-label { position: absolute; top: 10px; right: 10px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; z-index: 2; }
+.product-card.sold-out img { opacity: 0.55; }
 footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cormorant Garamond', serif; }
 .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
 .footer-col h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
@@ -138,10 +140,12 @@ footer { background: #000; color: #fff; padding: 60px 5% 30px; font-family: 'Cor
 </footer>
 
 <script>
+const SOLD_OUT = true;
+
 const tshirts = [
   { name: "BUSY ADULTING TEE", slug: "busy-adulting-tshirt", image: "./images/busyadultinghero.jpg", badge: null },
-  { name: "OWN YOUR PACE TEE", slug: "own-your-pace-tshirt", image: "./images/newownyourpaceherotwo.jpg", badge: "NEW MØØD" },
-  { name: "TOO CLOSE TEE", slug: "too-close-tshirt", image: "./images/ifyoucanreadthishero.jpg", badge: "NEW MØØD" },
+  { name: "OWN YOUR PACE TEE", slug: "own-your-pace-tshirt", image: "./images/newownyourpaceherotwo.jpg", badge: null },
+  { name: "TOO CLOSE TEE", slug: "too-close-tshirt", image: "./images/ifyoucanreadthishero.jpg", badge: null },
   { name: "AUTHENTICALLY ME TEE", slug: "authentically-me-tshirt", image: "./images/authenticallymehero.jpg", badge: null },
   { name: "MENTALLY OFFLINE TEE", slug: "mentally-offline-tshirt", image: "./images/charcoalmentallyofflinetwo.png", badge: null, position: "center top" },
   { name: "PRESENT ENOUGH TEE", slug: "present-enough-tshirt", image: "./images/newpresentenoughhero.jpg", badge: null }
@@ -163,17 +167,21 @@ const jumpersLastRow = [
 ];
 
 const accessories = [
-  { name: "MØØD TOTE — SMALL", slug: "tote-small", image: "./images/smalltotehero.jpg", price: "£11.99", badge: "NEW" },
+  { name: "MØØD TOTE — SMALL", slug: "tote-small", image: "./images/smalltotehero.jpg", price: "£11.99", badge: null },
   { name: "MØØD TOTE — LARGE", slug: "tote-large", image: "./images/bothtotes.JPG", price: "£14.99", badge: null }
 ];
+
+const soldOutLabel = SOLD_OUT ? '<span class="sold-out-label">SOLD OUT</span>' : '';
+const soldOutClass = SOLD_OUT ? ' sold-out' : '';
 
 function renderProducts(containerId, products, pagePrefix, price) {
   const grid = document.getElementById(containerId);
   products.forEach(product => {
     grid.innerHTML += `
-      <a href="${pagePrefix}?name=${product.slug}" class="product-card">
+      <a href="${pagePrefix}?name=${product.slug}" class="product-card${soldOutClass}">
         ${product.badge ? `<span class="badge">${product.badge}</span>` : ''}
-      <div class="image-box"><img src="${product.image}" alt="${product.name}" style="object-position: ${product.position || 'center'};"></div>
+        ${soldOutLabel}
+        <div class="image-box"><img src="${product.image}" alt="${product.name}" style="object-position: ${product.position || 'center'};"></div>
         <div class="product-title">${product.name}</div>
         <div class="product-price">${price}</div>
       </a>
@@ -189,9 +197,10 @@ renderProducts('jumper-last-row', jumpersLastRow, 'product-detail.html', 'From �
 const accessoriesGrid = document.getElementById('accessories-grid');
 accessories.forEach(item => {
   accessoriesGrid.innerHTML += `
-    <a href="tote-detail.html?name=${item.slug}" class="product-card">
+    <a href="tote-detail.html?name=${item.slug}" class="product-card${soldOutClass}">
       <div class="tote-image-wrapper">
         ${item.badge ? `<span class="badge">${item.badge}</span>` : ''}
+        ${soldOutLabel}
         <div class="tote-image-box"><img src="${item.image}" alt="${item.name}"></div>
       </div>
       <div class="product-title">${item.name}</div>
