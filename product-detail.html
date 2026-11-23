@@ -35,6 +35,8 @@ body, html { margin: 0; padding: 0; font-family: 'Cormorant Garamond', serif; ba
 select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormorant Garamond', serif; font-size: 14px; border: 1px solid #000; margin-bottom: 20px; background: #fff; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; }
 .add-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #000; color: #fff; border: none; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; transition: opacity 0.3s ease; display: block; }
 .add-btn:hover { opacity: 0.8; }
+.add-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; opacity: 0.6; }
+.add-btn:disabled:hover { opacity: 0.6; }
 .view-cart-btn { width: 100%; max-width: 250px; padding: 15px 20px; background: #fff; color: #000; border: 1px solid #000; font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; transition: all 0.3s ease; display: none; text-align: center; text-decoration: none; }
 .view-cart-btn:hover { background: #000; color: #fff; }
 .description { font-family: 'Cormorant Garamond', serif; line-height: 1.2; font-size: 15px; color: #333; white-space: pre-line; margin-top: 10px; }
@@ -148,6 +150,8 @@ select { width: 100%; max-width: 250px; padding: 12px 15px; font-family: 'Cormor
 </footer>
 
 <script>
+const SOLD_OUT = true;
+
 function formatDescription(text) {
   let html = text;
   html = html.replace(/MØØD\./g, '<strong>MØØD.</strong>');
@@ -385,10 +389,16 @@ function loadProduct() {
   const colors = document.getElementById("color-options");
   const desc = document.getElementById("product-description");
   const modelSizeEl = document.getElementById("model-size");
+  const addBtn = document.getElementById("add-to-cart");
 
   title.textContent = product.name;
   modelSizeEl.textContent = product.modelSize;
   desc.innerHTML = formatDescription(product.descriptionCrew);
+
+  if (SOLD_OUT) {
+    addBtn.textContent = 'SOLD OUT';
+    addBtn.disabled = true;
+  }
 
   function update() {
     if (color === null) {
@@ -440,7 +450,9 @@ function loadProduct() {
     renderColors(); update();
   };
 
-  document.getElementById("add-to-cart").onclick = () => {
+  addBtn.onclick = () => {
+    if (SOLD_OUT) return;
+
     const size = document.getElementById("size-select").value;
     if (!size) { alert("Please select a size."); return; }
     if (!color) { alert("Please select a colour."); return; }
@@ -467,12 +479,11 @@ function loadProduct() {
     saveCart(cart);
     updateCartCount();
 
-    const btn = document.getElementById('add-to-cart');
-    btn.textContent = 'ADDED TO BAG';
+    addBtn.textContent = 'ADDED TO BAG';
     document.getElementById('view-cart-btn').style.display = 'block';
 
     setTimeout(() => {
-      btn.textContent = 'ADD TO BAG';
+      addBtn.textContent = 'ADD TO BAG';
     }, 2000);
   };
 
